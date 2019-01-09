@@ -40,18 +40,19 @@ std::shared_ptr <HeapDesc> run_sp::getHeapImpl(const std::string& heap_type)
 }
 
 
-struct OneDist : public RcppParallel::Worker
+struct OneDist_Dijkstra : public RcppParallel::Worker
 {
     RcppParallel::RVector <int> dp_fromi;
     const Rcpp::IntegerVector toi;
     const size_t nverts;
     const std::shared_ptr <DGraph> g;
     const std::string heap_type;
+    const std::vector <double> _x_f, _y_f, _x_t, _y_t;
 
     RcppParallel::RMatrix <double> dout;
 
     // constructor
-    OneDist (
+    OneDist_Dijkstra (
             const Rcpp::IntegerVector fromi,
             const Rcpp::IntegerVector toi_in,
             const size_t nverts_in,
@@ -59,7 +60,8 @@ struct OneDist : public RcppParallel::Worker
             const std::string & heap_type_in,
             Rcpp::NumericMatrix dout_in) :
         dp_fromi (fromi), toi (toi_in), nverts (nverts_in),
-        g (g_in), heap_type (heap_type_in), dout (dout_in)
+        g (g_in), heap_type (heap_type_in),
+        dout (dout_in)
     {
     }
 
@@ -85,6 +87,67 @@ struct OneDist : public RcppParallel::Worker
             else
                 dijkstra->run_set (d, w, prev,
                         static_cast <unsigned int> (dp_fromi [i]));
+            for (long int j = 0; j < toi.size (); j++)
+            {
+                if (w [static_cast <size_t> (toi [j])] < INFINITE_DOUBLE)
+                {
+                    dout (i, static_cast <size_t> (j)) =
+                        d [static_cast <size_t> (toi [j])];
+                }
+            }
+        }
+    }
+                                   
+};
+
+struct OneDist_Astar : public RcppParallel::Worker
+{
+    RcppParallel::RVector <int> dp_fromi;
+    const Rcpp::IntegerVector toi;
+    const size_t nverts;
+    const std::shared_ptr <DGraph> g;
+    const std::string heap_type;
+    const std::vector <double> _x_f, _y_f, _x_t, _y_t;
+
+    RcppParallel::RMatrix <double> dout;
+
+    // constructor
+    OneDist_Astar (
+            const Rcpp::IntegerVector fromi,
+            const Rcpp::IntegerVector toi_in,
+            const size_t nverts_in,
+            const std::shared_ptr <DGraph> g_in,
+            const std::string & heap_type_in,
+            const std::vector <double> x_f,
+            const std::vector <double> y_f,
+            const std::vector <double> x_t,
+            const std::vector <double> y_t,
+            Rcpp::NumericMatrix dout_in) :
+        dp_fromi (fromi), toi (toi_in), nverts (nverts_in),
+        g (g_in), heap_type (heap_type_in),
+        _x_f (x_f), _y_f (y_f), _x_t (x_t), _y_t (y_t),
+        dout (dout_in)
+    {
+    }
+
+    // Parallel function operator
+    void operator() (std::size_t begin, std::size_t end)
+    {
+        std::shared_ptr<Astar> astar =
+            std::make_shared <Astar> (nverts,
+                    *run_sp::getHeapImpl (heap_type), g);
+        std::vector <double> w (nverts);
+        std::vector <double> d (nverts);
+        std::vector <int> prev (nverts);
+
+        for (std::size_t i = begin; i < end; i++)
+        {
+            // These have to be reserved within the parallel operator function!
+            std::fill (w.begin (), w.end (), INFINITE_DOUBLE);
+            std::fill (d.begin (), d.end (), INFINITE_DOUBLE);
+
+            astar->run (d, w, prev,
+                    static_cast <unsigned int> (dp_fromi [i]));
             for (long int j = 0; j < toi.size (); j++)
             {
                 if (w [static_cast <size_t> (toi [j])] < INFINITE_DOUBLE)
@@ -167,11 +230,11 @@ void run_sp::make_vert_to_edge_maps (const std::vector <std::string> &from,
     }
 }
 
-//' rcpp_get_sp_dists_par
+//' rcpp_get_sp_dists_par_dijkstra
 //'
 //' @noRd
 // [[Rcpp::export]]
-Rcpp::NumericMatrix rcpp_get_sp_dists_par (const Rcpp::DataFrame graph,
+Rcpp::NumericMatrix rcpp_get_sp_dists_par_dijkstra (const Rcpp::DataFrame graph,
         const Rcpp::DataFrame vert_map_in,
         Rcpp::IntegerVector fromi,
         Rcpp::IntegerVector toi,
@@ -202,7 +265,56 @@ Rcpp::NumericMatrix rcpp_get_sp_dists_par (const Rcpp::DataFrame graph,
             static_cast <int> (nto), na_vec.begin ());
 
     // Create parallel worker
-    OneDist one_dist (fromi, toi, nverts, g, heap_type, dout);
+    OneDist_Dijkstra one_dist (fromi, toi, nverts, g, heap_type, dout);
+
+    RcppParallel::parallelFor (0, static_cast <size_t> (fromi.length ()),
+            one_dist);
+    
+    return (dout);
+}
+
+//' rcpp_get_sp_dists_par_astar
+//'
+//' @noRd
+// [[Rcpp::export]]
+Rcpp::NumericMatrix rcpp_get_sp_dists_par_astar (const Rcpp::DataFrame graph,
+        const Rcpp::DataFrame vert_map_in,
+        Rcpp::IntegerVector fromi,
+        Rcpp::IntegerVector toi,
+        const std::string& heap_type)
+{
+    Rcpp::NumericVector id_vec;
+    size_t nfrom = run_sp::get_fromi_toi (vert_map_in, fromi, toi, id_vec);
+    size_t nto = static_cast <size_t> (toi.size ());
+
+    std::vector <std::string> from = graph ["from"];
+    std::vector <std::string> to = graph ["to"];
+    std::vector <double> dist = graph ["d"];
+    std::vector <double> wt = graph ["w"];
+
+    std::vector <double> x_f = graph ["x_f"];
+    std::vector <double> y_f = graph ["y_f"];
+    std::vector <double> x_t = graph ["x_t"];
+    std::vector <double> y_t = graph ["y_t"];
+
+    unsigned int nedges = static_cast <unsigned int> (graph.nrow ());
+    std::map <std::string, unsigned int> vert_map;
+    std::vector <std::string> vert_map_id = vert_map_in ["vert"];
+    std::vector <unsigned int> vert_map_n = vert_map_in ["id"];
+    size_t nverts = run_sp::make_vert_map (vert_map_in, vert_map_id,
+            vert_map_n, vert_map);
+
+    std::shared_ptr <DGraph> g = std::make_shared <DGraph> (nverts);
+    inst_graph (g, nedges, vert_map, from, to, dist, wt);
+
+    Rcpp::NumericVector na_vec = Rcpp::NumericVector (nfrom * nto,
+            Rcpp::NumericVector::get_na ());
+    Rcpp::NumericMatrix dout (static_cast <int> (nfrom),
+            static_cast <int> (nto), na_vec.begin ());
+
+    // Create parallel worker
+    OneDist_Astar one_dist (fromi, toi, nverts, g, heap_type,
+            x_f, y_f, x_t, y_t, dout);
 
     RcppParallel::parallelFor (0, static_cast <size_t> (fromi.length ()),
             one_dist);

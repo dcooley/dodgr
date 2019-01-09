@@ -163,11 +163,18 @@ rcpp_get_component_vector <- function(graph) {
     .Call(`_dodgr_rcpp_get_component_vector`, graph)
 }
 
-#' rcpp_get_sp_dists_par
+#' rcpp_get_sp_dists_par_dijkstra
 #'
 #' @noRd
-rcpp_get_sp_dists_par <- function(graph, vert_map_in, fromi, toi, heap_type) {
-    .Call(`_dodgr_rcpp_get_sp_dists_par`, graph, vert_map_in, fromi, toi, heap_type)
+rcpp_get_sp_dists_par_dijkstra <- function(graph, vert_map_in, fromi, toi, heap_type) {
+    .Call(`_dodgr_rcpp_get_sp_dists_par_dijkstra`, graph, vert_map_in, fromi, toi, heap_type)
+}
+
+#' rcpp_get_sp_dists_par_astar
+#'
+#' @noRd
+rcpp_get_sp_dists_par_astar <- function(graph, vert_map_in, fromi, toi, heap_type) {
+    .Call(`_dodgr_rcpp_get_sp_dists_par_astar`, graph, vert_map_in, fromi, toi, heap_type)
 }
 
 #' rcpp_get_sp_dists

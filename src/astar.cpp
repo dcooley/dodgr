@@ -50,6 +50,9 @@ void Astar::run (std::vector<double>& d,
     std::fill (m_s, m_s + n, false);
     std::fill (m_f, m_f + n, false);
 
+    /* heap is used for heuristic dists; final dists are here: */
+    std::vector <double> d_final (n);
+
     /* place v0 into the frontier set with a distance of zero */
     w [v0] = 0.0;
     d [v0] = 0.0;

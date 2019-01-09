@@ -11,6 +11,7 @@
 #include <RcppParallel.h>
 
 #include "dijkstra.h"
+#include "astar.h"
 
 class DGraph;
 class Dijkstra;
@@ -52,7 +53,13 @@ Rcpp::NumericMatrix rcpp_get_sp_dists (const Rcpp::DataFrame graph,
         std::vector <int> toi,
         const std::string& heap_type);
 
-Rcpp::NumericMatrix rcpp_get_sp_dists_par (const Rcpp::DataFrame graph,
+Rcpp::NumericMatrix rcpp_get_sp_dists_par_dijkstra (const Rcpp::DataFrame graph,
+        const Rcpp::DataFrame vert_map_in,
+        Rcpp::IntegerVector fromi,
+        Rcpp::IntegerVector toi,
+        const std::string& heap_type);
+
+Rcpp::NumericMatrix rcpp_get_sp_dists_par_astar (const Rcpp::DataFrame graph,
         const Rcpp::DataFrame vert_map_in,
         Rcpp::IntegerVector fromi,
         Rcpp::IntegerVector toi,

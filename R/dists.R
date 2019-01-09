@@ -163,7 +163,8 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
     }
 
     if (parallel)
-        d <- rcpp_get_sp_dists_par (graph, vert_map, from_index, to_index, heap)
+        d <- rcpp_get_sp_dists_par_dijkstra (graph, vert_map,
+                                             from_index, to_index, heap)
     else
         d <- rcpp_get_sp_dists (graph, vert_map, from_index, to_index, heap)
 
