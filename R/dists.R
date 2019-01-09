@@ -142,8 +142,9 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
 
     if (parallel & heap == "TriHeapExt")
     {
-        message ("Extended TriHeaps can not be calculated in parallel; ",
-                 "reverting to serial calculation")
+        if (!quiet)
+            message ("Extended TriHeaps can not be calculated in parallel; ",
+                     "reverting to serial calculation")
         parallel <- FALSE
     }
 
