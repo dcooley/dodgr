@@ -163,9 +163,14 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
     }
 
     if (parallel)
-        d <- rcpp_get_sp_dists_par_dijkstra (graph, vert_map,
-                                             from_index, to_index, heap)
-    else
+    {
+        if (is_graph_spatial (graph))
+            d <- rcpp_get_sp_dists_par_astar (graph, vert_map,
+                                              from_index, to_index, heap)
+        else
+            d <- rcpp_get_sp_dists_par_dijkstra (graph, vert_map,
+                                                 from_index, to_index, heap)
+    } else
         d <- rcpp_get_sp_dists (graph, vert_map, from_index, to_index, heap)
 
     if (flip)

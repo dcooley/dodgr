@@ -27,15 +27,20 @@ void Astar::init(std::shared_ptr<const DGraph> g) {
 }
 
 /* - run() -
- * Run the algorithm, computing single-source from the starting vertex v0.
+ * Run the algorithm, computing single-source from the starting vertex v_start.
  * This assumes that the array d has been initialised with d[v] = INFINITE_DIST
- * for all vertices v != v0.
+ * for all vertices v != v_start.
  */
 
 void Astar::run (std::vector<double>& d,
         std::vector<double>& w,
+        std::vector<double> x_f,
+        std::vector<double> y_f,
+        std::vector<double> x_t,
+        std::vector<double> y_t,
         std::vector<int>& prev,
-        unsigned int v0)
+        unsigned int v_start,
+        unsigned int v_end)
 {
     /* indexes, counters, pointers */
     const DGraphEdge *edge;
@@ -53,12 +58,12 @@ void Astar::run (std::vector<double>& d,
     /* heap is used for heuristic dists; final dists are here: */
     std::vector <double> d_final (n);
 
-    /* place v0 into the frontier set with a distance of zero */
-    w [v0] = 0.0;
-    d [v0] = 0.0;
-    prev [v0] = -1;
-    m_heap->insert(v0, 0.0);
-    m_f [v0] = true;
+    /* place v_start into the frontier set with a distance of zero */
+    w [v_start] = 0.0;
+    d [v_start] = 0.0;
+    prev [v_start] = -1;
+    m_heap->insert(v_start, 0.0);
+    m_f [v_start] = true;
 
     /* repeatedly update distances from the minimum remaining trigger vertex */
     while (m_heap->nItems() > 0) {

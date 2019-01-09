@@ -146,8 +146,9 @@ struct OneDist_Astar : public RcppParallel::Worker
             std::fill (w.begin (), w.end (), INFINITE_DOUBLE);
             std::fill (d.begin (), d.end (), INFINITE_DOUBLE);
 
-            astar->run (d, w, prev,
-                    static_cast <unsigned int> (dp_fromi [i]));
+            astar->run (d, w, _x_f, _y_f, _x_t, _y_t, prev,
+                    static_cast <unsigned int> (dp_fromi [i]),
+                    static_cast <unsigned int> (toi [i]));
             for (long int j = 0; j < toi.size (); j++)
             {
                 if (w [static_cast <size_t> (toi [j])] < INFINITE_DOUBLE)
