@@ -106,6 +106,15 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
     heap <- hps$heap
     graph <- hps$graph
 
+    x_f <- y_f <- x_t <- y_t <- NULL
+    if (is_graph_spatial (graph))
+    {
+        x_f <- graph [, find_xy_col (graph, find_fr_col (graph), x = TRUE)]
+        y_f <- graph [, find_xy_col (graph, find_fr_col (graph), x = FALSE)]
+        x_t <- graph [, find_xy_col (graph, find_to_col (graph), x = TRUE)]
+        y_t <- graph [, find_xy_col (graph, find_to_col (graph), x = FALSE)]
+    }
+
     gr_cols <- dodgr_graph_cols (graph)
     if (is.na (gr_cols [match ("from", names (gr_cols))]) |
                is.na (gr_cols [match ("to", names (gr_cols))]))
@@ -125,6 +134,13 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
     to_id <- index_id$id
 
     graph <- convert_graph (graph, gr_cols)
+    if (!is.null (x_f))
+    {
+        graph$x_f <- x_f
+        graph$y_f <- y_f
+        graph$x_t <- x_t
+        graph$y_t <- y_t
+    }
 
     if (!quiet)
         message ("Calculating shortest paths ... ", appendLF = FALSE)
@@ -397,10 +413,13 @@ graph_from_pts <- function (from, to, expand = 0.1, wt_profile = "bicycle",
 #' @noRd
 flip_graph <- function (graph)
 {
-    fr_cols <- c ("from_id", "from_lon", "from_lat")
-    fr_cols <- fr_cols [which (fr_cols %in% names (graph))]
-    to_cols <- c ("to_id", "to_lon", "to_lat")
-    to_cols <- to_cols [which (to_cols %in% names (graph))]
+    fr_cols <- c (find_fr_id_col (graph),
+                  find_xy_col (graph, find_fr_col (graph), x = TRUE),
+                  find_xy_col (graph, find_fr_col (graph), x = FALSE))
+    to_cols <- c (find_to_id_col (graph),
+                  find_xy_col (graph, find_to_col (graph), x = TRUE),
+                  find_xy_col (graph, find_to_col (graph), x = FALSE))
+
     fr_temp <- graph [, fr_cols]
     graph [, fr_cols] <- graph [, to_cols]
     graph [, to_cols] <- fr_temp
