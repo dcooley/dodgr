@@ -34,10 +34,8 @@ void Astar::init(std::shared_ptr<const DGraph> g) {
 
 void Astar::run (std::vector<double>& d,
         std::vector<double>& w,
-        std::vector<double> x_f,
-        std::vector<double> y_f,
-        std::vector<double> x_t,
-        std::vector<double> y_t,
+        std::vector<double> x,
+        std::vector<double> y,
         std::vector<int>& prev,
         unsigned int v_start,
         unsigned int v_end)
@@ -56,7 +54,10 @@ void Astar::run (std::vector<double>& d,
     std::fill (m_f, m_f + n, false);
 
     /* heap is used for heuristic dists; final dists are here: */
-    std::vector <double> d_final (n);
+    std::vector <double> d_out (n), d_to_source (n);
+    for (int i = 0; i < n; i++)
+    {
+    }
 
     /* place v_start into the frontier set with a distance of zero */
     w [v_start] = 0.0;

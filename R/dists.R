@@ -107,12 +107,14 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
     graph <- hps$graph
 
     x_f <- y_f <- x_t <- y_t <- NULL
+    spatial <- FALSE
     if (is_graph_spatial (graph))
     {
         x_f <- graph [, find_xy_col (graph, find_fr_col (graph), x = TRUE)]
         y_f <- graph [, find_xy_col (graph, find_fr_col (graph), x = FALSE)]
         x_t <- graph [, find_xy_col (graph, find_to_col (graph), x = TRUE)]
         y_t <- graph [, find_xy_col (graph, find_to_col (graph), x = FALSE)]
+        spatial <- TRUE
     }
 
     gr_cols <- dodgr_graph_cols (graph)
@@ -124,7 +126,7 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
         graph$to_id <- scols$xy_id$xy_to_id
         gr_cols <- dodgr_graph_cols (graph)
     }
-    vert_map <- make_vert_map (graph, gr_cols)
+    vert_map <- make_vert_map (graph, gr_cols) # includes xy if graph_is_spatial
 
     index_id <- get_index_id_cols (graph, gr_cols, vert_map, from)
     from_index <- index_id$index - 1 # 0-based
@@ -133,14 +135,7 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
     to_index <- index_id$index - 1 # 0-based
     to_id <- index_id$id
 
-    graph <- convert_graph (graph, gr_cols)
-    if (!is.null (x_f))
-    {
-        graph$x_f <- x_f
-        graph$y_f <- y_f
-        graph$x_t <- x_t
-        graph$y_t <- y_t
-    }
+    graph <- convert_graph (graph, gr_cols) # graph is no longer spatial
 
     if (!quiet)
         message ("Calculating shortest paths ... ", appendLF = FALSE)
@@ -164,7 +159,7 @@ dodgr_dists <- function (graph, from, to, wt_profile = "bicycle", expand = 0,
 
     if (parallel)
     {
-        if (is_graph_spatial (graph))
+        if (spatial)
             d <- rcpp_get_sp_dists_par_astar (graph, vert_map,
                                               from_index, to_index, heap)
         else
@@ -268,8 +263,17 @@ make_vert_map <- function (graph, gr_cols)
                 paste0 (graph [[gr_cols [3] ]]))
     indx <- which (!duplicated (verts))
     # Note id has to be 0-indexed:
-    data.frame (vert = paste0 (verts [indx]), id = seq (indx) - 1,
-                stringsAsFactors = FALSE)
+    res <- data.frame (vert = paste0 (verts [indx]),
+                       id = seq (indx) - 1,
+                       stringsAsFactors = FALSE)
+    if (is_graph_spatial (graph))
+    {
+        xy <- rbind (as.matrix (graph [, gr_cols [6:7]]),
+                     as.matrix (graph [, gr_cols [8:9]]))
+        res$x <- xy [indx, 1]
+        res$y <- xy [indx, 2]
+    }
+    return (res)
 }
 
 #' get_pts_index

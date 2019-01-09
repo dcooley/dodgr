@@ -107,7 +107,7 @@ struct OneDist_Astar : public RcppParallel::Worker
     const size_t nverts;
     const std::shared_ptr <DGraph> g;
     const std::string heap_type;
-    const std::vector <double> _x_f, _y_f, _x_t, _y_t;
+    const std::vector <double> _x, _y;
 
     RcppParallel::RMatrix <double> dout;
 
@@ -118,14 +118,11 @@ struct OneDist_Astar : public RcppParallel::Worker
             const size_t nverts_in,
             const std::shared_ptr <DGraph> g_in,
             const std::string & heap_type_in,
-            const std::vector <double> x_f,
-            const std::vector <double> y_f,
-            const std::vector <double> x_t,
-            const std::vector <double> y_t,
+            const std::vector <double> x,
+            const std::vector <double> y,
             Rcpp::NumericMatrix dout_in) :
         dp_fromi (fromi), toi (toi_in), nverts (nverts_in),
-        g (g_in), heap_type (heap_type_in),
-        _x_f (x_f), _y_f (y_f), _x_t (x_t), _y_t (y_t),
+        g (g_in), heap_type (heap_type_in), _x (x), _y (y),
         dout (dout_in)
     {
     }
@@ -146,7 +143,7 @@ struct OneDist_Astar : public RcppParallel::Worker
             std::fill (w.begin (), w.end (), INFINITE_DOUBLE);
             std::fill (d.begin (), d.end (), INFINITE_DOUBLE);
 
-            astar->run (d, w, _x_f, _y_f, _x_t, _y_t, prev,
+            astar->run (d, w, _x, _y, prev,
                     static_cast <unsigned int> (dp_fromi [i]),
                     static_cast <unsigned int> (toi [i]));
             for (long int j = 0; j < toi.size (); j++)
@@ -293,10 +290,8 @@ Rcpp::NumericMatrix rcpp_get_sp_dists_par_astar (const Rcpp::DataFrame graph,
     std::vector <double> dist = graph ["d"];
     std::vector <double> wt = graph ["w"];
 
-    std::vector <double> x_f = graph ["x_f"];
-    std::vector <double> y_f = graph ["y_f"];
-    std::vector <double> x_t = graph ["x_t"];
-    std::vector <double> y_t = graph ["y_t"];
+    std::vector <double> x = vert_map_in ["x"];
+    std::vector <double> y = vert_map_in ["y"];
 
     unsigned int nedges = static_cast <unsigned int> (graph.nrow ());
     std::map <std::string, unsigned int> vert_map;
@@ -304,6 +299,10 @@ Rcpp::NumericMatrix rcpp_get_sp_dists_par_astar (const Rcpp::DataFrame graph,
     std::vector <unsigned int> vert_map_n = vert_map_in ["id"];
     size_t nverts = run_sp::make_vert_map (vert_map_in, vert_map_id,
             vert_map_n, vert_map);
+    if (x.size () != nverts)
+        Rcpp::stop ("x_f must be same size as nVertices of graph");
+    if (y.size () != nverts)
+        Rcpp::stop ("y_f must be same size as nVertices of graph");
 
     std::shared_ptr <DGraph> g = std::make_shared <DGraph> (nverts);
     inst_graph (g, nedges, vert_map, from, to, dist, wt);
@@ -315,7 +314,7 @@ Rcpp::NumericMatrix rcpp_get_sp_dists_par_astar (const Rcpp::DataFrame graph,
 
     // Create parallel worker
     OneDist_Astar one_dist (fromi, toi, nverts, g, heap_type,
-            x_f, y_f, x_t, y_t, dout);
+            x, y, dout);
 
     RcppParallel::parallelFor (0, static_cast <size_t> (fromi.length ()),
             one_dist);

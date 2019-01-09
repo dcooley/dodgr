@@ -20,10 +20,8 @@ class Astar {
         void init (std::shared_ptr<const DGraph> g);
         void run (std::vector<double>& d,
                 std::vector<double>& w,
-                std::vector<double> x_f,
-                std::vector<double> y_f,
-                std::vector<double> x_t,
-                std::vector<double> y_t,
+                std::vector<double> x,
+                std::vector<double> y,
                 std::vector<int>& prev,
                 unsigned int v_start,
                 unsigned int v_end= 0);
