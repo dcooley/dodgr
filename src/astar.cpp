@@ -56,8 +56,8 @@ void Astar::run (std::vector<double>& d,
     /* heap is used for heuristic dists; final dists are here: */
     std::vector <double> d_out (n), d_to_source (n);
     for (int i = 0; i < n; i++)
-    {
-    }
+        d_to_source [i] = sqrt (x [i] * x [i] + y [i] * y [i]);
+    std::fill (d_out.begin(), d_out.end(), std::numeric_limits<double>::max ());
 
     /* place v_start into the frontier set with a distance of zero */
     w [v_start] = 0.0;

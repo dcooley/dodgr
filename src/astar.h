@@ -3,6 +3,8 @@
 #include <vector>
 #include <memory>
 #include <set>
+#include <cmath> // sqrt
+#include <limits>
 
 class Heap;      // Heap
 class HeapDesc;  // Heap descriptor
