@@ -88,105 +88,31 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"dodgr"</span>) <span class="co"># current CRAN version</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># install.packages("remotes")</span></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ATFutures/dodgr"</span>) <span class="co"># Development version</span></a></code></pre></div>
-<pre><code>#&gt;   
-─  installing *source* package ‘dodgr’ ...
-#&gt; 
-  
-   ** libs
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c heaps/bheap.cpp -o heaps/bheap.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c heaps/fheap.cpp -o heaps/fheap.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c heaps/heap23.cpp -o heaps/heap23.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c heaps/radixheap.cpp -o heaps/radixheap.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c heaps/triheap_ext.cpp -o heaps/triheap_ext.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c heaps/triheap.cpp -o heaps/triheap.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c dgraph.cpp -o dgraph.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c dijkstra.cpp -o dijkstra.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c dodgr-to-sf.cpp -o dodgr-to-sf.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c fund-cycles.cpp -o fund-cycles.o
-#&gt; 
-  
-   fund-cycles.cpp: In function ‘Rcpp::List rcpp_fundamental_cycles(Rcpp::DataFrame, Rcpp::DataFrame)’:
-#&gt;    fund-cycles.cpp:13:39: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-#&gt;         for (int i = 0; i &lt; vert_id.size (); i++)
-#&gt;                                           ^
-#&gt; 
-  
-   fund-cycles.cpp:17:36: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-#&gt;         for (int i = 0; i &lt; from.size (); i++)
-#&gt;                                        ^
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c graph-contract.cpp -o graph-contract.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c graph.cpp -o graph.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c graph-sample.cpp -o graph-sample.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c RcppExports.cpp -o RcppExports.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c run_sp.cpp -o run_sp.o
-#&gt; 
-  
-   g++ -std=gnu++11 -I"/home/travis/R-bin/lib/R/include" -DNDEBUG -I. -I"/home/travis/R/Library/Rcpp/include" -I"/home/travis/R/Library/RcppParallel/include" -I/home/travis/R-bin/include   -fpic  -g -O2 -UNDEBUG -Wall -pedantic -g -O0 -c sf-as-network.cpp -o sf-as-network.o
-#&gt; 
-  
-   g++ -std=gnu++11 -shared -L/home/travis/R-bin/lib/R/lib -L/home/travis/R-bin/lib -o dodgr.so heaps/bheap.o heaps/fheap.o heaps/heap23.o heaps/radixheap.o heaps/triheap_ext.o heaps/triheap.o dgraph.o dijkstra.o dodgr-to-sf.o fund-cycles.o graph-contract.o graph.o graph-sample.o RcppExports.o run_sp.o sf-as-network.o -L/home/travis/R-bin/lib/R/lib -lRlapack -L/home/travis/R-bin/lib/R/lib -lRblas -lgfortran -lm -lquadmath -L/home/travis/R-bin/lib/R/lib -lR
-#&gt; 
-  
-   installing to /tmp/RtmpnqJ1ub/devtools_install_592d64ef856/dodgr/libs
-#&gt; 
-  
-─  DONE (dodgr)
-#&gt; </code></pre>
 <p>Then load with</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span> (dodgr)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span> (dodgr)</a></code></pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>The primary functions are,</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">flows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/array">array</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>), <span class="dt">dim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts, <span class="dv">2</span>)))</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts, <span class="dt">flows =</span> flows)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts,</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">                           <span class="dt">dens =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts)))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">flows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/array">array</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>), <span class="dt">dim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts, <span class="dv">2</span>)))</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts, <span class="dt">flows =</span> flows)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                           <span class="dt">dens =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts)))</a></code></pre></div>
 <p>The first function, <code><a href="reference/dodgr_dists.html">dodgr_dists()</a></code>, produces a square matrix of distances between all points listed in <code>pts</code> and routed along the dual-weighted directed network given in <code>graph</code>. An even simpler usage allows calculation of pair-wise distances between a set of geographical coordinates (here, for a sizey chunk of New York City):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">xlim &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span> (<span class="op">-</span><span class="fl">74.12931</span>, <span class="fl">-73.99214</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">ylim &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span> (<span class="fl">40.70347</span>, <span class="fl">40.75354</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">npts &lt;-<span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">pts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span> (<span class="dt">x =</span> xlim [<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (xlim),</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">                   <span class="dt">y =</span> ylim [<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (ylim))</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.time">system.time</a></span> (</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">             d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">from =</span> pts)</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt;    user  system elapsed</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; 107.530   0.602  19.418</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [1]  0.00000 21.68109</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">xlim &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span> (<span class="op">-</span><span class="fl">74.12931</span>, <span class="fl">-73.99214</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">ylim &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span> (<span class="fl">40.70347</span>, <span class="fl">40.75354</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">npts &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">pts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span> (<span class="dt">x =</span> xlim [<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (xlim),</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">                   <span class="dt">y =</span> ylim [<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (ylim))</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.time">system.time</a></span> (</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">             d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">from =</span> pts)</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;    user  system elapsed</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; 107.530   0.602  19.418</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; [1]  0.00000 21.68109</span></a></code></pre></div>
 <p>This will automatically download the street network (using <a href="https://cran.r-project.org/package=osmdata"><code>osmdata</code></a>), and even then calculating distances between 1,000 points – that’s 1,000,000 pairwise distances! – can be done in around 20 seconds.</p>
 <p>The second function, <code><a href="reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code>, aggregates the densities specified in the matrix <code>flows</code> between all pairs of <code>from</code> and <code>to</code> points, and returns a modified version of the input network with an additional column containing aggregated flows (see below). The equivalent function, <code><a href="reference/dodgr_flows_disperse.html">dodgr_flows_disperse()</a></code>, does an equivalent thing for network dispersal models from known points of origin.</p>
 <div id="the-dodgr-graph-structure" class="section level3">
