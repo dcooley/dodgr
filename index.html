@@ -79,8 +79,14 @@
 <div id="dodgr-distances-on-directed-graphs-in-r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#dodgr-distances-on-directed-graphs-in-r" class="anchor"></a>dodgr: Distances on Directed Graphs in R</h1></div>
-<p>R package for calculating pairwise distances on dual-weighted directed graphs using Priority Queue Shortest Paths. Dual-weighted directed graphs are directed graphs with two sets of weights so that <code>weight1(A-&gt;B) != weight1(B-&gt;A)</code>—the directed property—and <code>weight2(A-&gt;B) != weight1(A-&gt;B)</code>—the dual property. <code>dodgr</code> calculates shortest paths according to one weight, while distances along paths are calculating using the other weight. A canonical example of a dual-weighted directed graph is a street network to be used for routing. Routes are usually calculated by weighting different kinds of streets or ways according to a particular mode of transport, while the desired output is a direct, unweighted distance.</p>
-<p>But wait, there’s more … <code>dodgr</code> can also aggregate flows throughout a network through specifying origins, destinations, and flow densities. Or even apply a network dispersal model from a set of origin points only.</p>
+<p>R package for calculating pairwise distances on dual-weighted directed graphs.</p>
+<div id="whats-so-special" class="section level2">
+<h2 class="hasAnchor">
+<a href="#whats-so-special" class="anchor"></a>What’s so special?</h2>
+<p>Three aspects. First, while other packages exist for calculating distances on directed graphs, notably <a href="https://igraph.org/r"><code>igraph</code></a>, even this otherwise fabulous package does not (readily) permit analysis of <em>dual-weighted</em> graphs. Dual-weighted graphs have two sets of weights for each edge, so routing can be evaluated with one set of weights, while distances can be calculated with the other. A canonical example is a street network, where <em>weighted distances</em> are assigned depending on mode of transport (for example, weighted distances for pedestrians on multi-lane vehicular roads are longer than equivalent distances along isolated walking paths), yet the desired output remains direct, unweighted distances. Accurate calculation of distances on street networks requires a dual-weighted representation. In <strong>R</strong>, <code>dodgr</code> is currently the only package that offers this functionality.</p>
+<p>Second, while <a href="https://igraph.org/r"><code>igraph</code></a> and almost all other routing packages are primarily designed for one-to-one routing, <code>dodgr</code> is specifically designed for many-to-many routing, and will generally outperform equivalent packages in large routing tasks.</p>
+<p>Third, <code>dodgr</code> goes beyond the functionality of comparable packages through including routines to aggregate flows throughout a network, through specifying origins, destinations, and flow densities. Or even apply a network dispersal model from a set of origin points only.</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -89,51 +95,471 @@
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># install.packages("remotes")</span></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">remotes<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ATFutures/dodgr"</span>) <span class="co"># Development version</span></a></code></pre></div>
 <p>Then load with</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span> (dodgr)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span> (dodgr)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/packageDescription">packageVersion</a></span> (<span class="st">"dodgr"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; [1] '0.1.3.1'</span></a></code></pre></div>
 </div>
-<div id="usage" class="section level2">
+<div id="usage-sample-data-and-dodgr-networks" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p>The primary functions are,</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">flows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/array">array</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts) <span class="op">^</span><span class="st"> </span><span class="dv">2</span>), <span class="dt">dim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts, <span class="dv">2</span>)))</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts, <span class="dt">flows =</span> flows)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> pts, <span class="dt">to =</span> pts,</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">                           <span class="dt">dens =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (pts)))</a></code></pre></div>
-<p>The first function, <code><a href="reference/dodgr_dists.html">dodgr_dists()</a></code>, produces a square matrix of distances between all points listed in <code>pts</code> and routed along the dual-weighted directed network given in <code>graph</code>. An even simpler usage allows calculation of pair-wise distances between a set of geographical coordinates (here, for a sizey chunk of New York City):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">xlim &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span> (<span class="op">-</span><span class="fl">74.12931</span>, <span class="fl">-73.99214</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">ylim &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span> (<span class="fl">40.70347</span>, <span class="fl">40.75354</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">npts &lt;-<span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">pts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span> (<span class="dt">x =</span> xlim [<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (xlim),</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">                   <span class="dt">y =</span> ylim [<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (ylim))</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.time">system.time</a></span> (</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">             d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">from =</span> pts)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt;    user  system elapsed</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt; 107.530   0.602  19.418</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; [1]  0.00000 21.68109</span></a></code></pre></div>
-<p>This will automatically download the street network (using <a href="https://cran.r-project.org/package=osmdata"><code>osmdata</code></a>), and even then calculating distances between 1,000 points – that’s 1,000,000 pairwise distances! – can be done in around 20 seconds.</p>
-<p>The second function, <code><a href="reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code>, aggregates the densities specified in the matrix <code>flows</code> between all pairs of <code>from</code> and <code>to</code> points, and returns a modified version of the input network with an additional column containing aggregated flows (see below). The equivalent function, <code><a href="reference/dodgr_flows_disperse.html">dodgr_flows_disperse()</a></code>, does an equivalent thing for network dispersal models from known points of origin.</p>
-<div id="the-dodgr-graph-structure" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-dodgr-graph-structure" class="anchor"></a>The <code>dodgr</code> graph structure</h3>
-<p>A graph or network in <code>dodgr</code> is represented as a flat table (<code>data.frame</code>, <code>tibble</code>, <code>data.table</code>, whatever) of minimally four columns: <code>from</code>, <code>to</code>, <code>weight</code>, and <code>distance</code>. The first two can be of arbitrary form (<code>numeric</code> or <code>character</code>); <code>weight</code> is used to evaluate the shortest paths, and the desired distances are evaluated by summing the values of <code>distance</code> along those paths. For a street network example, <code>weight</code> will generally be the actual distance multiplied by a priority weighting for a given mode of transport and type of way, while <code>distance</code> will be the pysical distance.</p>
-<p><code>dodgr</code> includes the conversion functions:</p>
-<ol style="list-style-type: decimal">
-<li>
-<code>dodgr_to_sfc</code> to convert spatial <code>dodgr</code> graphs into Simple Features format used by the <a href="https://cran.r-project.org/package=sf"><code>sf</code> package</a>.</li>
-<li>
-<code>dodgr_to_igraph</code> to convert (not necessarily spatial) <code>dodgr</code> graphs into <a href="https://cran.r-project.org/package=igraph"><code>igraph</code></a> format; and</li>
-<li>
-<code>dodgr_to_tidygraph</code> to convert (not necessarily spatial) <code>dodgr</code> graphs into <a href="https://cran.r-project.org/package=tidygraph"><code>tidygraph</code></a> format.</li>
-</ol>
+<a href="#usage-sample-data-and-dodgr-networks" class="anchor"></a>Usage: Sample Data and <code>dodgr</code> networks</h2>
+<p>To illustrate functionality, the package includes an example data set containing the Open Street Map way network for <a href="https://www.openstreetmap.org/#map=15/15.3368/76.4601">Hampi, India</a> (a primarily pedestrian village in the middle of a very large World Heritage zone). These data are in <a href="https://cran.r-project.org/package=sf">Simple Features (<code>sf</code>)</a> format, as a collection of <code>LINESTRING</code> objects. <code>dodgr</code> represents networks as a simple rectangular graph, with each row representing an edge segment between two points or vertices. <code>sf</code>-format objects can be converted to equivalent <code>dodgr</code> representations with the <code><a href="reference/weight_streetnet.html">weight_streetnet()</a></code> function:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (hampi)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; [1] 191  15</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">graph &lt;-<span class="st"> </span><span class="kw"><a href="reference/weight_streetnet.html">weight_streetnet</a></span> (hampi, <span class="dt">wt_profile =</span> <span class="st">"foot"</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (graph)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; [1] 5845   13</span></a></code></pre></div>
+<p>The <code>sf</code>-format network contained 191 <code>LINESTRING</code> objects, with the <code><a href="reference/weight_streetnet.html">weight_streetnet()</a></code> function decomposing these into 5,845 distinct edges, indicating that the <code>sf</code> representation had around 31 edges or segments in each <code>LINESTRING</code> object. The <code>dodgr</code> network then looks like this:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (graph)</a></code></pre></div>
+<table class="table table">
+<thead><tr class="header">
+<th align="right">geom_num</th>
+<th align="right">edge_id</th>
+<th align="left">from_id</th>
+<th align="right">from_lon</th>
+<th align="right">from_lat</th>
+<th align="left">to_id</th>
+<th align="right">to_lon</th>
+<th align="right">to_lat</th>
+<th align="right">d</th>
+<th align="right">d_weighted</th>
+<th align="left">highway</th>
+<th align="left">way_id</th>
+<th align="right">component</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">339318500</td>
+<td align="right">76.47489</td>
+<td align="right">15.34169</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="right">0.1324422</td>
+<td align="right">0.1471580</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="left">339318500</td>
+<td align="right">76.47489</td>
+<td align="right">15.34169</td>
+<td align="right">0.1324422</td>
+<td align="right">0.1471580</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="right">0.0088887</td>
+<td align="right">0.0098763</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="right">0.0088887</td>
+<td align="right">0.0098763</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="left">1427116077</td>
+<td align="right">76.47628</td>
+<td align="right">15.34179</td>
+<td align="right">0.0093265</td>
+<td align="right">0.0103628</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="left">1427116077</td>
+<td align="right">76.47628</td>
+<td align="right">15.34179</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="right">0.0093265</td>
+<td align="right">0.0103628</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>geom_num</code> column maps directly onto the sequence of <code>LINESTRING</code> objects within the <code>sf</code>-formatted data. The <code>highway</code> column is taken directly from Open Street Map, and denotes the kind of “highway” represented by each edge. The <code>component</code> column is an integer value describing which of the connected components of the network each edge belongs to (with <code>1</code> always being the largest component; <code>2</code> the second largest; and so on).</p>
+<p>Note that the <code>d_weighted</code> values are often greater than the geometric distances, <code>d</code>. In the example shown, <code>service</code> highways are not ideal for pedestrians, and so weighted distances are slightly greater than actual distances. Compare this with:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (graph [graph<span class="op">$</span>highway <span class="op">==</span><span class="st"> "path"</span>, ])</a></code></pre></div>
+<table class="table table">
+<thead><tr class="header">
+<th></th>
+<th align="right">geom_num</th>
+<th align="right">edge_id</th>
+<th align="left">from_id</th>
+<th align="right">from_lon</th>
+<th align="right">from_lat</th>
+<th align="left">to_id</th>
+<th align="right">to_lon</th>
+<th align="right">to_lat</th>
+<th align="right">d</th>
+<th align="right">d_weighted</th>
+<th align="left">highway</th>
+<th align="left">way_id</th>
+<th align="right">component</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>47</td>
+<td align="right">2</td>
+<td align="right">47</td>
+<td align="left">338905220</td>
+<td align="right">76.47398</td>
+<td align="right">15.31224</td>
+<td align="left">338907543</td>
+<td align="right">76.47405</td>
+<td align="right">15.31241</td>
+<td align="right">0.0197040</td>
+<td align="right">0.0197040</td>
+<td align="left">path</td>
+<td align="left">30643853</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td align="right">2</td>
+<td align="right">48</td>
+<td align="left">338907543</td>
+<td align="right">76.47405</td>
+<td align="right">15.31241</td>
+<td align="left">338905220</td>
+<td align="right">76.47398</td>
+<td align="right">15.31224</td>
+<td align="right">0.0197040</td>
+<td align="right">0.0197040</td>
+<td align="left">path</td>
+<td align="left">30643853</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>49</td>
+<td align="right">2</td>
+<td align="right">49</td>
+<td align="left">338907543</td>
+<td align="right">76.47405</td>
+<td align="right">15.31241</td>
+<td align="left">2398957585</td>
+<td align="right">76.47410</td>
+<td align="right">15.31259</td>
+<td align="right">0.0213917</td>
+<td align="right">0.0213917</td>
+<td align="left">path</td>
+<td align="left">30643853</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td align="right">2</td>
+<td align="right">50</td>
+<td align="left">2398957585</td>
+<td align="right">76.47410</td>
+<td align="right">15.31259</td>
+<td align="left">338907543</td>
+<td align="right">76.47405</td>
+<td align="right">15.31241</td>
+<td align="right">0.0213917</td>
+<td align="right">0.0213917</td>
+<td align="left">path</td>
+<td align="left">30643853</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>51</td>
+<td align="right">2</td>
+<td align="right">51</td>
+<td align="left">2398957585</td>
+<td align="right">76.47410</td>
+<td align="right">15.31259</td>
+<td align="left">338907597</td>
+<td align="right">76.47413</td>
+<td align="right">15.31279</td>
+<td align="right">0.0221521</td>
+<td align="right">0.0221521</td>
+<td align="left">path</td>
+<td align="left">30643853</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td align="right">2</td>
+<td align="right">52</td>
+<td align="left">338907597</td>
+<td align="right">76.47413</td>
+<td align="right">15.31279</td>
+<td align="left">2398957585</td>
+<td align="right">76.47410</td>
+<td align="right">15.31259</td>
+<td align="right">0.0221521</td>
+<td align="right">0.0221521</td>
+<td align="left">path</td>
+<td align="left">30643853</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>A <code>"path"</code> offers ideal walking conditions, and so weighted distances are equal to actual distances.</p>
 </div>
-<div id="further-detail" class="section level3">
-<h3 class="hasAnchor">
-<a href="#further-detail" class="anchor"></a>Further detail</h3>
+<div id="usage-distances" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage-distances" class="anchor"></a>Usage: Distances</h2>
+<p>The many-to-many nature of <code>dodgr</code> means that the function to calculate distances, <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="reference/dodgr_distances.html">dodgr_distances()</a></code></a>, accepts two vectors or matrices of routing points as inputs (describing origins and destinations), and returns a corresponding matrix of pairwise distances. Routing points can, for example, be randomly selected from the vertices of a graph. The vertices can in turn be extracted with the <code><a href="reference/dodgr_vertices.html">dodgr_vertices()</a></code> function:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (v)</a></code></pre></div>
+<table class="table table">
+<thead><tr class="header">
+<th></th>
+<th align="left">id</th>
+<th align="right">x</th>
+<th align="right">y</th>
+<th align="right">component</th>
+<th align="right">n</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td align="left">339318500</td>
+<td align="right">76.47489</td>
+<td align="right">15.34169</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td align="left">1427116077</td>
+<td align="right">76.47628</td>
+<td align="right">15.34179</td>
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td align="left">339318503</td>
+<td align="right">76.47641</td>
+<td align="right">15.34190</td>
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td align="left">2398958034</td>
+<td align="right">76.47650</td>
+<td align="right">15.34199</td>
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+<p>For OSM data extracted with the <code>osmdata</code> package (or, equivalently, via the <code><a href="reference/dodgr_streetnet.html">dodgr::dodgr_streetnet()</a></code> function), each object (vertices, ways, and high-level relations between these objects) is assigned a unique identifying number. These are retained both in <code>osmdata</code> and <code>dodgr</code>, as the <code>way_id</code> column in the above <code>graph</code>, and as the <code>id</code> column in the vertices. Random vertices may be generated in this case through selecting <code>id</code> values:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">from &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span> (v<span class="op">$</span>id, <span class="dt">size =</span> <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">to &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span> (v<span class="op">$</span>id, <span class="dt">size =</span> <span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to)</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (d)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; [1] 20 50</span></a></code></pre></div>
+<p>Alternatively, the points may be specified as matrices of geographic coordinates:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">from_x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span> (graph<span class="op">$</span>from_lon) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="dv">20</span>) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (graph<span class="op">$</span>from_lon))</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">from_y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span> (graph<span class="op">$</span>from_lat) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="dv">20</span>) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (graph<span class="op">$</span>from_lat))</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">to_x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span> (graph<span class="op">$</span>from_lon) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="dv">50</span>) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (graph<span class="op">$</span>from_lon))</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">to_y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span> (graph<span class="op">$</span>from_lat) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="dv">50</span>) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/diff">diff</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (graph<span class="op">$</span>from_lat))</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span> (from_x, from_y), <span class="dt">to =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span> (to_x, to_y))</a></code></pre></div>
+<p>In this case, the random points will be mapped on to the nearest points on the street network. This may, of course, map some points onto minor, disconnected components of the graph. This can be controlled either by reducing the graph to it’s largest connected component only:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">graph &lt;-<span class="st"> </span>graph [graph<span class="op">$</span>component <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, ]</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (graph)</a></code></pre></div>
+<p>or by explicitly using the <code><a href="reference/match_points_to_graph.html">match_points_to_graph()</a></code> function with the option <code>connected = TRUE</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">from &lt;-<span class="st"> </span><span class="kw"><a href="reference/match_points_to_graph.html">match_points_to_graph</a></span> (v, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span> (from_x, from_y), <span class="dt">connected =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">to &lt;-<span class="st"> </span><span class="kw"><a href="reference/match_points_to_graph.html">match_points_to_graph</a></span> (v, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">cbind</a></span> (to_x, to_y), <span class="dt">connected =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>This function returns an index into the result of <code>dodgr_vertices</code>, and so points to use for routing must then be extracted as follows:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">from &lt;-<span class="st"> </span>v<span class="op">$</span>id [from] <span class="co"># or from &lt;- v [from, c ("x", "y")]</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">to &lt;-<span class="st"> </span>v<span class="op">$</span>id [to]</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">d &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to)</a></code></pre></div>
+</div>
+<div id="usage-flow-aggregation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage-flow-aggregation" class="anchor"></a>Usage: Flow Aggregation</h2>
+<p>Flow aggregation refers to the procedure of routing along multiple ways according to specified densities of flow between defined origin and destination points, and aggregating flows along each edge of the network. The procedure is functionally similar to the above procedure for distances, with the addition of a matrix specifying flow densities between the input set of origin (<code>from</code>) and destination (<code>to</code>) points. The following example illustrates use with a random “flow matrix”:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">flows &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/array">array</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (from) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (to)), <span class="dt">dim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (from), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (to)))</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">flows =</span> flows)</a></code></pre></div>
+<p>The result is simply the input <code>graph</code> with an additional column quantifying the aggregate flows along each edge:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (f)</a></code></pre></div>
+<table class="table table">
+<thead><tr class="header">
+<th align="right">geom_num</th>
+<th align="right">edge_id</th>
+<th align="left">from_id</th>
+<th align="right">from_lon</th>
+<th align="right">from_lat</th>
+<th align="left">to_id</th>
+<th align="right">to_lon</th>
+<th align="right">to_lat</th>
+<th align="right">d</th>
+<th align="right">d_weighted</th>
+<th align="left">highway</th>
+<th align="left">way_id</th>
+<th align="right">component</th>
+<th align="right">flow</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">339318500</td>
+<td align="right">76.47489</td>
+<td align="right">15.34169</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="right">0.1324422</td>
+<td align="right">0.1471580</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="left">339318500</td>
+<td align="right">76.47489</td>
+<td align="right">15.34169</td>
+<td align="right">0.1324422</td>
+<td align="right">0.1471580</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="right">0.0088887</td>
+<td align="right">0.0098763</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="left">339318502</td>
+<td align="right">76.47612</td>
+<td align="right">15.34173</td>
+<td align="right">0.0088887</td>
+<td align="right">0.0098763</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="left">1427116077</td>
+<td align="right">76.47628</td>
+<td align="right">15.34179</td>
+<td align="right">0.0093265</td>
+<td align="right">0.0103628</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="left">1427116077</td>
+<td align="right">76.47628</td>
+<td align="right">15.34179</td>
+<td align="left">2398958028</td>
+<td align="right">76.47621</td>
+<td align="right">15.34174</td>
+<td align="right">0.0093265</td>
+<td align="right">0.0103628</td>
+<td align="left">service</td>
+<td align="left">28565950</td>
+<td align="right">1</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>An additional flow aggregation function can be applied in cases where only densities at origin points are known, and movement throughout a graph is dispersive:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (<span class="dt">graph =</span> graph, <span class="dt">from =</span> from, <span class="dt">dens =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span> (from)))</a></code></pre></div>
+</div>
+<div id="further-detail" class="section level2">
+<h2 class="hasAnchor">
+<a href="#further-detail" class="anchor"></a>Further detail</h2>
 <p>For more detail, see the <a href="https://atfutures.github.io/dodgr/articles/dodgr.html">main package vignette</a>, along with a second vignette detailing <a href="https://atfutures.github.io/dodgr/articles/benchmark.html">benchmark timings</a>, showing that under many circumstances, <code>dodgr</code> performs considerably faster than equivalent routines from the <code>igraph</code> package.</p>
-</div>
 </div>
 </div>
   </div>
