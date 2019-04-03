@@ -111,7 +111,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>dodgr_dists</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>to</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>bidirected</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,6 +154,11 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
       <th>parallel</th>
       <td><p>If <code>TRUE</code>, perform routing calculation in parallel (see
 details)</p></td>
+    </tr>
+    <tr>
+      <th>bidirected</th>
+      <td><p>If <code>TRUE</code>, use bidirectional search (for spatial graphs
+only).</p></td>
     </tr>
     <tr>
       <th>quiet</th>
