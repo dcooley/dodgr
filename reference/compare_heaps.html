@@ -155,30 +155,30 @@ fair comparisons, run only once or re-start the current R session.</p>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
 <span class='fu'>compare_heaps</span> (<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replications</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt; <span class='message'>Extended TriHeaps can not be calculated in parallel; reverting to serial calculation</span></div><div class='output co'>#&gt;                                                                                   test
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
+#&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
 #&gt; 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
-#&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
-#&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
 #&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
-#&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
+#&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
-#&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
+#&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
+#&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
-#&gt; 12           10   0.010      1.0     0.004    0.004          0         0
-#&gt; 6            10   0.021      2.1     0.028    0.000          0         0
-#&gt; 8            10   0.022      2.2     0.028    0.000          0         0
-#&gt; 10           10   0.022      2.2     0.028    0.000          0         0
-#&gt; 11           10   0.022      2.2     0.024    0.000          0         0
-#&gt; 7            10   0.023      2.3     0.024    0.004          0         0
-#&gt; 9            10   0.024      2.4     0.024    0.000          0         0
-#&gt; 5            10   0.032      3.2     0.044    0.000          0         0
-#&gt; 1            10   0.033      3.3     0.036    0.004          0         0
-#&gt; 3            10   0.033      3.3     0.044    0.000          0         0
-#&gt; 2            10   0.034      3.4     0.044    0.000          0         0
-#&gt; 4            10   0.037      3.7     0.036    0.000          0         0</div></pre>
+#&gt; 12           10   0.016    1.000     0.016        0          0         0
+#&gt; 7            10   0.034    2.125     0.040        0          0         0
+#&gt; 6            10   0.036    2.250     0.044        0          0         0
+#&gt; 8            10   0.036    2.250     0.044        0          0         0
+#&gt; 11           10   0.036    2.250     0.040        0          0         0
+#&gt; 9            10   0.038    2.375     0.040        0          0         0
+#&gt; 10           10   0.038    2.375     0.044        0          0         0
+#&gt; 1            10   0.045    2.812     0.052        0          0         0
+#&gt; 2            10   0.046    2.875     0.056        0          0         0
+#&gt; 5            10   0.047    2.938     0.060        0          0         0
+#&gt; 4            10   0.053    3.313     0.052        0          0         0
+#&gt; 3            10   0.057    3.563     0.068        0          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
