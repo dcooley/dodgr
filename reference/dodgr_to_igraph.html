@@ -110,7 +110,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_to_igraph</span>(<span class='no'>graph</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_to_igraph</span>(<span class='no'>graph</span>, <span class='kw'>weight_column</span> <span class='kw'>=</span> <span class='st'>"d"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -118,6 +118,11 @@
     <tr>
       <th>graph</th>
       <td><p>A <code>dodgr</code> graph</p></td>
+    </tr>
+    <tr>
+      <th>weight_column</th>
+      <td><p>The column of the <code>dodgr</code> network to use as the edge
+weights in the <code>igraph</code> representation.</p></td>
     </tr>
     </table>
     
