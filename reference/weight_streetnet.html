@@ -115,19 +115,22 @@ moped, motorcycle, motorcar, goods, hgv, psv).</p>
     </div>
 
     <pre class="usage"><span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
-  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ignore_oneway</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ignore_oneway</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sf</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ignore_oneway</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sc</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ignore_oneway</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,6 +162,12 @@ provides unique identifiers for each highway (default works with
       <td><p>Vectors of columns from <code>sf_lines</code> to be kept in the
 resultant <code>dodgr</code> network; vector can be either names or indices of
 desired columns.</p></td>
+    </tr>
+    <tr>
+      <th>ignore_oneway</th>
+      <td><p>A <code>TRUE</code> value allows travel <em>against</em> the
+permitted direction of oneway streets. (Only implemented for <code>SC</code>-class
+objects generated with the <span class="pkg">osmdata</span> function <code>osmdata_sc</code>.)</p></td>
     </tr>
     </table>
     
