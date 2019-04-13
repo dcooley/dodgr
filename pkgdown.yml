@@ -4,4 +4,5 @@ pkgdown_sha: ~
 articles:
   benchmark: benchmark.html
   dodgr: dodgr.html
+  times: times.html
 
