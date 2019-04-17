@@ -154,11 +154,11 @@ fair comparisons, run only once or re-start the current R session.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
 <span class='fu'>compare_heaps</span> (<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>replications</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;                                                                                   test
-#&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
 #&gt; 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
+#&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
 #&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
-#&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
+#&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
@@ -167,18 +167,18 @@ fair comparisons, run only once or re-start the current R session.</p>
 #&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
-#&gt; 11            1   0.006    1.000     0.008        0          0         0
-#&gt; 6             1   0.007    1.167     0.008        0          0         0
-#&gt; 7             1   0.007    1.167     0.012        0          0         0
-#&gt; 9             1   0.007    1.167     0.008        0          0         0
-#&gt; 8             1   0.008    1.333     0.012        0          0         0
-#&gt; 10            1   0.008    1.333     0.012        0          0         0
-#&gt; 12            1   0.022    3.667     0.024        0          0         0
-#&gt; 1             1   0.027    4.500     0.044        0          0         0
-#&gt; 2             1   0.035    5.833     0.060        0          0         0
-#&gt; 3             1   0.035    5.833     0.060        0          0         0
-#&gt; 5             1   0.035    5.833     0.060        0          0         0
-#&gt; 4             1   0.039    6.500     0.040        0          0         0</div></pre>
+#&gt; 6             1   0.008    1.000     0.012        0          0         0
+#&gt; 11            1   0.008    1.000     0.012        0          0         0
+#&gt; 7             1   0.009    1.125     0.016        0          0         0
+#&gt; 8             1   0.009    1.125     0.012        0          0         0
+#&gt; 9             1   0.010    1.250     0.012        0          0         0
+#&gt; 10            1   0.010    1.250     0.016        0          0         0
+#&gt; 12            1   0.024    3.000     0.024        0          0         0
+#&gt; 1             1   0.031    3.875     0.052        0          0         0
+#&gt; 2             1   0.041    5.125     0.072        0          0         0
+#&gt; 3             1   0.042    5.250     0.076        0          0         0
+#&gt; 5             1   0.044    5.500     0.076        0          0         0
+#&gt; 4             1   0.046    5.750     0.044        0          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
