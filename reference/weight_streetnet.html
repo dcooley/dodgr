@@ -32,9 +32,9 @@
 
 <meta property="og:title" content="weight_streetnet — weight_streetnet" />
 
-<meta property="og:description" content="Weight (or re-weight) an sf-formatted OSM street network according to
-a named routino profile, selected from (foot, horse, wheelchair, bicycle,
-moped, motorcycle, motorcar, goods, hgv, psv)." />
+<meta property="og:description" content="Weight (or re-weight) an sf or SC (silicate)-formatted OSM street
+network according to a named routino profile, selected from (foot, horse,
+wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,38 +108,40 @@ moped, motorcycle, motorcar, goods, hgv, psv)." />
 
     <div class="ref-description">
     
-    <p>Weight (or re-weight) an <code>sf</code>-formatted OSM street network according to
-a named routino profile, selected from (foot, horse, wheelchair, bicycle,
-moped, motorcycle, motorcar, goods, hgv, psv).</p>
+    <p>Weight (or re-weight) an <span class="pkg">sf</span> or <code>SC</code> (<code>silicate</code>)-formatted OSM street
+network according to a named routino profile, selected from (foot, horse,
+wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
   <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>osm_points</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
   <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>osm_points</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S3 method for sf</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
   <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>osm_points</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># S3 method for sc</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
   <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>osm_points</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A street network represented as <code>sf</code> <code>LINESTRING</code>
-objects, typically extracted with <code>dodgr_streetnet</code></p></td>
+      <td><p>A street network represented either as <code>sf</code> <code>LINESTRING</code>
+objects, typically extracted with <code>dodgr_streetnet</code>, or as an <code>SC</code>
+(<code>silicate</code>) object typically extracted with the <span class="pkg">osmdata</span> function
+<code>osmdata_sc</code>.</p></td>
     </tr>
     <tr>
       <th>wt_profile</th>
@@ -154,15 +156,15 @@ which designates different types of highways to be used for weighting
     </tr>
     <tr>
       <th>id_col</th>
-      <td><p>Specify column of the codesf <code>data.frame</code> object which
-provides unique identifiers for each highway (default works with
-<code>osmdata</code> objects).</p></td>
+      <td><p>For <code>sf</code>-formatted data only: Specify column of the codesf
+<code>data.frame</code> object which provides unique identifiers for each highway
+(default works with <code>osmdata</code> objects).</p></td>
     </tr>
     <tr>
       <th>keep_cols</th>
-      <td><p>Vectors of columns from <code>sf_lines</code> to be kept in the
-resultant <code>dodgr</code> network; vector can be either names or indices of
-desired columns.</p></td>
+      <td><p>For <code>sf</code>-formatted data only: Vectors of columns from <code>x</code> to
+be kept in the resultant <code>dodgr</code> network; vector can be either names or
+indices of desired columns.</p></td>
     </tr>
     <tr>
       <th>times</th>
@@ -172,7 +174,14 @@ desired columns.</p></td>
     <tr>
       <th>left_side</th>
       <td><p>Does traffic travel on the left side of the road (<code>TRUE</code>) or
-the right side (<code>FALSE</code>)?</p></td>
+the right side (<code>FALSE</code>)? - affects times only.</p></td>
+    </tr>
+    <tr>
+      <th>osm_points</th>
+      <td><p>For <code>sf</code>-formatted data from Open Street Map, the points
+associated with the <code>LINESTRING</code> objects, <code>x</code> - for <code>osmdata</code> objects, <code>x</code> is
+simply <code>osm_lines</code>, while <code>points</code> is <code>osm_points</code>. Needed only to calculate
+time delays at traffic lights.</p></td>
     </tr>
     </table>
     
@@ -190,12 +199,12 @@ different modes of transport. Current modes included there are "bicycle",
 and "wheelchair". Railway routing can be implemented with
 the separate function <a href='weight_railway.html'>weight_railway</a>.</p>
 <p>Graphs weighted for time-based routing (that is, with <code>times = TRUE</code>)
-are fundementally different from the default for distance-based routing.
+are fundamentally different from the default for distance-based routing.
 Distances in the latter case are <em>shortest</em> distances weighted for
 the particular mode of transport specified in <code>wt_profile</code>. Time-based
-routing requires additional calcualtion of turn angles (along with
+routing requires additional calculation of turn angles (along with
 differential speeds along different kinds of ways), represented by additional
-edges describing turns of different angles through each intersetion. The
+edges describing turns of different angles through each intersection. The
 result of <code>weight_streetnet(..., times = TRUE)</code> should thus <em>only</em> be
 used to submit to the <a href='dodgr_times.html'>dodgr_times</a> function, and not for any other
 <code>dodgr</code> functions nor forms of network analysis.</p>
@@ -204,7 +213,7 @@ used to submit to the <a href='dodgr_times.html'>dodgr_times</a> function, and n
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># hampi is included with package as an 'osmdata' sf-formatted street network</span>
 <span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'>weight_streetnet</span> (<span class='no'>hampi</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>net</span>) <span class='co'># data.frame</span></div><div class='output co'>#&gt; [1] "data.frame"      "dodgr_streetnet"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>net</span>) <span class='co'># 6096  11; 6096 streets</span></div><div class='output co'>#&gt; [1] 5845   19</div><div class='input'><span class='co'># os_roads_bristol is also included as an sf data.frame, but in a different</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/class'>class</a></span>(<span class='no'>net</span>) <span class='co'># data.frame</span></div><div class='output co'>#&gt; [1] "data.frame"      "dodgr_streetnet"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>net</span>) <span class='co'># 6096  11; 6096 streets</span></div><div class='output co'>#&gt; [1] 5845   18</div><div class='input'><span class='co'># os_roads_bristol is also included as an sf data.frame, but in a different</span>
 <span class='co'># format requiring identification of columns and specification of custom</span>
 <span class='co'># weighting scheme.</span>
 <span class='no'>colnm</span> <span class='kw'>&lt;-</span> <span class='st'>"formOfWay"</span>
