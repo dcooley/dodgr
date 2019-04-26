@@ -111,7 +111,7 @@
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span> (graph)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [1] "data.frame"      "dodgr_streetnet"</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (graph)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; [1] 5845   18</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; [1] 5845   15</span></a></code></pre></div>
 <p>The <code>sf</code>-format network contained 191 <code>LINESTRING</code> objects, with the <code><a href="reference/weight_streetnet.html">weight_streetnet()</a></code> function decomposing these into 5,845 distinct edges, indicating that the <code>sf</code> representation had around 31 edges or segments in each <code>LINESTRING</code> object. The <code>dodgr</code> network then looks like this:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (graph)</a></code></pre></div>
 <table class="table table">
@@ -127,13 +127,10 @@
 <th align="right">d</th>
 <th align="right">d_weighted</th>
 <th align="left">highway</th>
-<th align="left">oneway</th>
-<th align="left">oneway_bicycle</th>
-<th align="left">surface</th>
-<th align="left">cobblestone</th>
 <th align="left">way_id</th>
 <th align="right">component</th>
 <th align="right">time</th>
+<th align="right">time_weighted</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -148,13 +145,10 @@
 <td align="right">0.1324422</td>
 <td align="right">0.1471580</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0953584</td>
+<td align="right">0.1059537</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -168,13 +162,10 @@
 <td align="right">0.1324422</td>
 <td align="right">0.1471580</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0953584</td>
+<td align="right">0.1059537</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -188,13 +179,10 @@
 <td align="right">0.0088887</td>
 <td align="right">0.0098763</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0063998</td>
+<td align="right">0.0071109</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -208,13 +196,10 @@
 <td align="right">0.0088887</td>
 <td align="right">0.0098763</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0063998</td>
+<td align="right">0.0071109</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -228,13 +213,10 @@
 <td align="right">0.0093265</td>
 <td align="right">0.0103628</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0067151</td>
+<td align="right">0.0074612</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -248,13 +230,10 @@
 <td align="right">0.0093265</td>
 <td align="right">0.0103628</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0067151</td>
+<td align="right">0.0074612</td>
 </tr>
 </tbody>
 </table>
@@ -275,13 +254,10 @@
 <th align="right">d</th>
 <th align="right">d_weighted</th>
 <th align="left">highway</th>
-<th align="left">oneway</th>
-<th align="left">oneway_bicycle</th>
-<th align="left">surface</th>
-<th align="left">cobblestone</th>
 <th align="left">way_id</th>
 <th align="right">component</th>
 <th align="right">time</th>
+<th align="right">time_weighted</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -297,13 +273,10 @@
 <td align="right">0.0197040</td>
 <td align="right">0.0197040</td>
 <td align="left">path</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">sand</td>
-<td align="left">NA</td>
 <td align="left">30643853</td>
 <td align="right">1</td>
-<td align="right">0.0141869</td>
+<td align="right">0.0354672</td>
+<td align="right">0.0354672</td>
 </tr>
 <tr class="even">
 <td>48</td>
@@ -318,13 +291,10 @@
 <td align="right">0.0197040</td>
 <td align="right">0.0197040</td>
 <td align="left">path</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">sand</td>
-<td align="left">NA</td>
 <td align="left">30643853</td>
 <td align="right">1</td>
-<td align="right">0.0141869</td>
+<td align="right">0.0354672</td>
+<td align="right">0.0354672</td>
 </tr>
 <tr class="odd">
 <td>49</td>
@@ -339,13 +309,10 @@
 <td align="right">0.0213917</td>
 <td align="right">0.0213917</td>
 <td align="left">path</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">sand</td>
-<td align="left">NA</td>
 <td align="left">30643853</td>
 <td align="right">1</td>
-<td align="right">0.0154020</td>
+<td align="right">0.0385051</td>
+<td align="right">0.0385051</td>
 </tr>
 <tr class="even">
 <td>50</td>
@@ -360,13 +327,10 @@
 <td align="right">0.0213917</td>
 <td align="right">0.0213917</td>
 <td align="left">path</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">sand</td>
-<td align="left">NA</td>
 <td align="left">30643853</td>
 <td align="right">1</td>
-<td align="right">0.0154020</td>
+<td align="right">0.0385051</td>
+<td align="right">0.0385051</td>
 </tr>
 <tr class="odd">
 <td>51</td>
@@ -381,13 +345,10 @@
 <td align="right">0.0221521</td>
 <td align="right">0.0221521</td>
 <td align="left">path</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">sand</td>
-<td align="left">NA</td>
 <td align="left">30643853</td>
 <td align="right">1</td>
-<td align="right">0.0159495</td>
+<td align="right">0.0398737</td>
+<td align="right">0.0398737</td>
 </tr>
 <tr class="even">
 <td>52</td>
@@ -402,13 +363,10 @@
 <td align="right">0.0221521</td>
 <td align="right">0.0221521</td>
 <td align="left">path</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">sand</td>
-<td align="left">NA</td>
 <td align="left">30643853</td>
 <td align="right">1</td>
-<td align="right">0.0159495</td>
+<td align="right">0.0398737</td>
+<td align="right">0.0398737</td>
 </tr>
 </tbody>
 </table>
@@ -529,13 +487,10 @@
 <th align="right">d</th>
 <th align="right">d_weighted</th>
 <th align="left">highway</th>
-<th align="left">oneway</th>
-<th align="left">oneway_bicycle</th>
-<th align="left">surface</th>
-<th align="left">cobblestone</th>
 <th align="left">way_id</th>
 <th align="right">component</th>
 <th align="right">time</th>
+<th align="right">time_weighted</th>
 <th align="right">flow</th>
 </tr></thead>
 <tbody>
@@ -551,13 +506,10 @@
 <td align="right">0.1324422</td>
 <td align="right">0.1471580</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0953584</td>
+<td align="right">0.1059537</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
@@ -572,13 +524,10 @@
 <td align="right">0.1324422</td>
 <td align="right">0.1471580</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0953584</td>
+<td align="right">0.1059537</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
@@ -593,13 +542,10 @@
 <td align="right">0.0088887</td>
 <td align="right">0.0098763</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0063998</td>
+<td align="right">0.0071109</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
@@ -614,13 +560,10 @@
 <td align="right">0.0088887</td>
 <td align="right">0.0098763</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0063998</td>
+<td align="right">0.0071109</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
@@ -635,13 +578,10 @@
 <td align="right">0.0093265</td>
 <td align="right">0.0103628</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0067151</td>
+<td align="right">0.0074612</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
@@ -656,13 +596,10 @@
 <td align="right">0.0093265</td>
 <td align="right">0.0103628</td>
 <td align="left">service</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">0.0067151</td>
+<td align="right">0.0074612</td>
 <td align="right">0</td>
 </tr>
 </tbody>
