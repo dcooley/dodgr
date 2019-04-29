@@ -114,24 +114,24 @@ wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
-  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sf</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sc</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -147,6 +147,12 @@ objects, typically extracted with <code>dodgr_streetnet</code>, or as an <code>S
       <th>wt_profile</th>
       <td><p>Name of weighting profile, or vector of values with names
 corresponding to names in <code>type_col</code> (see Details)</p></td>
+    </tr>
+    <tr>
+      <th>wt_profile_file</th>
+      <td><p>Name of locally-stored, <code>.json</code>-formatted version of
+<code><a href='weighting_profiles.html'>dodgr::weighting_profiles</a></code>, created with <a href='write_dodgr_wt_profile.html'>write_dodgr_wt_profile</a>, and
+modified as desired.</p></td>
     </tr>
     <tr>
       <th>type_col</th>
@@ -194,9 +200,13 @@ account for networks generated with the <span class="pkg">osmdata</span> functio
     <p>Names for the <code>wt_profile</code> parameter are taken from
 <a href='weighting_profiles.html'>weighting_profiles</a>, which is a list including a <code>data.frame</code> also
 called <code>weighting_profiles</code> of weights for different modes of transport.
-Current modes included there are "bicycle", "foot", "goods", "hgv", "horse",
-"moped", "motorcar", "motorcycle", "psv", and "wheelchair". Railway routing
-can be implemented with the separate function <a href='weight_railway.html'>weight_railway</a>.</p>
+Values for <code>wt_profile</code> are taken from current modes included there, which
+are "bicycle", "foot", "goods", "hgv", "horse", "moped", "motorcar",
+"motorcycle", "psv", and "wheelchair". Railway routing can be implemented
+with the separate function <a href='weight_railway.html'>weight_railway</a>. Alternatively, the entire
+<code>weighting_profile</code> structures can be written to a local <code>.json</code>-formatted
+file with <a href='write_dodgr_wt_profile.html'>write_dodgr_wt_profile</a>, the values edited as desired, and
+the name of this file passed as the <code>wt_profile_file</code> parameter.</p>
 <p>Graphs weighted for time-based routing (that is, with <code>times = TRUE</code>)
 are fundamentally different from the default for distance-based routing.
 Distances in the latter case are <em>shortest</em> distances weighted for
