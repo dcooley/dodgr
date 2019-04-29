@@ -115,23 +115,23 @@ wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
     </div>
 
     <pre class="usage"><span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
-  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sf</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
-  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sc</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
-  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,6 +155,11 @@ corresponding to names in <code>type_col</code> (see Details)</p></td>
 modified as desired.</p></td>
     </tr>
     <tr>
+      <th>times</th>
+      <td><p>Weight network for routing according to <em>times</em> rather than
+<em>distances</em> (see Note).</p></td>
+    </tr>
+    <tr>
       <th>type_col</th>
       <td><p>Specify column of the <code>sf</code> <code>data.frame</code> object
 which designates different types of highways to be used for weighting
@@ -171,11 +176,6 @@ which designates different types of highways to be used for weighting
       <td><p>For <code>sf</code>-formatted data only: Vectors of columns from <code>x</code> to
 be kept in the resultant <code>dodgr</code> network; vector can be either names or
 indices of desired columns.</p></td>
-    </tr>
-    <tr>
-      <th>times</th>
-      <td><p>Weight network for routing according to <em>times</em> rather than
-<em>distances</em> (see Note).</p></td>
     </tr>
     <tr>
       <th>left_side</th>
