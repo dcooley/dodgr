@@ -112,8 +112,8 @@ between all pairs of <code>from</code> and <code>to</code> points.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_flows_aggregate</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>flows</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_flows_aggregate</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>flows</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,13 +137,6 @@ calculated (see Details)</p></td>
       <th>flows</th>
       <td><p>Matrix of flows with <code>nrow(flows)==length(from)</code> and
 <code>ncol(flows)==length(to)</code>.</p></td>
-    </tr>
-    <tr>
-      <th>wt_profile</th>
-      <td><p>Name of weighting profile for street networks (one of foot,
-horse, wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv;
-only used if <code>graph</code> is not provided, in which case a street network is
-downloaded and correspondingly weighted).</p></td>
     </tr>
     <tr>
       <th>contract</th>
@@ -182,7 +175,7 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 <span class='co'># undirected flows on an equivalent undirected graph with:</span>
 <span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_flows.html'>merge_directed_flows</a></span> (<span class='no'>graph</span>)
 <span class='co'># This graph will only include those edges having non-zero flows, and so:</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5845</div><div class='output co'>#&gt; [1] 847</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5845</div><div class='output co'>#&gt; [1] 809</div><div class='input'>
 # The following code can be used to convert the resultant graph to an `sf`
 # object suitable for plotting
 </div><span class='co'># NOT RUN {</span>

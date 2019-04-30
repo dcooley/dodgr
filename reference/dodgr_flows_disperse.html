@@ -112,8 +112,8 @@ and associated densities</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_flows_disperse</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>dens</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_flows_disperse</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>dens</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,11 +131,6 @@ flows are to be calculated (see Details)</p></td>
     <tr>
       <th>dens</th>
       <td><p>Vectors of densities correponsing to the <code>from</code> points</p></td>
-    </tr>
-    <tr>
-      <th>wt_profile</th>
-      <td><p>Name of weighting profile for street networks (one of foot,
-horse, wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p></td>
     </tr>
     <tr>
       <th>contract</th>

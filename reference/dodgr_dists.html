@@ -110,8 +110,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_dists</span>(<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_dists</span>(<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>,
+  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,17 +130,6 @@ be calculated (see Details)</p></td>
       <th>to</th>
       <td><p>Vector or matrix of points <strong>to</strong> which route distances are to be
 calculated (see Details)</p></td>
-    </tr>
-    <tr>
-      <th>wt_profile</th>
-      <td><p>Name of weighting profile for street networks (one of foot,
-horse, wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p></td>
-    </tr>
-    <tr>
-      <th>expand</th>
-      <td><p>Only when <code>graph</code> not given, the multiplicative factor by
-which to expand the street network surrounding the points defined by
-<code>from</code> and/or <code>to</code>.</p></td>
     </tr>
     <tr>
       <th>heap</th>
