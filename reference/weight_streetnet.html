@@ -33,8 +33,8 @@
 <meta property="og:title" content="weight_streetnet — weight_streetnet" />
 
 <meta property="og:description" content="Weight (or re-weight) an sf or SC (silicate)-formatted OSM street
-network according to a named routino profile, selected from (foot, horse,
-wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv)." />
+network according to a named profile, selected from (foot, horse, wheelchair,
+bicycle, moped, motorcycle, motorcar, goods, hgv, psv)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -109,8 +109,8 @@ wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv)." />
     <div class="ref-description">
     
     <p>Weight (or re-weight) an <span class="pkg">sf</span> or <code>SC</code> (<code>silicate</code>)-formatted OSM street
-network according to a named routino profile, selected from (foot, horse,
-wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
+network according to a named profile, selected from (foot, horse, wheelchair,
+bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
     
     </div>
 
@@ -139,9 +139,8 @@ wheelchair, bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
     <tr>
       <th>x</th>
       <td><p>A street network represented either as <code>sf</code> <code>LINESTRING</code>
-objects, typically extracted with <code>dodgr_streetnet</code>, or as an <code>SC</code>
-(<code>silicate</code>) object typically extracted with the <span class="pkg">osmdata</span> function
-<code>osmdata_sc</code>.</p></td>
+objects, typically extracted with <a href='dodgr_streetnet.html'>dodgr_streetnet</a>, or as an <code>SC</code>
+(<code>silicate</code>) object typically extracted with the <a href='dodgr_streetnet_sc.html'>dodgr_streetnet_sc</a>.</p></td>
     </tr>
     <tr>
       <th>wt_profile</th>
@@ -173,9 +172,8 @@ which designates different types of highways to be used for weighting
     </tr>
     <tr>
       <th>keep_cols</th>
-      <td><p>For <code>sf</code>-formatted data only: Vectors of columns from <code>x</code> to
-be kept in the resultant <code>dodgr</code> network; vector can be either names or
-indices of desired columns.</p></td>
+      <td><p>Vectors of columns from <code>x</code> to be kept in the resultant
+<code>dodgr</code> network; vector can be either names or indices of desired columns.</p></td>
     </tr>
     <tr>
       <th>left_side</th>
@@ -218,6 +216,10 @@ result of <code>weight_streetnet(..., times = TRUE)</code> should thus <em>only<
 used to submit to the <a href='dodgr_times.html'>dodgr_times</a> function, and not for any other
 <code>dodgr</code> functions nor forms of network analysis.</p>
     
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><a href='write_dodgr_wt_profile.html'>write_dodgr_wt_profile</a>, <a href='dodgr_times.html'>dodgr_times</a></p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># hampi is included with package as an 'osmdata' sf-formatted street network</span>
@@ -255,6 +257,8 @@ used to submit to the <a href='dodgr_times.html'>dodgr_times</a> function, and n
       <li><a href="#value">Value</a></li>
 
       <li><a href="#note">Note</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
