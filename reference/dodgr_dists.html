@@ -110,8 +110,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_dists</span>(<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>,
-  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_dists</span>(<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>shortest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -119,17 +119,22 @@
     <tr>
       <th>graph</th>
       <td><p><code>data.frame</code> or equivalent object representing the network
-graph (see Details)</p></td>
+graph (see Notes)</p></td>
     </tr>
     <tr>
       <th>from</th>
       <td><p>Vector or matrix of points <strong>from</strong> which route distances are to
-be calculated (see Details)</p></td>
+be calculated (see Notes)</p></td>
     </tr>
     <tr>
       <th>to</th>
       <td><p>Vector or matrix of points <strong>to</strong> which route distances are to be
-calculated (see Details)</p></td>
+calculated (see Notes)</p></td>
+    </tr>
+    <tr>
+      <th>shortest</th>
+      <td><p>If <code>FALSE</code>, calculate distances along the <em>fastest</em>
+rather than shortest routes (see Notes).</p></td>
     </tr>
     <tr>
       <th>heap</th>
@@ -160,10 +165,17 @@ details)</p></td>
 <code>wt</code> is present, shortest paths are calculated according to values
 specified in that column; otherwise according to <code>dist</code> values. Either
 way, final distances between <code>from</code> and <code>to</code> points are calculated
-according to values of <code>dist</code>. That is, paths between any pair of points
-will be calculated according to the minimal total sum of <code>weight</code>
-values (if present), while reported distances will be total sums of
-<code>dist</code> values.</p>
+by default according to values of <code>dist</code>. That is, paths between any pair of
+points will be calculated according to the minimal total sum of <code>weight</code>
+values (if present), while reported distances will be total sums of <code>dist</code>
+values.</p>
+<p>For street networks produced with <a href='weight_streetnet.html'>weight_streetnet</a>, distances may also
+be calculated along the <em>fastest</em> routes with the <code>shortest = FALSE</code>
+option. Graphs must in this case have columns of <code>time</code> and <code>time_weighted</code>.
+Note that the fastest routes will only be approximate when derived from
+<span class="pkg">sf</span>-format data generated with the <span class="pkg">osmdata</span> function
+<code>osmdata_sf()</code>, and will be much more accurate when derived from <code>sc</code>-format
+data generated with <code>osmdata_sc()</code>. See <a href='weight_streetnet.html'>weight_streetnet</a> for details.</p>
 <p>The <code>from</code> and <code>to</code> columns of <code>graph</code> may be either single
 columns of numeric or character values specifying the numbers or names of
 graph vertices, or combinations to two columns specifying geographical
@@ -177,7 +189,7 @@ precisely matching node numbers or names given in <code>graph$from</code> or
 between all points specified in <code>from</code>. If both <code>from</code> and <code>to</code> are <code>NULL</code>,
 pairwise distances are calculated between all nodes in <code>graph</code>.</p>
 <p>Calculations in parallel (<code>parallel = TRUE</code>) ought very generally be
-advantageous. For small graphs, Calculating distances in parallel is likely
+advantageous. For small graphs, calculating distances in parallel is likely
 to offer relatively little gain in speed, but increases from parallel
 computation will generally markedly increase with increasing graph sizes.</p>
     
@@ -218,11 +230,11 @@ computation will generally markedly increase with increasing graph sizes.</p>
 <span class='co'># There are parts of the network on different building levels (because of</span>
 <span class='co'># shopping malls and the like). These may or may not be connected, so it may be</span>
 <span class='co'># necessary to filter out particular levels</span>
-<span class='no'>levs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste0</a></span> (<span class='no'>essen</span>$<span class='no'>level</span>) <span class='co'># because sf data are factors</span>
 <span class='no'>index</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span> (! (<span class='no'>levs</span> <span class='kw'>==</span> <span class='st'>"-1"</span> <span class='kw'>|</span> <span class='no'>levs</span> <span class='kw'>==</span> <span class='st'>"1"</span>)) <span class='co'># for example</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span> (<span class='no'>sf</span>) <span class='co'># needed for following sub-select operation</span>
 <span class='no'>essen</span> <span class='kw'>&lt;-</span> <span class='no'>essen</span> [<span class='no'>index</span>, ]
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>essen</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"foot"</span>)
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='no'>graph</span> [<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which'>which</a></span> (<span class='no'>graph</span>$<span class='no'>component</span> <span class='kw'>==</span> <span class='fl'>1</span>), ]
 <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_dists</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>xy</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>xy</span>)
 <span class='co'># }</span></pre>
   </div>
