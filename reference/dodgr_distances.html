@@ -110,8 +110,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_distances</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>to</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_distances</span>(<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>shortest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,6 +130,11 @@ be calculated (see Notes)</p></td>
       <th>to</th>
       <td><p>Vector or matrix of points <strong>to</strong> which route distances are to be
 calculated (see Notes)</p></td>
+    </tr>
+    <tr>
+      <th>shortest</th>
+      <td><p>If <code>FALSE</code>, calculate distances along the <em>fastest</em>
+rather than shortest routes (see Notes).</p></td>
     </tr>
     <tr>
       <th>heap</th>
