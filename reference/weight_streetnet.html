@@ -115,22 +115,22 @@ bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
     </div>
 
     <pre class="usage"><span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>turn_angle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
   <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for default</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>turn_angle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
   <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sf</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>turn_angle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
   <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># S3 method for sc</span>
 <span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>turn_angle</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
   <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -154,9 +154,9 @@ corresponding to names in <code>type_col</code> (see Details)</p></td>
 modified as desired.</p></td>
     </tr>
     <tr>
-      <th>times</th>
-      <td><p>Weight network for routing according to <em>times</em> rather than
-<em>distances</em> (see Note).</p></td>
+      <th>turn_angle</th>
+      <td><p>Weight edges times by turning angles at intersections (see
+Note).</p></td>
     </tr>
     <tr>
       <th>type_col</th>
@@ -178,7 +178,8 @@ which designates different types of highways to be used for weighting
     <tr>
       <th>left_side</th>
       <td><p>Does traffic travel on the left side of the road (<code>TRUE</code>) or
-the right side (<code>FALSE</code>)? - affects times only.</p></td>
+the right side (<code>FALSE</code>)? - only has effect on turn angle calculations for
+edge times.</p></td>
     </tr>
     </table>
     
@@ -205,16 +206,13 @@ with the separate function <a href='weight_railway.html'>weight_railway</a>. Alt
 <code>weighting_profile</code> structures can be written to a local <code>.json</code>-formatted
 file with <a href='write_dodgr_wt_profile.html'>write_dodgr_wt_profile</a>, the values edited as desired, and
 the name of this file passed as the <code>wt_profile_file</code> parameter.</p>
-<p>Graphs weighted for time-based routing (that is, with <code>times = TRUE</code>)
-are fundamentally different from the default for distance-based routing.
-Distances in the latter case are <em>shortest</em> distances weighted for
-the particular mode of transport specified in <code>wt_profile</code>. Time-based
-routing requires additional calculation of turn angles (along with
-differential speeds along different kinds of ways), represented by additional
-edges describing turns of different angles through each intersection. The
-result of <code>weight_streetnet(..., times = TRUE)</code> should thus <em>only</em> be
-used to submit to the <a href='dodgr_times.html'>dodgr_times</a> function, and not for any other
-<code>dodgr</code> functions nor forms of network analysis.</p>
+<p>Calculating edge times to account for turn angles (that is, with
+<code>turn_angle = TRUE</code>) involves calculating the temporal delay involving in
+turning across oncoming traffic. Resultant graphs are fundamentally different
+from the default for distance-based routing. The result of
+<code>weight_streetnet(..., turn_angle = TRUE)</code> should thus <em>only</em> be used to
+submit to the <a href='dodgr_times.html'>dodgr_times</a> function, and not for any other <code>dodgr</code>
+functions nor forms of network analysis.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
