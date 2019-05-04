@@ -79,13 +79,14 @@
 <div id="dodgr-distances-on-directed-graphs-in-r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#dodgr-distances-on-directed-graphs-in-r" class="anchor"></a>dodgr: Distances on Directed Graphs in R</h1></div>
-<p>R package for efficient calculation of many-to-many pairwise distances on dual-weighted directed graphs, and for aggregation of flows throughout networks.</p>
+<p>R package for efficient calculation of many-to-many pairwise distances on dual-weighted directed graphs, and for aggregation of flows throughout networks. Includes loads of functions dedicate to routing through street networks.</p>
 <div id="whats-so-special" class="section level2">
 <h2 class="hasAnchor">
 <a href="#whats-so-special" class="anchor"></a>What’s so special?</h2>
-<p>Three aspects. First, while other packages exist for calculating distances on directed graphs, notably <a href="https://igraph.org/r"><code>igraph</code></a>, even this otherwise fabulous package does not (readily) permit analysis of <em>dual-weighted</em> graphs. Dual-weighted graphs have two sets of weights for each edge, so routing can be evaluated with one set of weights, while distances can be calculated with the other. A canonical example is a street network, where <em>weighted distances</em> are assigned depending on mode of transport (for example, weighted distances for pedestrians on multi-lane vehicular roads are longer than equivalent distances along isolated walking paths), yet the desired output remains direct, unweighted distances. Accurate calculation of distances on street networks requires a dual-weighted representation. In <strong>R</strong>, <code>dodgr</code> is currently the only package that offers this functionality (without excessive data wrangling).</p>
+<p>Four aspects. First, while other packages exist for calculating distances on directed graphs, notably <a href="https://igraph.org/r"><code>igraph</code></a>, even this otherwise fabulous package does not (readily) permit analysis of <em>dual-weighted</em> graphs. Dual-weighted graphs have two sets of weights for each edge, so routing can be evaluated with one set of weights, while distances can be calculated with the other. A canonical example is a street network, where <em>weighted distances</em> are assigned depending on mode of transport (for example, weighted distances for pedestrians on multi-lane vehicular roads are longer than equivalent distances along isolated walking paths), yet the desired output remains direct, unweighted distances. Accurate calculation of distances on street networks requires a dual-weighted representation. In <strong>R</strong>, <code>dodgr</code> is currently the only package that offers this functionality (without excessive data wrangling).</p>
 <p>Second, while <a href="https://igraph.org/r"><code>igraph</code></a> and almost all other routing packages are primarily designed for one-to-one routing, <code>dodgr</code> is specifically designed for many-to-many routing, and will generally outperform equivalent packages in large routing tasks.</p>
 <p>Third, <code>dodgr</code> goes beyond the functionality of comparable packages through including routines to aggregate flows throughout a network, through specifying origins, destinations, and flow densities between each pair of points. Alternatively, flows can be aggregated according to a network dispersal model from a set of origin points and associated densities, and a user-specified dispersal model.</p>
+<p>Fourth and finally, <code>dodgr</code> implements highly realistic and fully-customisable profiles for routing through street networks with various modes of transport. Routing can include such factors as waiting times at traffic lights, delays for turning across oncoming traffic, and the effects of elevation on both cyclists and pedestrians.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -375,10 +376,10 @@
 </table>
 <p>A <code>"path"</code> offers ideal walking conditions, and so weighted distances are equal to actual distances.</p>
 </div>
-<div id="usage-distances" class="section level2">
+<div id="usage-distances-and-times" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usage-distances" class="anchor"></a>Usage: Distances</h2>
-<p>The many-to-many nature of <code>dodgr</code> means that the function to calculate distances, <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="reference/dodgr_distances.html">dodgr_distances()</a></code></a>, accepts two vectors or matrices of routing points as inputs (describing origins and destinations), and returns a corresponding matrix of pairwise distances. If an input graph has columns for both distances and weighted distances, the latter are used to determine the effectively shortest routes through a network, while actual distances returned are sums of actual distances along those routes.</p>
+<a href="#usage-distances-and-times" class="anchor"></a>Usage: Distances and Times</h2>
+<p>The many-to-many nature of <code>dodgr</code> means that the function to calculate distances, <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="reference/dodgr_distances.html">dodgr_distances()</a></code></a> or, for street networks, times, <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="reference/dodgr_times.html">dodgr_times()</a></code></a> or, for street networks, times, accepts two vectors or matrices of routing points as inputs (describing origins and destinations), and returns a corresponding matrix of pairwise distances. If an input graph has columns for both distances and weighted distances, and/or times and weighted times, the weighted versions are used to determine the effectively shortest or fastest routes through a network, while actual distances or times are summed along the routes to calculate final values. It is of course also possible to calculate distances along fastest routes, times along shortest routes, or any combination thereof, as detailed in the package vignette on <a href="https://atfutures.github.io/dodgr/articles/times.html">street networks and time-based routing</a>.</p>
 <p>Routing points can, for example, be randomly selected from the vertices of a graph. The vertices can in turn be extracted with the <code><a href="reference/dodgr_vertices.html">dodgr_vertices()</a></code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (v)</a></code></pre></div>
@@ -513,7 +514,7 @@
 <td align="right">1</td>
 <td align="right">95.358362</td>
 <td align="right">105.953735</td>
-<td align="right">48.50645</td>
+<td align="right">58.11141</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -531,7 +532,7 @@
 <td align="right">1</td>
 <td align="right">95.358362</td>
 <td align="right">105.953735</td>
-<td align="right">65.00243</td>
+<td align="right">21.00575</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -549,7 +550,7 @@
 <td align="right">1</td>
 <td align="right">6.399843</td>
 <td align="right">7.110936</td>
-<td align="right">48.50645</td>
+<td align="right">58.11141</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -567,7 +568,7 @@
 <td align="right">1</td>
 <td align="right">6.399843</td>
 <td align="right">7.110936</td>
-<td align="right">65.00243</td>
+<td align="right">21.00575</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -585,7 +586,7 @@
 <td align="right">1</td>
 <td align="right">6.715106</td>
 <td align="right">7.461229</td>
-<td align="right">48.50645</td>
+<td align="right">58.11141</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -603,7 +604,7 @@
 <td align="right">1</td>
 <td align="right">6.715106</td>
 <td align="right">7.461229</td>
-<td align="right">65.00243</td>
+<td align="right">21.00575</td>
 </tr>
 </tbody>
 </table>
@@ -613,7 +614,7 @@
 <div id="further-detail" class="section level2">
 <h2 class="hasAnchor">
 <a href="#further-detail" class="anchor"></a>Further detail</h2>
-<p>For more detail, see the <a href="https://atfutures.github.io/dodgr/articles/dodgr.html">main package vignette</a>, along with a second vignette detailing <a href="https://atfutures.github.io/dodgr/articles/benchmark.html">benchmark timings</a>, showing that under many circumstances, <code>dodgr</code> performs considerably faster than equivalent routines from the <code>igraph</code> package.</p>
+<p>For more detail, see the <a href="https://atfutures.github.io/dodgr/articles/dodgr.html">main package vignette</a>, the second vignette on <a href="https://atfutures.github.io/dodgr/articles/times.html">street networks and time-based routing</a>, and a third vignette detailing <a href="https://atfutures.github.io/dodgr/articles/benchmark.html">benchmark timings</a>, showing that under many circumstances, <code>dodgr</code> performs considerably faster than equivalent routines from the <code>igraph</code> package.</p>
 </div>
 </div>
   </div>
