@@ -68,7 +68,7 @@
       <h1>dodgr</h1>
                         <h4 class="author">Mark Padgham</h4>
             
-            <h4 class="date">2019-05-04</h4>
+            <h4 class="date">2019-05-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ATFutures/dodgr/blob/master/vignettes/dodgr.Rmd"><code>vignettes/dodgr.Rmd</code></a></small>
       <div class="hidden name"><code>dodgr.Rmd</code></div>
@@ -366,7 +366,7 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> xy)</a>
 <a class="sourceLine" id="cb64-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (d); <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span> (d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1]  100 2861</code></pre>
-<pre><code>## [1]     0.00 28590.92</code></pre>
+<pre><code>## [1]     0.00 28624.11</code></pre>
 <p>If the <code>to</code> argument is also specified, the matrix returned will have rows matching <code>from</code> and columns matching <code>to</code></p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> xy, <span class="dt">to =</span> xy [<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ])</a>
 <a class="sourceLine" id="cb67-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (d)</a></code></pre></div>
@@ -421,30 +421,30 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw"><a href="../reference/compare_heaps.html">compare_heaps</a></span> (graph, <span class="dt">nverts =</span> <span class="dv">100</span>, <span class="dt">replications =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>##                                                                                   test
 ## 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
+## 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
 ## 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
+## 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
 ## 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
-## 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
+## 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
+## 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
 ## 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
 ## 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 ## 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 ## 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
-## 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
-## 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
-## 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
-## 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
+## 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
 ##    replications elapsed relative user.self sys.self user.child sys.child
-## 12            1   0.001        1     0.004        0          0         0
+## 12            1   0.001        1     0.000        0          0         0
+## 6             1   0.002        2     0.000        0          0         0
 ## 7             1   0.002        2     0.004        0          0         0
-## 9             1   0.002        2     0.004        0          0         0
-## 11            1   0.002        2     0.000        0          0         0
+## 8             1   0.002        2     0.000        0          0         0
+## 9             1   0.002        2     0.000        0          0         0
+## 10            1   0.002        2     0.004        0          0         0
+## 1             1   0.003        3     0.004        0          0         0
 ## 2             1   0.003        3     0.004        0          0         0
 ## 3             1   0.003        3     0.004        0          0         0
 ## 4             1   0.003        3     0.004        0          0         0
 ## 5             1   0.003        3     0.004        0          0         0
-## 6             1   0.003        3     0.000        0          0         0
-## 8             1   0.003        3     0.004        0          0         0
-## 10            1   0.003        3     0.004        0          0         0
-## 1             1   0.004        4     0.004        0          0         0</code></pre>
+## 11            1   0.003        3     0.004        0          0         0</code></pre>
 <p>The key column of that <code>data.frame</code> is <code>relative</code>, which quantifies the relative performance of each test in relation to the best which is given a score of 1. <code>dodgr</code> using the default <code>heap = "BHeap"</code>, which is a binary heap priority queue, performs faster than <code>igraph</code> <span class="citation">(Csardi and Nepusz 2006)</span> for these graphs. Different kind of graphs will perform differently with different priority queue structures, and this function enables users to empirically discern the optimal heap for their kind of graph.</p>
 <p>Note, however, that this is not an entirely fair comparison, because <code>dodgr</code> calculates dual-weighted distances, whereas <code>igraph</code>—and indeed all other <strong>R</strong> packages—only directly calculate distances based on a single set of weights. Implementing dual-weighted routing in these cases requires explicitly re-tracing all paths and summing the second set of weights along each path. A time comparison in that case would be very strongly in favour of <code>dodgr</code>. Moreover, <code>dodgr</code> can convert graphs to contracted form through removing redundant vertices, as detailed in the following section. Doing so greatly improves performance with respect to <code>igraph</code>.</p>
 <p>For those wishing to do explicit comparisons themselves, the following code generates the <code>igraph</code> equivalent of <code><a href="../reference/dodgr_dists.html">dodgr_dists()</a></code>, although of course for single-weighted graphs only:</p>
@@ -481,11 +481,11 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <a class="sourceLine" id="cb85-5" data-line-number="5">                       d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to),</a>
 <a class="sourceLine" id="cb85-6" data-line-number="6">                       <span class="dt">replications =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##                                             test replications elapsed
-## 2 d2 &lt;- dodgr_dists(graph, from = from, to = to)            2   0.051
-## 1   d2 &lt;- dodgr_dists(grc, from = from, to = to)            2   0.010
+## 2 d2 &lt;- dodgr_dists(graph, from = from, to = to)            2   0.047
+## 1   d2 &lt;- dodgr_dists(grc, from = from, to = to)            2   0.009
 ##   relative user.self sys.self user.child sys.child
-## 2      5.1     0.072        0          0         0
-## 1      1.0     0.016        0          0         0</code></pre>
+## 2    5.222     0.068        0          0         0
+## 1    1.000     0.012        0          0         0</code></pre>
 <p>And contracting the graph has a similar effect of speeding up pairwise routing between these 100 points. All routing algorithms scale non-linearly with size, and relative improvements in efficiency will be even greater for larger graphs.</p>
 <div id="routing-on-contracted-graphs" class="section level2">
 <h2 class="hasAnchor">
@@ -497,8 +497,8 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <pre><code>## [1] 688</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)<span class="op">$</span>id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb89-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (verts) <span class="co"># a character vector</span></a></code></pre></div>
-<pre><code>## [1] "2398957978" "3921512072" "4337842212" "3456932070" "3818704556"
-## [6] "1376769006"</code></pre>
+<pre><code>## [1] "4046458348" "1161117704" "339574153"  "2398957706" "1388483615"
+## [6] "2195424909"</code></pre>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph, verts)<span class="op">$</span>graph</a>
 <a class="sourceLine" id="cb91-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (grc)</a></code></pre></div>
 <pre><code>## [1] 876</code></pre>
@@ -542,50 +542,85 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <pre><code>## [1] 10</code></pre>
 <p>The result (<code>dp</code>) is a list of 10 items, each of which contains 5 vectors. An example is,</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]]</a></code></pre></div>
-<pre><code>##   [1] "1376768873" "1376768511" "2398957668" "2398957682" "1427116026"
-##   [6] "2398957694" "2398957702" "2398957704" "338512648"  "2398957707"
-##  [11] "2398957710" "2398957712" "2398957714" "2398957724" "676635816" 
-##  [16] "2398957727" "2398957730" "2398957733" "286632882"  "2398957736"
-##  [21] "1390214413" "2398957740" "286632883"  "2398957746" "2398957747"
-##  [26] "2398957748" "1390214349" "2398957751" "2398957754" "286632888" 
-##  [31] "2398957758" "2398957760" "2398957761" "2398957762" "2398957764"
-##  [36] "2398957765" "2398957768" "2398957774" "2398957775" "1390214918"
-##  [41] "2398957782" "2398957783" "286632889"  "1390214848" "2398957792"
-##  [46] "2398957793" "286632890"  "2398957794" "2398957795" "2398957796"
-##  [51] "2398957797" "2398957798" "340148006"  "340148007"  "2398957809"
-##  [56] "2398957814" "286632895"  "1390214618" "2398957831" "2398957835"
-##  [61] "286632896"  "2398957838" "1604033309" "2398957841" "2398957842"
-##  [66] "2398957844" "338512693"  "2627477006" "4035136503" "338904393" 
-##  [71] "1054864311" "2398957856" "286632897"  "2398957854" "2398957851"
-##  [76] "2398957849" "3921515457" "338904394"  "980400489"  "1715805187"
-##  [81] "2398957846" "286632898"  "338908580"  "338908581"  "338908589" 
-##  [86] "2398957843" "338904455"  "3697938024" "3697938023" "3697938021"
-##  [91] "3697938022" "3697938335" "3697938334" "3697938333" "3697938338"
-##  [96] "3697938337" "3697938336" "3697938331" "3697938330" "3697938329"
-## [101] "3697938332" "3697938328" "3697938327" "3697938326" "3697938325"
-## [106] "3697937571" "3697937610" "3697937615" "3697937614" "3697937613"
-## [111] "3697937611" "3697937612" "3697937616" "3697937609" "3697937608"
-## [116] "3697937607" "1376769110" "1376768521" "1376768883" "1376768309"
-## [121] "1376768766" "1376769150" "1376768556" "1376768915" "1376769206"
-## [126] "1376768611" "1376768971" "1376768395" "1376768859" "1376769235"
-## [131] "1376768641" "1376769001" "1376768341" "1376768709" "1376769061"
-## [136] "1376768498" "1376768949" "1376768372" "1376768741" "1376769127"
-## [141] "1376768426" "1376768796" "1376769182" "1376768589" "1376769033"
-## [146] "1376768471" "1376768835" "1376769213" "1376768528" "1376768891"
-## [151] "1376768317" "1376768683" "1376769157" "1376768563" "1376768922"
-## [156] "1376768347" "1376768618" "1376768979" "1376768402" "1376768772"
-## [161] "1376769241" "1376768649" "1376769009"</code></pre>
+<pre><code>##   [1] "3697937603" "3697937572" "3697937579" "3697937604" "3697937585"
+##   [6] "3697937589" "3697937601" "3697937588" "3697937573" "3697937571"
+##  [11] "3697937610" "3697937615" "3697937614" "3697937613" "3697937611"
+##  [16] "3697937612" "3697937616" "3697937609" "3697937608" "3697937607"
+##  [21] "1376769110" "1376768828" "1376768464" "1376768862" "1376768398"
+##  [26] "1376768975" "1376768614" "1376769209" "1376768918" "1376768559"
+##  [31] "2717241302" "2717241300" "2717241331" "2717241317" "2717241339"
+##  [36] "2717241332" "2717241309" "2717241321" "2717241306" "2717241323"
+##  [41] "2717241312" "1376768738" "1376768369" "1376768946" "1376768586"
+##  [46] "1560930407" "1376768478" "1376769039" "1376768690" "1376768324"
+##  [51] "1376768985" "1376768626" "339574829"  "339574828"  "1560930420"
+##  [56] "1560930408" "339574827"  "339574826"  "339574825"  "339574824" 
+##  [61] "339574823"  "1668645472" "1668645470" "3818714154" "339574820" 
+##  [66] "339574819"  "3818714155" "2398957686" "339574631"  "2717241324"
+##  [71] "1148814809" "2398957654" "2398957639" "339574630"  "339574629" 
+##  [76] "2398957619" "339574628"  "1427115955" "338905128"  "1376769164"
+##  [81] "1376768779" "338905219"  "2398957589" "2398957588" "1376768510"
+##  [86] "1376769086" "2398957584" "338905220"  "2398957576" "1427594104"
+##  [91] "2398957571" "2398957570" "2398957568" "338905221"  "2398957564"
+##  [96] "338905227"  "2398957561" "2398957557" "2398957549" "338905245" 
+## [101] "2398957546" "2398957544" "2398957543" "2398957542" "676635860" 
+## [106] "2398957537" "2398957532" "2398957526" "2398957521" "676875267" 
+## [111] "2398957539" "2419196948" "313796433"  "1376768773" "2398957554"
+## [116] "2398957555" "313796432"  "3338186986" "2398957563" "2398957567"
+## [121] "313796431"  "313796430"  "1376769158" "1427594112" "313796429" 
+## [126] "2398957603" "313796428"  "313796427"  "1128374399" "313796426" 
+## [131] "1128374495" "2398957696" "2398957701" "1376768565" "2398957713"
+## [136] "1376769010" "2398957720" "313796425"  "2398957722" "1376768805"
+## [141] "245631169"  "676875269"  "1128374442" "1376769190" "1128374412"
+## [146] "1128374373" "1128374467" "1376768504" "1161117304" "1376768867"
+## [151] "676875274"  "1376768293" "1376768650" "1128374447" "1376769132"
+## [156] "676875308"  "1376768537" "1161117735" "1376768899" "1161117723"
+## [161] "1376768325" "1376768597" "1357430113" "1376768957" "676875276" 
+## [166] "1376768380" "1357430014" "1376768749" "1376769220" "1128374360"
+## [171] "1161117548" "1357430213" "676875279"  "1128374362" "1376768627"
+## [176] "245631194"  "1376768986" "1376768409" "1128374418" "977461235" 
+## [181] "1376768691" "2398957816" "1128374394" "2398957826" "2398957837"
+## [186] "1376769040" "1376768479" "677638770"  "1376768821" "1128374434"
+## [191] "2398957895" "2398957896" "1376768842" "1128374455" "1376768355"
+## [196] "677638819"  "1376768724" "2398957939" "1161117636" "2398957968"
+## [201] "1128374490" "2398958005" "2398958010" "1161117434" "677638818" 
+## [206] "2398958040" "2398958041" "2398958043" "2398958044" "1161117327"
+## [211] "1128374463" "1691496075" "1691496072" "1161117278" "1691496070"
+## [216] "677638820"  "1161117679" "1691496079" "1161117383" "1691495929"
+## [221] "1161117501" "1376769146" "1161117440" "1691495934" "1161117756"
+## [226] "1691495939" "1161117392" "1691495943" "1691495952" "1161117526"
+## [231] "1691495982" "1161117586" "1161117652" "677638817"  "1691495985"
+## [236] "1691495910" "1161117288" "1691496204" "1691496236" "1161117404"
+## [241] "1691496237" "1691496247" "1161117704" "1691496243" "1691496251"
+## [246] "1161117663" "1691495937" "1691495665" "1161117302" "1691495672"
+## [251] "1161117452" "1691495677" "1691495680" "1691495693" "1161117543"
+## [256] "1691495696" "245631502"  "1691495698" "1161117349" "1691495717"
+## [261] "1691495720" "1691495723" "677638823"  "677638822"  "1691495727"
+## [266] "676875383"  "1691496081" "1161117620" "1161117473" "1691496086"
+## [271] "677638821"  "1691496190" "1691496364" "1161117772" "1161117358"
+## [276] "1161117413" "677638829"  "1691496367" "1691495745" "1691496372"
+## [281] "1691496406" "1691496404" "1691496375" "1691496407" "677638825" 
+## [286] "1691496409" "1161117556" "1691496412" "677638828"  "1691496416"
+## [291] "677638827"  "3544918684" "3544918688" "3544918690" "3544918692"
+## [296] "3544918695" "1691496284" "3544918699" "3544918701" "3544918705"
+## [301] "3544918708" "3544918716" "3544918720" "3544918725" "3544918731"
+## [306] "3544918732" "3544918733" "3544918735" "3544918740" "3544918741"
+## [311] "3544918742" "3544918739" "3544918737" "3544918736" "3544918738"
+## [316] "3544918734" "3544918730" "3544918729" "3544918728" "3544918727"
+## [321] "3544918722" "3544918718" "3544918717" "3544918715" "3544918714"
+## [326] "3544918712" "3544918710" "3544918709" "3544918711" "3544918713"
+## [331] "3544918719" "3544918726" "3544918745" "3544918749" "3544918756"
+## [336] "3544918757" "3544918760" "3544918764" "3544918770" "3544918772"</code></pre>
 <p>For spatial graphs, the coordinates of these paths can be obtained by extracting the vertices with <code><a href="../reference/dodgr_vertices.html">dodgr_vertices()</a></code> and matching the vertex IDs:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
 <a class="sourceLine" id="cb100-2" data-line-number="2">path1 &lt;-<span class="st"> </span>verts [<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/match">match</a></span> (dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]], verts<span class="op">$</span>id), ]</a>
 <a class="sourceLine" id="cb100-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (path1)</a></code></pre></div>
 <pre><code>##              id        x        y component    n
-## 2532 1376768873 76.45182 15.31479         1 1271
-## 1252 1376768511 76.45148 15.31509         1  638
-## 1254 2398957668 76.45163 15.31594         1  639
-## 1256 2398957682 76.45174 15.31642         1  640
-## 1258 1427116026 76.45185 15.31680         1  641
-## 1260 2398957694 76.45214 15.31749         1  642</code></pre>
+## 4998 3697937603 76.46796 15.33094         1 2465
+## 5000 3697937572 76.46803 15.33072         1 2466
+## 5002 3697937579 76.46796 15.33061         1 2467
+## 5004 3697937604 76.46793 15.33061         1 2468
+## 5006 3697937585 76.46792 15.33052         1 2469
+## 5008 3697937589 76.46804 15.33051         1 2470</code></pre>
 <p>Paths calculated on contracted graphs will of course have fewer vertices than those calculated on full graphs.</p>
 </div>
 <div id="aggregated-flows" class="section level1">
@@ -629,7 +664,7 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <p>Most flows are zero because they have only been calculated between very few points in the graph.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   0.000   0.000   7.921   5.239  92.182</code></pre>
+##   0.000   0.000   0.000   4.318   0.000  82.579</code></pre>
 </div>
 <div id="flow-dispersal" class="section level2">
 <h2 class="hasAnchor">
@@ -639,7 +674,7 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <a class="sourceLine" id="cb107-2" data-line-number="2">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">dens =</span> dens)</a>
 <a class="sourceLine" id="cb107-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
 <pre><code>##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## 0.000e+00 0.000e+00 0.000e+00 4.993e-06 0.000e+00 2.069e-02</code></pre>
+## 0.000e+00 0.000e+00 0.000e+00 1.242e-06 0.000e+00 2.461e-03</code></pre>
 </div>
 <div id="merging-directed-flows" class="section level2">
 <h2 class="hasAnchor">
@@ -649,7 +684,7 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <p>Resultant graphs produced by <code><a href="../reference/merge_directed_flows.html">merge_directed_flows()</a></code> only include those edges having non-zero flows, and so:</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (graph_f); <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (graph_undir) <span class="co"># the latter is much smaller</span></a></code></pre></div>
 <pre><code>## [1] 5845</code></pre>
-<pre><code>## [1] 1709</code></pre>
+<pre><code>## [1] 1737</code></pre>
 <p>The resultant graph can readily be merged with the original graph to regain the original data on vertex coordinates through</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">graph &lt;-<span class="st"> </span>graph [graph_undir<span class="op">$</span>edge_id, ]</a>
 <a class="sourceLine" id="cb113-2" data-line-number="2">graph<span class="op">$</span>flow &lt;-<span class="st"> </span>graph_undir<span class="op">$</span>flow</a></code></pre></div>
