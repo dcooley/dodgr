@@ -118,7 +118,7 @@ be constructed by expanding the range of <code>pts</code> by the relative amount
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_streetnet</span>(<span class='no'>bbox</span>, <span class='no'>pts</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_streetnet</span>(<span class='no'>bbox</span>, <span class='kw'>pts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,7 +154,7 @@ the street network.</p>
 <span class='no'>streetnet</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_streetnet</span> (<span class='st'>"hampi india"</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0</span>)
 <span class='co'># convert to form needed for `dodgr` functions:</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>streetnet</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># 5,742 edges</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># around 5,900 edges</span>
 <span class='co'># Alternative ways of extracting street networks by using a small selection of</span>
 <span class='co'># graph vertices to define bounding box:</span>
 <span class='no'>verts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>graph</span>)
@@ -167,9 +167,9 @@ the street network.</p>
 
 <span class='co'># bbox can also be a polygon:</span>
 <span class='no'>bb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>osmdata</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/osmdata/topics/getbb'>getbb</a></span> (<span class='st'>"gent belgium"</span>) <span class='co'># rectangular bbox</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='fu'>dodgr_streetnet</span> (<span class='kw'>bbox</span> <span class='kw'>=</span> <span class='no'>bb</span>)) <span class='co'># 28,742</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='fu'>dodgr_streetnet</span> (<span class='kw'>bbox</span> <span class='kw'>=</span> <span class='no'>bb</span>)) <span class='co'># around 30,000</span>
 <span class='no'>bb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>osmdata</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/osmdata/topics/getbb'>getbb</a></span> (<span class='st'>"gent belgium"</span>, <span class='kw'>format_out</span> <span class='kw'>=</span> <span class='st'>"polygon"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='fu'>dodgr_streetnet</span> (<span class='kw'>bbox</span> <span class='kw'>=</span> <span class='no'>bb</span>)) <span class='co'># 15,969</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='fu'>dodgr_streetnet</span> (<span class='kw'>bbox</span> <span class='kw'>=</span> <span class='no'>bb</span>)) <span class='co'># around 17,000</span>
 <span class='co'># The latter has fewer rows because only edges within polygon are returned</span>
 <span class='co'># }</span></pre>
   </div>
