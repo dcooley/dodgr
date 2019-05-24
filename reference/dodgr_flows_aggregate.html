@@ -182,7 +182,7 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 <span class='no'>geoms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_sfc.html'>dodgr_to_sfc</a></span> (<span class='no'>graph_undir</span>)
 <span class='no'>gc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>graph_undir</span>)
 <span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/sf'>st_sf</a></span> (<span class='no'>geoms</span>)
-<span class='no'>gsf</span>$<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gc</span>$<span class='no'>graph</span>$<span class='no'>flow</span>
+<span class='no'>gsf</span>$<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gc</span>$<span class='no'>flow</span>
 
 <span class='co'># example of plotting with the 'mapview' package</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span> (<span class='no'>mapview</span>)
@@ -222,7 +222,7 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 <span class='no'>geoms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_sfc.html'>dodgr_to_sfc</a></span> (<span class='no'>f</span>)
 <span class='no'>gc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>f</span>)
 <span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/sf'>st_sf</a></span> (<span class='no'>geoms</span>)
-<span class='no'>gsf</span>$<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gc</span>$<span class='no'>graph</span>$<span class='no'>flow</span>
+<span class='no'>gsf</span>$<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gc</span>$<span class='no'>flow</span>
 <span class='co'># sf plot:</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span> (<span class='no'>gsf</span> [<span class='st'>"flow"</span>])
 <span class='co'># }</span></pre>
