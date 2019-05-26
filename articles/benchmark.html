@@ -68,7 +68,7 @@
       <h1>dodgr benchmark</h1>
                         <h4 class="author">Andreas Petutschnig</h4>
             
-            <h4 class="date">2019-05-25</h4>
+            <h4 class="date">2019-05-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ATFutures/dodgr/blob/master/vignettes/benchmark.Rmd"><code>vignettes/benchmark.Rmd</code></a></small>
       <div class="hidden name"><code>benchmark.Rmd</code></div>
@@ -122,37 +122,37 @@
 <a class="sourceLine" id="cb2-2" data-line-number="2">num_vertices &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlist">unlist</a></span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span> (all_graphs, <span class="cf">function</span> (i)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">                                <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (i))))</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span> (num_edges, num_vertices, <span class="dt">ratio =</span> num_edges <span class="op">/</span><span class="st"> </span>num_vertices)</a></code></pre></div>
-<pre><code>##    num_edges num_vertices      ratio
-## 1          7            4   1.750000
-## 2        817           81  10.086420
-## 3      23473          755  31.090066
-## 4     125409          184 681.570652
-## 5        178           37   4.810811
-## 6        209           37   5.648649
-## 7        215           37   5.810811
-## 8        177           39   4.538462
-## 9        125           24   5.208333
-## 10       100           24   4.166667
-## 11        82           24   3.416667
-## 12       221           39   5.666667
-## 13       400           46   8.695652
-## 14       220           35   6.285714
-## 15        53           19   2.789474
-## 16       356           54   6.592593
-## 17      2137          128  16.695312
-## 18      2106          128  16.453125
-## 19       640           71   9.014085
-## 20       631           71   8.887324
-## 21       915           69  13.260870
-## 22       916           69  13.275362
-## 23      1491           97  15.371134
-## 24      1492           97  15.381443
-## 25      6300         1316   4.787234
-## 26        78           34   2.294118
-## 27        18           10   1.800000
-## 28       463           45  10.288889
-## 29     32424           75 432.320000
-## 30     11855         2617   4.529996</code></pre>
+<pre><code>##    num_edges num_vertices    ratio
+## 1          7            4     1.75
+## 2        817            4   204.25
+## 3      23473            4  5868.25
+## 4     125409            4 31352.25
+## 5        178            4    44.50
+## 6        209            4    52.25
+## 7        215            4    53.75
+## 8        177            4    44.25
+## 9        125            4    31.25
+## 10       100            4    25.00
+## 11        82            4    20.50
+## 12       221            4    55.25
+## 13       400            4   100.00
+## 14       220            4    55.00
+## 15        53            4    13.25
+## 16       356            4    89.00
+## 17      2137            4   534.25
+## 18      2106            4   526.50
+## 19       640            4   160.00
+## 20       631            4   157.75
+## 21       915            4   228.75
+## 22       916            4   229.00
+## 23      1491            4   372.75
+## 24      1492            4   373.00
+## 25      6300            4  1575.00
+## 26        78            4    19.50
+## 27        18            4     4.50
+## 28       463            4   115.75
+## 29     32424            4  8106.00
+## 30     11855            4  2963.75</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">benchmarks &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span> (all_graphs, <span class="cf">function</span> (i)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">                      <span class="kw"><a href="../reference/compare_heaps.html">compare_heaps</a></span> (i, <span class="dt">nverts =</span> <span class="dv">100</span>, <span class="dt">replications =</span> <span class="dv">10</span>))</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/readRDS">saveRDS</a></span> (benchmarks, <span class="dt">file =</span> <span class="st">"benchmark_data.rds"</span>)</a></code></pre></div>
