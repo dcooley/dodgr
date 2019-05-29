@@ -107,13 +107,13 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span> (hampi)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; [1] "sf"         "data.frame"</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (hampi)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; [1] 191  15</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; [1] 203  15</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">graph &lt;-<span class="st"> </span><span class="kw"><a href="reference/weight_streetnet.html">weight_streetnet</a></span> (hampi, <span class="dt">wt_profile =</span> <span class="st">"foot"</span>)</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span> (graph)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; [1] "data.frame"      "dodgr_streetnet"</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/dim">dim</a></span> (graph)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; [1] 5845   15</span></a></code></pre></div>
-<p>The <code>sf</code>-format network contained 191 <code>LINESTRING</code> objects, with the <code><a href="reference/weight_streetnet.html">weight_streetnet()</a></code> function decomposing these into 5,845 distinct edges, indicating that the <code>sf</code> representation had around 31 edges or segments in each <code>LINESTRING</code> object. The <code>dodgr</code> network then looks like this:</p>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; [1] 5973   15</span></a></code></pre></div>
+<p>The <code>sf</code>-format network contained 203 <code>LINESTRING</code> objects, with the <code><a href="reference/weight_streetnet.html">weight_streetnet()</a></code> function decomposing these into 5,973 distinct edges, indicating that the <code>sf</code> representation had around 29 edges or segments in each <code>LINESTRING</code> object. The <code>dodgr</code> network then looks like this:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (graph)</a></code></pre></div>
 <table class="table table">
 <thead><tr class="header">
@@ -144,12 +144,12 @@
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">132.442169</td>
-<td align="right">147.15797</td>
-<td align="left">service</td>
+<td align="right">165.55271</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">95.358362</td>
-<td align="right">105.953735</td>
+<td align="right">119.197952</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -161,12 +161,12 @@
 <td align="right">76.47489</td>
 <td align="right">15.34169</td>
 <td align="right">132.442169</td>
-<td align="right">147.15797</td>
-<td align="left">service</td>
+<td align="right">165.55271</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">95.358362</td>
-<td align="right">105.953735</td>
+<td align="right">119.197952</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -178,12 +178,12 @@
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">8.888670</td>
-<td align="right">9.87630</td>
-<td align="left">service</td>
+<td align="right">11.11084</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.399843</td>
-<td align="right">7.110936</td>
+<td align="right">7.999803</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -195,12 +195,12 @@
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">8.888670</td>
-<td align="right">9.87630</td>
-<td align="left">service</td>
+<td align="right">11.11084</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.399843</td>
-<td align="right">7.110936</td>
+<td align="right">7.999803</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -212,12 +212,12 @@
 <td align="right">76.47628</td>
 <td align="right">15.34179</td>
 <td align="right">9.326536</td>
-<td align="right">10.36282</td>
-<td align="left">service</td>
+<td align="right">11.65817</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.715106</td>
-<td align="right">7.461229</td>
+<td align="right">8.393882</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -229,12 +229,12 @@
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">9.326536</td>
-<td align="right">10.36282</td>
-<td align="left">service</td>
+<td align="right">11.65817</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.715106</td>
-<td align="right">7.461229</td>
+<td align="right">8.393882</td>
 </tr>
 </tbody>
 </table>
@@ -505,13 +505,13 @@
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">132.442169</td>
-<td align="right">147.15797</td>
-<td align="left">service</td>
+<td align="right">165.55271</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">95.358362</td>
-<td align="right">105.953735</td>
-<td align="right">52.42129</td>
+<td align="right">119.197952</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -523,13 +523,13 @@
 <td align="right">76.47489</td>
 <td align="right">15.34169</td>
 <td align="right">132.442169</td>
-<td align="right">147.15797</td>
-<td align="left">service</td>
+<td align="right">165.55271</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">95.358362</td>
-<td align="right">105.953735</td>
-<td align="right">62.84366</td>
+<td align="right">119.197952</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -541,13 +541,13 @@
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">8.888670</td>
-<td align="right">9.87630</td>
-<td align="left">service</td>
+<td align="right">11.11084</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.399843</td>
-<td align="right">7.110936</td>
-<td align="right">52.42129</td>
+<td align="right">7.999803</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -559,13 +559,13 @@
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">8.888670</td>
-<td align="right">9.87630</td>
-<td align="left">service</td>
+<td align="right">11.11084</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.399843</td>
-<td align="right">7.110936</td>
-<td align="right">62.84366</td>
+<td align="right">7.999803</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -577,13 +577,13 @@
 <td align="right">76.47628</td>
 <td align="right">15.34179</td>
 <td align="right">9.326536</td>
-<td align="right">10.36282</td>
-<td align="left">service</td>
+<td align="right">11.65817</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.715106</td>
-<td align="right">7.461229</td>
-<td align="right">52.42129</td>
+<td align="right">8.393882</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -595,13 +595,13 @@
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">9.326536</td>
-<td align="right">10.36282</td>
-<td align="left">service</td>
+<td align="right">11.65817</td>
+<td align="left">unclassified</td>
 <td align="left">28565950</td>
 <td align="right">1</td>
 <td align="right">6.715106</td>
-<td align="right">7.461229</td>
-<td align="right">62.84366</td>
+<td align="right">8.393882</td>
+<td align="right">0</td>
 </tr>
 </tbody>
 </table>
