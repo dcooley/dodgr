@@ -343,7 +343,7 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 <p>The <code>dodgr</code> packages includes a function to select a random connected portion of graph including a specified number of vertices. This function is used in the <code><a href="../reference/compare_heaps.html">compare_heaps()</a></code> function described below, but is also useful for general statistical analyses of large graphs which may otherwise take too long to compute.</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">graph_sub &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_sample.html">dodgr_sample</a></span> (graph, <span class="dt">nverts =</span> <span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb59-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (graph_sub)</a></code></pre></div>
-<pre><code>## [1] 197</code></pre>
+<pre><code>## [1] 199</code></pre>
 <p>The random sample has around twice as many edges as vertices, in accordance with the statistics calculated above.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph_sub))</a></code></pre></div>
 <pre><code>## [1] 100</code></pre>
@@ -421,30 +421,30 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw"><a href="../reference/compare_heaps.html">compare_heaps</a></span> (graph, <span class="dt">nverts =</span> <span class="dv">100</span>, <span class="dt">replications =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>##                                                                                   test
 ## 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
-## 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
-## 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
-## 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
+## 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
 ## 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
 ## 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
-## 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
+## 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
 ## 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
+## 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 ## 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
-## 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
+## 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 ## 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
 ## 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
+## 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
 ##    replications elapsed relative user.self sys.self user.child sys.child
-## 12            1   0.001        1     0.004    0.000          0         0
-## 7             1   0.002        2     0.004    0.000          0         0
-## 10            1   0.002        2     0.000    0.000          0         0
-## 4             1   0.003        3     0.004    0.000          0         0
+## 12            1   0.001        1     0.000    0.000          0         0
+## 8             1   0.002        2     0.004    0.000          0         0
 ## 5             1   0.003        3     0.000    0.000          0         0
-## 6             1   0.003        3     0.004    0.000          0         0
-## 8             1   0.003        3     0.004    0.000          0         0
-## 9             1   0.003        3     0.004    0.000          0         0
+## 6             1   0.003        3     0.000    0.000          0         0
+## 7             1   0.003        3     0.004    0.000          0         0
+## 9             1   0.003        3     0.000    0.000          0         0
+## 10            1   0.003        3     0.000    0.000          0         0
 ## 11            1   0.003        3     0.004    0.000          0         0
-## 1             1   0.004        4     0.004    0.000          0         0
-## 2             1   0.004        4     0.000    0.004          0         0
-## 3             1   0.005        5     0.004    0.000          0         0</code></pre>
+## 4             1   0.004        4     0.004    0.000          0         0
+## 2             1   0.005        5     0.008    0.000          0         0
+## 3             1   0.005        5     0.004    0.000          0         0
+## 1             1   0.006        6     0.004    0.004          0         0</code></pre>
 <p>The key column of that <code>data.frame</code> is <code>relative</code>, which quantifies the relative performance of each test in relation to the best which is given a score of 1. <code>dodgr</code> using the default <code>heap = "BHeap"</code>, which is a binary heap priority queue, performs faster than <code>igraph</code> <span class="citation">(Csardi and Nepusz 2006)</span> for these graphs. Different kind of graphs will perform differently with different priority queue structures, and this function enables users to empirically discern the optimal heap for their kind of graph.</p>
 <p>Note, however, that this is not an entirely fair comparison, because <code>dodgr</code> calculates dual-weighted distances, whereas <code>igraph</code>—and indeed all other <strong>R</strong> packages—only directly calculate distances based on a single set of weights. Implementing dual-weighted routing in these cases requires explicitly re-tracing all paths and summing the second set of weights along each path. A time comparison in that case would be very strongly in favour of <code>dodgr</code>. Moreover, <code>dodgr</code> can convert graphs to contracted form through removing redundant vertices, as detailed in the following section. Doing so greatly improves performance with respect to <code>igraph</code>.</p>
 <p>For those wishing to do explicit comparisons themselves, the following code generates the <code>igraph</code> equivalent of <code><a href="../reference/dodgr_dists.html">dodgr_dists()</a></code>, although of course for single-weighted graphs only:</p>
@@ -497,8 +497,8 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <pre><code>## [1] 672</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)<span class="op">$</span>id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb89-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (verts) <span class="co"># a character vector</span></a></code></pre></div>
-<pre><code>## [1] "4337853839" "2195424962" "6161853498" "977473090"  "1204772804"
-## [6] "2608081980"</code></pre>
+<pre><code>## [1] "3697937580" "1376768654" "3697944226" "1376768626" "1691495745"
+## [6] "2195425052"</code></pre>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph, verts)</a>
 <a class="sourceLine" id="cb91-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (grc)</a></code></pre></div>
 <pre><code>## [1] 854</code></pre>
@@ -542,32 +542,31 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <pre><code>## [1] 10</code></pre>
 <p>The result (<code>dp</code>) is a list of 10 items, each of which contains 5 vectors. An example is,</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]]</a></code></pre></div>
-<pre><code>##  [1] "338904865"  "2398957766" "2398957767" "1148814881" "2398957769"
-##  [6] "2398957773" "338904837"  "3338186941" "3338186940" "338904808" 
-## [11] "3338186939" "5358983985" "1148815010" "338904786"  "2398957781"
-## [16] "1148814651" "2398957784" "338904763"  "2398957785" "2398957786"
-## [21] "2398957788" "1148814936" "338904757"  "2398957791" "3338186191"
-## [26] "3338186190" "338904736"  "1376768646" "1148815069" "338904641" 
-## [31] "2398957807" "2398957811" "339577486"  "339577487"  "339577488" 
-## [36] "339577489"  "4035136526" "4035136527" "4035136517" "4035136516"
-## [41] "4035136515" "4035136514" "4035136513" "4035136512" "4035136511"
-## [46] "4035136510" "4035136509" "4035136508" "4035136507" "4035136506"
-## [51] "4035136505" "4035136504" "4035136503" "2627477006" "338512693" 
-## [56] "2398957844" "2398957842" "2627476980" "2627476985" "339574165" 
-## [61] "4474520806" "1604033316" "339574164"  "4474520807" "339574161" 
-## [66] "4474520808" "339574160"  "1715805190" "339574159"  "339574158" 
-## [71] "1715805191" "339574157"  "339574156"  "339574155"</code></pre>
+<pre><code>##  [1] "339574824"  "339574823"  "1668645472" "1668645470" "3818714154"
+##  [6] "1668645444" "1668645443" "1668645438" "1668645436" "339574837" 
+## [11] "339577276"  "339577277"  "2717241325" "339577279"  "339577280" 
+## [16] "6162061978" "339577283"  "1427080647" "1427080646" "339577285" 
+## [21] "339577286"  "339577287"  "339577289"  "339577292"  "338905032" 
+## [26] "1376768330" "1376768904" "2398957715" "2398957716" "1376768543"
+## [31] "1376769137" "1376768847" "1376768484" "1376769045" "4506481428"
+## [36] "1376768697" "1376769196" "6414886574" "1376768817" "1376768447"
+## [41] "6414886575" "1376769017" "6414886576" "1376768754" "6414886577"
+## [46] "1376768386" "1376768961" "6414886578" "1376768601" "5351820954"
+## [51] "1376769087" "5974503432" "1376768725" "5351820955" "1376768356"
+## [56] "5974503433" "5351820956" "5974503434" "1376768931" "5974503435"
+## [61] "1376768660" "1376768299" "1376768873" "5974503436" "1376768511"
+## [66] "2398957609"</code></pre>
 <p>For spatial graphs, the coordinates of these paths can be obtained by extracting the vertices with <code><a href="../reference/dodgr_vertices.html">dodgr_vertices()</a></code> and matching the vertex IDs:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
 <a class="sourceLine" id="cb100-2" data-line-number="2">path1 &lt;-<span class="st"> </span>verts [<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/match">match</a></span> (dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]], verts<span class="op">$</span>id), ]</a>
 <a class="sourceLine" id="cb100-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (path1)</a></code></pre></div>
 <pre><code>##              id        x        y component    n
-## 4524  338904865 76.46067 15.32323         1 2249
-## 4522 2398957766 76.46042 15.32316         1 2248
-## 4520 2398957767 76.46035 15.32314         1 2247
-## 4518 1148814881 76.46030 15.32314         1 2246
-## 4516 2398957769 76.46024 15.32320         1 2245
-## 4514 2398957773 76.46021 15.32327         1 2244</code></pre>
+## 544   339574824 76.47152 15.31920         1  277
+## 542   339574823 76.47146 15.31894         1  276
+## 541  1668645472 76.47139 15.31885         1  275
+## 3066 1668645470 76.47131 15.31876         1 1542
+## 568  3818714154 76.47102 15.31856         1  289
+## 3062 1668645444 76.47016 15.31815         1 1541</code></pre>
 <p>Paths calculated on contracted graphs will of course have fewer vertices than those calculated on full graphs.</p>
 </div>
 <div id="aggregated-flows" class="section level1">
@@ -611,7 +610,7 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <p>Most flows are zero because they have only been calculated between very few points in the graph.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   0.000   0.000   5.753   0.000  73.049</code></pre>
+##   0.000   0.000   0.000   4.674   0.000 101.231</code></pre>
 </div>
 <div id="flow-dispersal" class="section level2">
 <h2 class="hasAnchor">
@@ -621,7 +620,7 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <a class="sourceLine" id="cb107-2" data-line-number="2">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">dens =</span> dens)</a>
 <a class="sourceLine" id="cb107-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
 <pre><code>##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## 0.000e+00 0.000e+00 0.000e+00 1.894e-06 0.000e+00 4.648e-03</code></pre>
+## 0.000e+00 0.000e+00 0.000e+00 3.302e-05 0.000e+00 9.865e-02</code></pre>
 </div>
 <div id="merging-directed-flows" class="section level2">
 <h2 class="hasAnchor">
@@ -631,7 +630,7 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <p>Resultant graphs produced by <code><a href="../reference/merge_directed_flows.html">merge_directed_flows()</a></code> only include those edges having non-zero flows, and so:</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (graph_f); <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span> (graph_undir) <span class="co"># the latter is much smaller</span></a></code></pre></div>
 <pre><code>## [1] 5973</code></pre>
-<pre><code>## [1] 1663</code></pre>
+<pre><code>## [1] 1351</code></pre>
 <p>The resultant graph can readily be merged with the original graph to regain the original data on vertex coordinates through</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">graph &lt;-<span class="st"> </span>graph [graph_undir<span class="op">$</span>edge_id, ]</a>
 <a class="sourceLine" id="cb113-2" data-line-number="2">graph<span class="op">$</span>flow &lt;-<span class="st"> </span>graph_undir<span class="op">$</span>flow</a></code></pre></div>

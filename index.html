@@ -376,7 +376,7 @@
 <div id="usage-distances-and-times" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage-distances-and-times" class="anchor"></a>Usage: Distances and Times</h2>
-<p>The many-to-many nature of <code>dodgr</code> means that the function to calculate distances, <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="reference/dodgr_distances.html">dodgr_distances()</a></code></a> or, for street networks, times, <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="reference/dodgr_times.html">dodgr_times()</a></code></a> or, for street networks, times, accepts two vectors or matrices of routing points as inputs (describing origins and destinations), and returns a corresponding matrix of pairwise distances. If an input graph has columns for both distances and weighted distances, and/or times and weighted times, the weighted versions are used to determine the effectively shortest or fastest routes through a network, while actual distances or times are summed along the routes to calculate final values. It is of course also possible to calculate distances along fastest routes, times along shortest routes, or any combination thereof, as detailed in the package vignette on <a href="https://atfutures.github.io/dodgr/articles/times.html">street networks and time-based routing</a>.</p>
+<p>The many-to-many nature of <code>dodgr</code> means that the function to calculate distances, <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="reference/dodgr_distances.html">dodgr_distances()</a></code></a> or, for street networks, times, <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="reference/dodgr_times.html">dodgr_times()</a></code></a>, accepts two vectors or matrices of routing points as inputs (describing origins and destinations), and returns a corresponding matrix of pairwise distances. If an input graph has columns for both distances and weighted distances, and/or times and weighted times, the weighted versions are used to determine the effectively shortest or fastest routes through a network, while actual distances or times are summed along the routes to calculate final values. It is of course also possible to calculate distances along fastest routes, times along shortest routes, or any combination thereof, as detailed in the package vignette on <a href="https://atfutures.github.io/dodgr/articles/times.html">street networks and time-based routing</a>.</p>
 <p>Routing points can, for example, be randomly selected from the vertices of a graph. The vertices can in turn be extracted with the <code><a href="reference/dodgr_vertices.html">dodgr_vertices()</a></code> function:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw"><a href="reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span> (v)</a></code></pre></div>
@@ -511,7 +511,7 @@
 <td align="right">1</td>
 <td align="right">95.358362</td>
 <td align="right">119.197952</td>
-<td align="right">7.44292</td>
+<td align="right">16.93194</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -529,7 +529,7 @@
 <td align="right">1</td>
 <td align="right">95.358362</td>
 <td align="right">119.197952</td>
-<td align="right">0.00000</td>
+<td align="right">23.59893</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -547,7 +547,7 @@
 <td align="right">1</td>
 <td align="right">6.399843</td>
 <td align="right">7.999803</td>
-<td align="right">7.44292</td>
+<td align="right">16.93194</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -565,7 +565,7 @@
 <td align="right">1</td>
 <td align="right">6.399843</td>
 <td align="right">7.999803</td>
-<td align="right">0.00000</td>
+<td align="right">23.59893</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -583,7 +583,7 @@
 <td align="right">1</td>
 <td align="right">6.715106</td>
 <td align="right">8.393882</td>
-<td align="right">7.44292</td>
+<td align="right">16.93194</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -601,7 +601,7 @@
 <td align="right">1</td>
 <td align="right">6.715106</td>
 <td align="right">8.393882</td>
-<td align="right">0.00000</td>
+<td align="right">23.59893</td>
 </tr>
 </tbody>
 </table>
