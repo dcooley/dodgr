@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>weighting_profiles — weighting_profiles • dodgr</title>
+<title>clear_dodgr_cache — clear_dodgr_cache • dodgr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,12 +30,17 @@
 
 
 
-<meta property="og:title" content="weighting_profiles — weighting_profiles" />
+<meta property="og:title" content="clear_dodgr_cache — clear_dodgr_cache" />
 
-<meta property="og:description" content="Collection of weighting profiles used to adjust the routing process to
-different means of transport. Modified from data taken from the Routino
-project, with additional tables for average speeds, dependence of speed on
-type of surface, and waiting times in seconds at traffic lights." />
+<meta property="og:description" content="Remove cached versions of dodgr graphs. This function should generally
+not be needed, except if graph structure has been directly modified
+other than through dodgr functions; for example by modifying edge weights
+or distances. Graphs are cached based on the vector of edge IDs, so manual
+changes to any other attributes will not necessarily be translated into
+changes in dodgr output unless the cached versions are cleared using this
+function. See
+https://github.com/ATFutures/dodgr/wiki/Caching-of-streetnets-and-contracted-graphs
+for details of caching process." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,29 +107,30 @@ type of surface, and waiting times in seconds at traffic lights." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>weighting_profiles</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/dodgr-package.r'><code>R/dodgr-package.r</code></a></small>
-    <div class="hidden name"><code>weighting_profiles.Rd</code></div>
+    <h1>clear_dodgr_cache</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>clear_dodgr_cache.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Collection of weighting profiles used to adjust the routing process to
-different means of transport. Modified from data taken from the Routino
-project, with additional tables for average speeds, dependence of speed on
-type of surface, and waiting times in seconds at traffic lights.</p>
+    <p>Remove cached versions of <code>dodgr</code> graphs. This function should generally
+<em>not</em> be needed, except if graph structure has been directly modified
+other than through <code>dodgr</code> functions; for example by modifying edge weights
+or distances. Graphs are cached based on the vector of edge IDs, so manual
+changes to any other attributes will not necessarily be translated into
+changes in <code>dodgr</code> output unless the cached versions are cleared using this
+function. See
+<a href='https://github.com/ATFutures/dodgr/wiki/Caching-of-streetnets-and-contracted-graphs'>https://github.com/ATFutures/dodgr/wiki/Caching-of-streetnets-and-contracted-graphs</a>
+for details of caching process.</p>
     
     </div>
 
+    <pre class="usage"><span class='fu'>clear_dodgr_cache</span>()</pre>
         
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List of <code>data.frame</code> objects with profile names, means of transport
-and weights.</p>
-    
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://www.routino.org/xml/routino-profiles.xml'>https://www.routino.org/xml/routino-profiles.xml</a></p>
+    <p>Nothing; the function silently clears any cached objects</p>
     
 
   </div>
@@ -132,9 +138,7 @@ and weights.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#references">References</a></li>
+      <li><a href="#value">Value</a></li>
           </ul>
 
   </div>
