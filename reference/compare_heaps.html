@@ -67,7 +67,7 @@ dodgr_sample function and passed directly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.10</span>
       </span>
     </div>
 
@@ -157,28 +157,28 @@ fair comparisons, run only once or re-start the current R session.</p>
 #&gt; 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
 #&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
-#&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
+#&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
-#&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
+#&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
-#&gt; 6             1   0.005      1.0     0.008        0          0         0
-#&gt; 11            1   0.005      1.0     0.008        0          0         0
-#&gt; 7             1   0.006      1.2     0.008        0          0         0
-#&gt; 8             1   0.006      1.2     0.008        0          0         0
-#&gt; 10            1   0.006      1.2     0.008        0          0         0
-#&gt; 9             1   0.007      1.4     0.008        0          0         0
-#&gt; 12            1   0.014      2.8     0.012        0          0         0
-#&gt; 1             1   0.025      5.0     0.040        0          0         0
-#&gt; 2             1   0.031      6.2     0.052        0          0         0
-#&gt; 3             1   0.032      6.4     0.056        0          0         0
-#&gt; 5             1   0.032      6.4     0.056        0          0         0
-#&gt; 4             1   0.035      7.0     0.036        0          0         0</div></pre>
+#&gt; 6             1   0.009    1.000     0.016    0.000          0         0
+#&gt; 11            1   0.009    1.000     0.012    0.000          0         0
+#&gt; 7             1   0.010    1.111     0.016    0.000          0         0
+#&gt; 10            1   0.011    1.222     0.020    0.000          0         0
+#&gt; 8             1   0.012    1.333     0.016    0.004          0         0
+#&gt; 9             1   0.013    1.444     0.012    0.000          0         0
+#&gt; 12            1   0.023    2.556     0.024    0.000          0         0
+#&gt; 1             1   0.036    4.000     0.060    0.000          0         0
+#&gt; 2             1   0.047    5.222     0.088    0.000          0         0
+#&gt; 5             1   0.048    5.333     0.088    0.000          0         0
+#&gt; 3             1   0.049    5.444     0.088    0.000          0         0
+#&gt; 4             1   0.054    6.000     0.056    0.000          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

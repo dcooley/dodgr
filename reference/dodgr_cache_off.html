@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>dodgr_sflines_to_poly — dodgr_sflines_to_poly • dodgr</title>
+<title>dodgr_cache_off — dodgr_cache_off • dodgr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
 
 
 
-<meta property="og:title" content="dodgr_sflines_to_poly — dodgr_sflines_to_poly" />
+<meta property="og:title" content="dodgr_cache_off — dodgr_cache_off" />
 
-<meta property="og:description" content="Convert sf LINESTRING objects to POLYGON objects representing all
-fundamental cycles within the LINESTRING objects." />
+<meta property="og:description" content="Turn all all dodgr caching in current session. This is useful is speed is
+paramount, and if graph contraction is not needed." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -100,50 +100,29 @@ fundamental cycles within the LINESTRING objects." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>dodgr_sflines_to_poly</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/fund-cycles.R'><code>R/fund-cycles.R</code></a></small>
-    <div class="hidden name"><code>dodgr_sflines_to_poly.Rd</code></div>
+    <h1>dodgr_cache_off</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>dodgr_cache_off.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Convert <span class="pkg">sf</span> <code>LINESTRING</code> objects to <code>POLYGON</code> objects representing all
-fundamental cycles within the <code>LINESTRING</code> objects.</p>
+    <p>Turn all all dodgr caching in current session. This is useful is speed is
+paramount, and if graph contraction is not needed.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_sflines_to_poly</span>(<span class='no'>sflines</span>, <span class='kw'>graph_max_size</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>sflines</th>
-      <td><p>An <span class="pkg">sf</span> <code>LINESTRING</code> object representing a network.</p></td>
-    </tr>
-    <tr>
-      <th>graph_max_size</th>
-      <td><p>Maximum size submitted to the internal C++ routines as
-a single chunk. Warning: Increasing this may lead to computer meltdown!</p></td>
-    </tr>
-    <tr>
-      <th>expand</th>
-      <td><p>For large graphs which must be broken into chunks, this factor
-determines the relative overlap between chunks to ensure all cycles are
-captured. (This value should only need to be modified in special cases.)</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='fu'>dodgr_cache_off</span>()</pre>
+        
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code><a href='https://www.rdocumentation.org/packages/sf/topics/sfc'>sf::sfc</a></code> collection of <code>POLYGON</code> objects.</p>
+    <p>Nothing; the function invisibly returns <code>TRUE</code> if successful.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
           </ul>
