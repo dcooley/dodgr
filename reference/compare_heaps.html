@@ -158,8 +158,8 @@ fair comparisons, run only once or re-start the current R session.</p>
 #&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
 #&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
-#&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
+#&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
@@ -167,18 +167,18 @@ fair comparisons, run only once or re-start the current R session.</p>
 #&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
-#&gt; 6             1   0.007    1.000     0.012        0          0         0
-#&gt; 10            1   0.008    1.143     0.012        0          0         0
-#&gt; 11            1   0.008    1.143     0.008        0          0         0
-#&gt; 7             1   0.009    1.286     0.012        0          0         0
-#&gt; 9             1   0.009    1.286     0.012        0          0         0
-#&gt; 8             1   0.010    1.429     0.016        0          0         0
-#&gt; 12            1   0.019    2.714     0.016        0          0         0
-#&gt; 1             1   0.031    4.429     0.056        0          0         0
-#&gt; 2             1   0.041    5.857     0.072        0          0         0
-#&gt; 3             1   0.041    5.857     0.072        0          0         0
-#&gt; 5             1   0.042    6.000     0.072        0          0         0
-#&gt; 4             1   0.046    6.571     0.048        0          0         0</div></pre>
+#&gt; 6             1   0.006    1.000     0.008    0.000          0         0
+#&gt; 10            1   0.006    1.000     0.008    0.004          0         0
+#&gt; 11            1   0.006    1.000     0.008    0.000          0         0
+#&gt; 7             1   0.007    1.167     0.008    0.000          0         0
+#&gt; 8             1   0.007    1.167     0.012    0.000          0         0
+#&gt; 9             1   0.007    1.167     0.008    0.000          0         0
+#&gt; 12            1   0.015    2.500     0.016    0.000          0         0
+#&gt; 1             1   0.032    5.333     0.052    0.000          0         0
+#&gt; 2             1   0.033    5.500     0.056    0.000          0         0
+#&gt; 3             1   0.034    5.667     0.060    0.000          0         0
+#&gt; 5             1   0.035    5.833     0.060    0.000          0         0
+#&gt; 4             1   0.037    6.167     0.036    0.000          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
