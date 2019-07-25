@@ -133,16 +133,16 @@ These must match the <code>from</code> and <code>to</code> columns of <code>grap
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of two items: <code>graph</code> containing contracted version of
-the original <code>graph</code>, converted to a standardised format, and
-<code>edge_map</code>, a two-column matrix mapping all newly contracted edges onto
-corresponding edges in original (uncontracted) graph.</p>
+    <p>A contracted version of the original <code>graph</code>, containing the same
+number of columns, but with each row representing an edge between two
+junction vertices (or between the submitted <code>verts</code>, which may or may not be
+junctions).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># 5,845</span></div><div class='output co'>#&gt; [1] 5973</div><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_contract_graph</span> (<span class='no'>graph</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># 686</span></div><div class='output co'>#&gt; [1] 662</div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># 5,973</span></div><div class='output co'>#&gt; [1] 5973</div><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_contract_graph</span> (<span class='no'>graph</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># 662</span></div><div class='output co'>#&gt; [1] 662</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
