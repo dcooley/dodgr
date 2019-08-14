@@ -65,7 +65,7 @@ bicycle, moped, motorcycle, motorcar, goods, hgv, psv)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.5</span>
       </span>
     </div>
 
@@ -214,6 +214,10 @@ from the default for distance-based routing. The result of
 <code>weight_streetnet(..., turn_penalty = TRUE)</code> should thus <em>only</em> be used
 to submit to the <a href='dodgr_times.html'>dodgr_times</a> function, and not for any other <code>dodgr</code>
 functions nor forms of network analysis.</p>
+<p>The resultant graph includes only those edges for which the given
+weighting profile specifies finite edge weights. Any edges of types not
+present in a given weighting profile are automatically removed from the
+weighted streetnet.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
