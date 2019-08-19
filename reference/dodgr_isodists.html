@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="dodgr_isodists — dodgr_isodists" />
 
-<meta property="og:description" content="Isodistances from a specified point" />
+<meta property="og:description" content="Isodistances from specified points. Function is fully vectorized to calculate
+accept vectors of central points and vectors of isodistance thresholds." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,7 +107,8 @@
 
     <div class="ref-description">
     
-    <p>Isodistances from a specified point</p>
+    <p>Isodistances from specified points. Function is fully vectorized to calculate
+accept vectors of central points and vectors of isodistance thresholds.</p>
     
     </div>
 
@@ -122,12 +124,12 @@ graph (see Notes)</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>Vector or matrix of points <strong>from</strong> which route distances are to
+      <td><p>Vector or matrix of points <strong>from</strong> which isodistances are to
 be calculated (see Notes)</p></td>
     </tr>
     <tr>
       <th>dlim</th>
-      <td><p>Desired limit of isodistance</p></td>
+      <td><p>Desired limits of isodistances in metres.</p></td>
     </tr>
     <tr>
       <th>heap</th>
@@ -140,7 +142,9 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Isodistance points</p>
+    <p>A list of lists of isodistances as points sorted around the central
+(origin) point. The first list of of <code>from</code> points, each member of which
+has a list item for each specified value of <code>dlim</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
