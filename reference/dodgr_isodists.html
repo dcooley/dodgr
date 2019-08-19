@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>match_pts_to_graph — match_pts_to_graph • dodgr</title>
+<title>dodgr_isodists — dodgr_isodists • dodgr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="match_pts_to_graph — match_pts_to_graph" />
+<meta property="og:title" content="dodgr_isodists — dodgr_isodists" />
 
-<meta property="og:description" content="Match spatial points to a spatial graph which contains vertex coordindates" />
+<meta property="og:description" content="Isodistances from a specified point" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -99,62 +99,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>match_pts_to_graph</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/graph-functions-misc.R'><code>R/graph-functions-misc.R</code></a></small>
-    <div class="hidden name"><code>match_pts_to_graph.Rd</code></div>
+    <h1>dodgr_isodists</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/iso.R'><code>R/iso.R</code></a></small>
+    <div class="hidden name"><code>dodgr_isodists.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Match spatial points to a spatial graph which contains vertex coordindates</p>
+    <p>Isodistances from a specified point</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>match_pts_to_graph</span>(<span class='no'>verts</span>, <span class='no'>xy</span>, <span class='kw'>connected</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_isodists</span>(<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>verts</th>
-      <td><p>A <code>data.frame</code> of vertices obtained from
-<code><a href='dodgr_vertices.html'>dodgr_vertices(graph)</a></code>.</p></td>
+      <th>graph</th>
+      <td><p><code>data.frame</code> or equivalent object representing the network
+graph (see Notes)</p></td>
     </tr>
     <tr>
-      <th>xy</th>
-      <td><p>coordinates of points to be matched to the vertices, either as
-matrix or <span class="pkg">sf</span>-formatted <code>data.frame</code>.</p></td>
+      <th>from</th>
+      <td><p>Vector or matrix of points <strong>from</strong> which route distances are to
+be calculated (see Notes)</p></td>
     </tr>
     <tr>
-      <th>connected</th>
-      <td><p>Should points be matched to the same (largest) connected
-component of graph? If <code>FALSE</code> and these points are to be used for a
-<code>dodgr</code> routine routine (<a href='dodgr_dists.html'>dodgr_dists</a>, <a href='dodgr_paths.html'>dodgr_paths</a>, or
-<a href='dodgr_flows_aggregate.html'>dodgr_flows_aggregate</a>), then results may not be returned if points are
-not part of the same connected component. On the other hand, forcing them to
-be part of the same connected component may decrease the spatial accuracy of
-matching.</p></td>
+      <th>dlim</th>
+      <td><p>Desired limit of isodistance</p></td>
+    </tr>
+    <tr>
+      <th>heap</th>
+      <td><p>Type of heap to use in priority queue. Options include
+Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
+<code>Radix</code>, Trinomial Heap (<code>TriHeap</code>), Extended Trinomial Heap
+(<code>TriHeapExt</code>, and 2-3 Heap (<code>Heap23</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector index into verts</p>
+    <p>Isodistance points</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"foot"</span>)
-<span class='no'>verts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>net</span>)
-<span class='co'># Then generate some random points to match to graph</span>
-<span class='no'>npts</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>
-<span class='no'>xy</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span> (
-                  <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span> (<span class='no'>verts</span>$<span class='no'>x</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span> (<span class='no'>npts</span>) * <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diff'>diff</a></span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/range'>range</a></span> (<span class='no'>verts</span>$<span class='no'>x</span>)),
-                  <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>min</a></span> (<span class='no'>verts</span>$<span class='no'>y</span>) + <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span> (<span class='no'>npts</span>) * <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/diff'>diff</a></span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/range'>range</a></span> (<span class='no'>verts</span>$<span class='no'>y</span>))
-                  )
-<span class='no'>pts</span> <span class='kw'>&lt;-</span> <span class='fu'>match_pts_to_graph</span> (<span class='no'>verts</span>, <span class='no'>xy</span>)
-<span class='no'>pts</span> <span class='co'># an index into verts</span></div><div class='output co'>#&gt;  [1]  738  521 1514  432  738  656   24  439  868  539</div><div class='input'><span class='no'>pts</span> <span class='kw'>&lt;-</span> <span class='no'>verts</span>$<span class='no'>id</span> [<span class='no'>pts</span>]
-<span class='no'>pts</span> <span class='co'># names of those vertices</span></div><div class='output co'>#&gt;  [1] "6025347259" "1161117620" "1398747927" "977461235"  "6025347259"
-#&gt;  [6] "2398957702" "313796397"  "1376768479" "1376768712" "1691496409"</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
+<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>from_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>to_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>50</span>)
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_dists.html'>dodgr_dists</a></span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>to</span>)
+<span class='co'># d is a 100-by-50 matrix of distances between `from` and `to`</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
