@@ -142,9 +142,10 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of lists of isodistances as points sorted around the central
-(origin) point. The first list of of <code>from</code> points, each member of which
-has a list item for each specified value of <code>dlim</code>.</p>
+    <p>A single <code>data.frame</code> of isodistances as points sorted anticlockwise
+around each origin (<code>from</code>) point, with columns denoting the <code>from</code> points
+and <code>dlim</code> value(s). The isodistances are given as <code>id</code> values of the series
+of points from each from point at the specified isodistance.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
