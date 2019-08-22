@@ -32,8 +32,9 @@
 
 <meta property="og:title" content="dodgr_isochrones — dodgr_isochrones" />
 
-<meta property="og:description" content="Isochrones from specified points. Function is fully vectorized to calculate
-accept vectors of central points and vectors of isodistance thresholds." />
+<meta property="og:description" content="Calculate isochrone contours from specified points. Function is fully
+vectorized to calculate accept vectors of central points and vectors
+defining multiple isochrone thresholds." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -107,8 +108,9 @@ accept vectors of central points and vectors of isodistance thresholds." />
 
     <div class="ref-description">
     
-    <p>Isochrones from specified points. Function is fully vectorized to calculate
-accept vectors of central points and vectors of isodistance thresholds.</p>
+    <p>Calculate isochrone contours from specified points. Function is fully
+vectorized to calculate accept vectors of central points and vectors
+defining multiple isochrone thresholds.</p>
     
     </div>
 
@@ -124,12 +126,12 @@ graph (see Notes)</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>Vector or matrix of points <strong>from</strong> which isodistances are to
-be calculated (see Notes)</p></td>
+      <td><p>Vector or matrix of points <strong>from</strong> which isochrones are to
+be calculated.</p></td>
     </tr>
     <tr>
       <th>tlim</th>
-      <td><p>Desired limits of isochrones in seconds</p></td>
+      <td><p>Vector of desired limits of isochrones in seconds</p></td>
     </tr>
     <tr>
       <th>heap</th>
@@ -144,8 +146,9 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 
     <p>A single <code>data.frame</code> of isochrones as points sorted anticlockwise
 around each origin (<code>from</code>) point, with columns denoting the <code>from</code> points
-and <code>tlim</code> value(s). The isochrones are given as <code>id</code> values of the series
-of points from each from point at the specified isodistance.</p>
+and <code>tlim</code> value(s). The isochrones are given as <code>id</code> values and associated
+coordinates of the series of points from each <code>from</code> point at the specified
+isochrone times.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
