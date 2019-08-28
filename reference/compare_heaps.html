@@ -8,11 +8,13 @@
 
 <title>compare_heaps — compare_heaps • dodgr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,14 +32,15 @@
 
 
 
-<meta property="og:title" content="compare_heaps — compare_heaps" />
 
+<meta property="og:title" content="compare_heaps — compare_heaps" />
 <meta property="og:description" content="Perform timing comparison between different kinds of heaps as well as with
 equivalent igraph routine distances. To do this, a random
 sub-graph containing a defined number of vertices is first selected.
 Alternatively, this random sub-graph can be pre-generated with the
 dodgr_sample function and passed directly." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -83,7 +86,6 @@ dodgr_sample function and passed directly." />
   <a href="../reference/index.html">Functions</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ATFutures/dodgr">
@@ -109,17 +111,15 @@ dodgr_sample function and passed directly." />
     </div>
 
     <div class="ref-description">
-    
     <p>Perform timing comparison between different kinds of heaps as well as with
 equivalent <code>igraph</code> routine <code>distances</code>. To do this, a random
 sub-graph containing a defined number of vertices is first selected.
 Alternatively, this random sub-graph can be pre-generated with the
 <code>dodgr_sample</code> function and passed directly.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>compare_heaps</span>(<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replications</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -138,57 +138,52 @@ non-numeric value is given, the whole graph will be used.</p></td>
       <td><p>Number of replications to be used in comparison</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Result of <code><a href='https://www.rdocumentation.org/packages/rbenchmark/topics/benchmark'>rbenchmark::benchmark</a></code> comparison in
 <code>data.frame</code> form.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p><span class="pkg">igraph</span> caches intermediate results of graph processing, so
 the <span class="pkg">igraph</span> comparisons will be faster on subsequent runs. To obtain
 fair comparisons, run only once or re-start the current R session.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
 <span class='fu'>compare_heaps</span> (<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>replications</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;                                                                                   test
-#&gt; 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
-#&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
-#&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
+#&gt; 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
+#&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
+#&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
+#&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
 #&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
-#&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
 #&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
-#&gt; 6             1   0.009    1.000     0.014        0          0         0
-#&gt; 11            1   0.009    1.000     0.015        0          0         0
-#&gt; 8             1   0.011    1.222     0.019        0          0         0
-#&gt; 10            1   0.011    1.222     0.020        0          0         0
-#&gt; 7             1   0.012    1.333     0.019        0          0         0
-#&gt; 9             1   0.013    1.444     0.012        0          0         0
-#&gt; 12            1   0.023    2.556     0.023        0          0         0
-#&gt; 1             1   0.036    4.000     0.062        0          0         0
-#&gt; 3             1   0.050    5.556     0.091        0          0         0
-#&gt; 5             1   0.050    5.556     0.091        0          0         0
-#&gt; 2             1   0.051    5.667     0.092        0          0         0
-#&gt; 4             1   0.057    6.333     0.058        0          0         0</div></pre>
+#&gt; 11            1   0.009    1.000     0.015    0.000          0         0
+#&gt; 6             1   0.010    1.111     0.016    0.000          0         0
+#&gt; 7             1   0.013    1.444     0.021    0.000          0         0
+#&gt; 8             1   0.013    1.444     0.021    0.000          0         0
+#&gt; 9             1   0.013    1.444     0.013    0.000          0         0
+#&gt; 10            1   0.013    1.444     0.021    0.000          0         0
+#&gt; 12            1   0.024    2.667     0.024    0.000          0         0
+#&gt; 1             1   0.038    4.222     0.064    0.000          0         0
+#&gt; 2             1   0.051    5.667     0.090    0.000          0         0
+#&gt; 3             1   0.052    5.778     0.095    0.000          0         0
+#&gt; 5             1   0.054    6.000     0.091    0.004          0         0
+#&gt; 4             1   0.060    6.667     0.059    0.000          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

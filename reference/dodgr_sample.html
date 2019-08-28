@@ -8,11 +8,13 @@
 
 <title>dodgr_sample — dodgr_sample • dodgr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,10 +32,11 @@
 
 
 
-<meta property="og:title" content="dodgr_sample — dodgr_sample" />
 
+<meta property="og:title" content="dodgr_sample — dodgr_sample" />
 <meta property="og:description" content="Sample a random but connected sub-component of a graph" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -79,7 +82,6 @@
   <a href="../reference/index.html">Functions</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ATFutures/dodgr">
@@ -105,13 +107,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Sample a random but connected sub-component of a graph</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>dodgr_sample</span>(<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>1000</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -127,31 +127,26 @@ similarly labelled columns of spatial coordinates (for example
       <td><p>Number of vertices to sample</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A connected sub-component of <code>graph</code></p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Graphs may occassionally have <code>nverts + 1</code> vertices, rather than
 the requested <code>nverts</code>.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># 5,742</span></div><div class='output co'>#&gt; [1] 5973</div><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_sample</span> (<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>200</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># generally around 400 edges</span></div><div class='output co'>#&gt; [1] 405</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>graph</span>)) <span class='co'># 200</span></div><div class='output co'>#&gt; [1] 200</div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># generally around 400 edges</span></div><div class='output co'>#&gt; [1] 399</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>graph</span>)) <span class='co'># 200</span></div><div class='output co'>#&gt; [1] 200</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

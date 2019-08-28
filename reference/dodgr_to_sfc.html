@@ -8,11 +8,13 @@
 
 <title>dodgr_to_sfc — dodgr_to_sfc • dodgr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,8 +32,8 @@
 
 
 
-<meta property="og:title" content="dodgr_to_sfc — dodgr_to_sfc" />
 
+<meta property="og:title" content="dodgr_to_sfc — dodgr_to_sfc" />
 <meta property="og:description" content="Convert a dodgr graph into a list composed of
 two objects: dat, a data.frame; and
 geometry, an sfc object from the (sf) package.
@@ -41,6 +43,7 @@ resultant objects will generally contain more LINESTRING objects than
 the original sf object, because the former will be bisected at every
 junction point." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -86,7 +89,6 @@ junction point." />
   <a href="../reference/index.html">Functions</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ATFutures/dodgr">
@@ -112,7 +114,6 @@ junction point." />
     </div>
 
     <div class="ref-description">
-    
     <p>Convert a <code>dodgr</code> graph into a <code>list</code> composed of
 two objects: <code>dat</code>, a <code>data.frame</code>; and
 <code>geometry</code>, an <code>sfc</code> object from the (<span class="pkg">sf</span>) package.
@@ -121,11 +122,10 @@ objects representing longest sequences between all junction nodes. The
 resultant objects will generally contain more <code>LINESTRING</code> objects than
 the original <span class="pkg">sf</span> object, because the former will be bisected at every
 junction point.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>dodgr_to_sfc</span>(<span class='no'>graph</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -134,20 +134,18 @@ junction point.</p>
       <td><p>A <code>dodgr</code> graph</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list containing (1) A <code>data.frame</code> of data associated with the
 <code>sf</code> geometries; and (ii) A Simple Features Collection (<code>sfc</code>) list of
 <code>LINESTRING</code> objects.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The output of this function corresponds to the edges obtained from
 <code>dodgr_contract_graph</code>. This function does not require the <span class="pkg">sf</span> package
 to be installed; the corresponding function that creates a full <span class="pkg">sf</span>
 object - <a href='dodgr_to_sf.html'>dodgr_to_sf</a> does requires <span class="pkg">sf</span> to be installed.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>hw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
@@ -160,11 +158,8 @@ object - <a href='dodgr_to_sf.html'>dodgr_to_sf</a> does requires <span class="p
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#note">Note</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

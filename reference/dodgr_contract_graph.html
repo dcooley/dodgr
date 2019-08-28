@@ -8,11 +8,13 @@
 
 <title>dodgr_contract_graph — dodgr_contract_graph • dodgr</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,11 +32,12 @@
 
 
 
-<meta property="og:title" content="dodgr_contract_graph — dodgr_contract_graph" />
 
+<meta property="og:title" content="dodgr_contract_graph — dodgr_contract_graph" />
 <meta property="og:description" content="Removes redundant (straight-line) vertices from graph, leaving only junction
 vertices." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -80,7 +83,6 @@ vertices." />
   <a href="../reference/index.html">Functions</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ATFutures/dodgr">
@@ -106,14 +108,12 @@ vertices." />
     </div>
 
     <div class="ref-description">
-    
     <p>Removes redundant (straight-line) vertices from graph, leaving only junction
 vertices.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>dodgr_contract_graph</span>(<span class='no'>graph</span>, <span class='kw'>verts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -130,14 +130,13 @@ similarly labelled columns of spatial coordinates (for example
 These must match the <code>from</code> and <code>to</code> columns of <code>graph</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A contracted version of the original <code>graph</code>, containing the same
 number of columns, but with each row representing an edge between two
 junction vertices (or between the submitted <code>verts</code>, which may or may not be
 junctions).</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
@@ -148,9 +147,7 @@ junctions).</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
