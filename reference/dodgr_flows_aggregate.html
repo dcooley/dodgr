@@ -18,13 +18,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -51,6 +53,7 @@ between all pairs of from and to points." />
 <![endif]-->
 
 
+
   </head>
 
   <body>
@@ -67,7 +70,7 @@ between all pairs of from and to points." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.8</span>
       </span>
     </div>
 
@@ -97,6 +100,7 @@ between all pairs of from and to points." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -163,56 +167,57 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>from_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sample'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>to_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>from_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>to_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='no'>to</span> [!<span class='no'>to</span> <span class='kw'>%in%</span> <span class='no'>from</span>]
-<span class='no'>flows</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span> (<span class='fl'>10</span> * <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span> (<span class='no'>from</span>) * <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span> (<span class='no'>to</span>)),
-                 <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span> (<span class='no'>from</span>))
+<span class='no'>flows</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>10</span> * <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>from</span>) * <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>to</span>)),
+                 <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>from</span>))
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_flows_aggregate</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>to</span>, <span class='kw'>flows</span> <span class='kw'>=</span> <span class='no'>flows</span>)
 <span class='co'># graph then has an additonal 'flows` column of aggregate flows along all</span>
 <span class='co'># edges. These flows are directed, and can be aggregated to equivalent</span>
 <span class='co'># undirected flows on an equivalent undirected graph with:</span>
 <span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_flows.html'>merge_directed_flows</a></span> (<span class='no'>graph</span>)
 <span class='co'># This graph will only include those edges having non-zero flows, and so:</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 845</div><div class='input'>
-# The following code can be used to convert the resultant graph to an `sf`
-# object suitable for plotting
-</div><span class='co'># NOT RUN {</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 845</div><div class='input'>
+<span class='co'># The following code can be used to convert the resultant graph to an `sf`</span>
+<span class='co'># object suitable for plotting</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>geoms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_sfc.html'>dodgr_to_sfc</a></span> (<span class='no'>graph_undir</span>)
 <span class='no'>gc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>graph_undir</span>)
-<span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/sf'>st_sf</a></span> (<span class='no'>geoms</span>)
+<span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/sf.html'>st_sf</a></span> (<span class='no'>geoms</span>)
 <span class='no'>gsf</span>$<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gc</span>$<span class='no'>flow</span>
 
 <span class='co'># example of plotting with the 'mapview' package</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span> (<span class='no'>mapview</span>)
-<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gsf</span>$<span class='no'>flow</span> / <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Extremes'>max</a></span> (<span class='no'>gsf</span>$<span class='no'>flow</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>mapview</span>)
+<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gsf</span>$<span class='no'>flow</span> / <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span> (<span class='no'>gsf</span>$<span class='no'>flow</span>)
 <span class='no'>ncols</span> <span class='kw'>&lt;-</span> <span class='fl'>30</span>
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/grDevices/topics/colorRamp'>colorRampPalette</a></span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span> (<span class='st'>"lawngreen"</span>, <span class='st'>"red"</span>)) (<span class='no'>ncols</span>) [<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Round'>ceiling</a></span> (<span class='no'>ncols</span> * <span class='no'>flow</span>)]
+<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"lawngreen"</span>, <span class='st'>"red"</span>)) (<span class='no'>ncols</span>) [<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>ceiling</a></span> (<span class='no'>ncols</span> * <span class='no'>flow</span>)]
 <span class='fu'>mapview</span> (<span class='no'>gsf</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>cols</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>10</span> * <span class='no'>flow</span>)
-<span class='co'># }</span><div class='input'>
-# An example of flow aggregation across a generic (non-OSM) highway,
-# represented as the `routes_fast` object of the \pkg{stplanr} package,
-# which is a SpatialLinesDataFrame containing commuter densities along
-# components of a street network.
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span> (<span class='no'>stplanr</span>)
+}
+
+<span class='co'># An example of flow aggregation across a generic (non-OSM) highway,</span>
+<span class='co'># represented as the `routes_fast` object of the \pkg{stplanr} package,</span>
+<span class='co'># which is a SpatialLinesDataFrame containing commuter densities along</span>
+<span class='co'># components of a street network.</span>
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>stplanr</span>)
 <span class='co'># merge all of the 'routes_fast' lines into a single network</span>
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>overline</span> (<span class='no'>routes_fast</span>, <span class='kw'>attrib</span> <span class='kw'>=</span> <span class='st'>"length"</span>, <span class='kw'>buff_dist</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/st_as_sf'>st_as_sf</a></span> (<span class='no'>r</span>)
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_as_sf.html'>st_as_sf</a></span> (<span class='no'>r</span>)
 <span class='co'># then extract the start and end points of each of the original 'routes_fast'</span>
 <span class='co'># lines and use these for routing with `dodgr`</span>
-<span class='no'>l</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span> (<span class='no'>routes_fast</span>@<span class='kw'>lines</span>, <span class='kw'>function</span> (<span class='no'>i</span>)
-             <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span> (<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span> (<span class='no'>i</span>) <span class='kw'>[[</span><span class='fl'>1</span>]] [<span class='fl'>1</span>, ],
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>tail</a></span> (<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sp/topics/coordinates'>coordinates</a></span> (<span class='no'>i</span>) <span class='kw'>[[</span><span class='fl'>1</span>]], <span class='fl'>1</span>)))
-<span class='no'>l</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/do.call'>do.call</a></span> (<span class='no'>rbind</span>, <span class='no'>l</span>)
+<span class='no'>l</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span> (<span class='no'>routes_fast</span>@<span class='kw'>lines</span>, <span class='kw'>function</span> (<span class='no'>i</span>)
+             <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span> (<span class='no'>i</span>) <span class='kw'>[[</span><span class='fl'>1</span>]] [<span class='fl'>1</span>, ],
+                <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span> (<span class='kw pkg'>sp</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sp/man/coordinates.html'>coordinates</a></span> (<span class='no'>i</span>) <span class='kw'>[[</span><span class='fl'>1</span>]], <span class='fl'>1</span>)))
+<span class='no'>l</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span> (<span class='no'>rbind</span>, <span class='no'>l</span>)
 <span class='no'>xy_start</span> <span class='kw'>&lt;-</span> <span class='no'>l</span> [, <span class='fl'>1</span>:<span class='fl'>2</span>]
 <span class='no'>xy_end</span> <span class='kw'>&lt;-</span> <span class='no'>l</span> [, <span class='fl'>3</span>:<span class='fl'>4</span>]
 <span class='co'># Then just specify a generic OD matrix with uniform values of 1:</span>
-<span class='no'>flows</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span> (<span class='fl'>1</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>l</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>l</span>))
+<span class='no'>flows</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>1</span>, <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>l</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>l</span>))
 <span class='co'># We need to specify both a `type` and `id` column for the</span>
 <span class='co'># \link{weight_streetnet} function.</span>
 <span class='no'>r</span>$<span class='no'>type</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
-<span class='no'>r</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span> (<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span> (<span class='no'>r</span>))
+<span class='no'>r</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>r</span>))
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>r</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"type"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
                            <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_flows_aggregate</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>xy_start</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>xy_end</span>, <span class='kw'>flows</span> <span class='kw'>=</span> <span class='no'>flows</span>)
@@ -220,11 +225,11 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 <span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_flows.html'>merge_directed_flows</a></span> (<span class='no'>f</span>)
 <span class='no'>geoms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_sfc.html'>dodgr_to_sfc</a></span> (<span class='no'>f</span>)
 <span class='no'>gc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>f</span>)
-<span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/sf/topics/sf'>st_sf</a></span> (<span class='no'>geoms</span>)
+<span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/sf.html'>st_sf</a></span> (<span class='no'>geoms</span>)
 <span class='no'>gsf</span>$<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gc</span>$<span class='no'>flow</span>
 <span class='co'># sf plot:</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span> (<span class='no'>gsf</span> [<span class='st'>"flow"</span>])
-<span class='co'># }</span></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span> (<span class='no'>gsf</span> [<span class='st'>"flow"</span>])
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -237,19 +242,23 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Mark Padgham, Andreas Petutschnig.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
