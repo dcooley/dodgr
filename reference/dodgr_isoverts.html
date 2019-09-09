@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>dodgr_sample — dodgr_sample • dodgr</title>
+<title>dodgr_isoverts — dodgr_isoverts • dodgr</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,12 @@
 
 
 
-<meta property="og:title" content="dodgr_sample — dodgr_sample" />
-<meta property="og:description" content="Sample a random but connected sub-component of a graph" />
+<meta property="og:title" content="dodgr_isoverts — dodgr_isoverts" />
+<meta property="og:description" content="Calculate isodistance or isochrone contours from specified points, and return
+lists of all network vertices contained within the contours. Function is
+fully vectorized to calculate accept vectors of central points and vectors
+defining multiple isochrone thresholds. Provide one or more dlim values for
+isodistances, or one or more tlim values for isochrones." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,52 +109,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>dodgr_sample</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/graph-functions.R'><code>R/graph-functions.R</code></a></small>
-    <div class="hidden name"><code>dodgr_sample.Rd</code></div>
+    <h1>dodgr_isoverts</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/iso.R'><code>R/iso.R</code></a></small>
+    <div class="hidden name"><code>dodgr_isoverts.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Sample a random but connected sub-component of a graph</p>
+    <p>Calculate isodistance or isochrone contours from specified points, and return
+lists of all network vertices contained within the contours. Function is
+fully vectorized to calculate accept vectors of central points and vectors
+defining multiple isochrone thresholds. Provide one or more <code>dlim</code> values for
+isodistances, or one or more <code>tlim</code> values for isochrones.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_sample</span>(<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>1000</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_isoverts</span>(<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>A flat table of graph edges. Must contain columns labelled
-<code>from</code> and <code>to</code>, or <code>start</code> and <code>stop</code>. May also contain
-similarly labelled columns of spatial coordinates (for example
-<code>from_x</code>) or <code>stop_lon</code>).</p></td>
+      <td><p><code>data.frame</code> or equivalent object representing the network
+graph (see Notes)</p></td>
     </tr>
     <tr>
-      <th>nverts</th>
-      <td><p>Number of vertices to sample</p></td>
+      <th>from</th>
+      <td><p>Vector or matrix of points <strong>from</strong> which isodistances or
+isochrones are to be calculated.</p></td>
+    </tr>
+    <tr>
+      <th>dlim</th>
+      <td><p>Vector of desired limits of isodistances in metres.</p></td>
+    </tr>
+    <tr>
+      <th>tlim</th>
+      <td><p>Vector of desired limits of isochrones in seconds</p></td>
+    </tr>
+    <tr>
+      <th>heap</th>
+      <td><p>Type of heap to use in priority queue. Options include
+Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
+<code>Radix</code>, Trinomial Heap (<code>TriHeap</code>), Extended Trinomial Heap
+(<code>TriHeapExt</code>, and 2-3 Heap (<code>Heap23</code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A connected sub-component of <code>graph</code></p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Graphs may occassionally have <code>nverts + 1</code> vertices, rather than
-the requested <code>nverts</code>.</p>
+    <p>A single <code>data.frame</code> of vertex IDs, with columns denoting the <code>from</code>
+points and <code>tlim</code> value(s). The isochrones are given as <code>id</code> values and
+associated coordinates of the series of points from each <code>from</code> point at the
+specified isochrone times.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># 5,742</span></div><div class='output co'>#&gt; [1] 5973</div><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_sample</span> (<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>200</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># generally around 400 edges</span></div><div class='output co'>#&gt; [1] 399</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>graph</span>)) <span class='co'># 200</span></div><div class='output co'>#&gt; [1] 200</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># Use osmdata package to extract 'SC'-format data:</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>osmdata</span>)
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/opq.html'>opq</a></span> (<span class='st'>"hampi india"</span>) <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span> (<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"highway"</span>) <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/osmdata_sc.html'>osmdata_sc</a></span> ()
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>dat</span>)
+<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>from_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='no'>tlim</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>60</span>) * <span class='fl'>60</span> <span class='co'># times in seconds</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_isoverts</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='no'>tlim</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
