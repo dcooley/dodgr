@@ -117,7 +117,7 @@ between all pairs of <code>from</code> and <code>to</code> points.</p>
     </div>
 
     <pre class="usage"><span class='fu'>dodgr_flows_aggregate</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>to</span>, <span class='no'>flows</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.000000000001</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +154,14 @@ generally be much faster).</p></td>
 Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 <code>Radix</code>, Trinomial Heap (<code>TriHeap</code>), Extended Trinomial Heap
 (<code>TriHeapExt</code>, and 2-3 Heap (<code>Heap23</code>).</p></td>
+    </tr>
+    <tr>
+      <th>tol</th>
+      <td><p>Relative tolerance below which flows towards <code>to</code> vertices are not
+considered. This will generally have no effect, but can provide speed gains
+when flow matrices represent spatial interaction models, in which case this
+parameter effectively reduces the radius from each <code>from</code> point over which
+flows are aggregated. To remove any such effect, set <code>tol = 0</code>.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
