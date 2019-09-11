@@ -116,8 +116,9 @@ and associated densities" />
 and associated densities</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_flows_disperse</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>dens</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_flows_disperse</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>dens</span>, <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>500</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>, <span class='kw'>tol</span> <span class='kw'>=</span> <span class='fl'>0.000000000001</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,16 +138,16 @@ flows are to be calculated (see Details)</p></td>
       <td><p>Vectors of densities correponsing to the <code>from</code> points</p></td>
     </tr>
     <tr>
+      <th>k</th>
+      <td><p>Width coefficient of exponential diffusion function defined as
+<code><a href='https://rdrr.io/r/base/Log.html'>exp(-d/k)</a></code>, in units of distance column of <code>graph</code> (metres by default). If
+value of <code>k&lt;0</code> is given, a standard logistic polynomial will be used.</p></td>
+    </tr>
+    <tr>
       <th>contract</th>
       <td><p>If <code>TRUE</code>, calculate flows on contracted graph before
 mapping them back on to the original full graph (recommended as this will
 generally be much faster).</p></td>
-    </tr>
-    <tr>
-      <th>k</th>
-      <td><p>Width coefficient of exponential diffusion function defined as
-<code><a href='https://rdrr.io/r/base/Log.html'>exp(-d/k)</a></code>.  If value of <code>k&lt;0</code> is given, a standard logistic
-polynomial will be used.</p></td>
     </tr>
     <tr>
       <th>heap</th>
@@ -156,8 +157,18 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 (<code>TriHeapExt</code>, and 2-3 Heap (<code>Heap23</code>).</p></td>
     </tr>
     <tr>
+      <th>tol</th>
+      <td><p>Relative tolerance below which dispersal is considered to have
+finished. This parameter can generally be ignored; if in doubt, its effect
+can be removed by setting <code>tol = 0</code>.</p></td>
+    </tr>
+    <tr>
       <th>quiet</th>
       <td><p>If <code>FALSE</code>, display progress messages on screen.</p></td>
+    </tr>
+    <tr>
+      <th>parallel</th>
+      <td><p>Do parallel or not</p></td>
     </tr>
     </table>
 
