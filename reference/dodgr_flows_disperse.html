@@ -139,8 +139,10 @@ flows are to be calculated (see Details)</p></td>
     <tr>
       <th>k</th>
       <td><p>Width coefficient of exponential diffusion function defined as
-<code><a href='https://rdrr.io/r/base/Log.html'>exp(-d/k)</a></code>, in units of distance column of <code>graph</code> (metres by default). If
-value of <code>k&lt;0</code> is given, a standard logistic polynomial will be used.</p></td>
+<code><a href='https://rdrr.io/r/base/Log.html'>exp(-d/k)</a></code>, in units of distance column of <code>graph</code> (metres by default). Can
+also be a vector with same length as <code>from</code>, giving dispersal coefficients
+from each point. If value of <code>k&lt;0</code> is given, a standard logistic polynomial
+will be used.</p></td>
     </tr>
     <tr>
       <th>contract</th>
