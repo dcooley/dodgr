@@ -170,7 +170,7 @@ specified isochrone times.</p>
     <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span> (<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"highway"</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/osmdata_sc.html'>osmdata_sc</a></span> ()
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>dat</span>)
-<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>from_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>.vx0</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>100</span>)
 <span class='no'>tlim</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='fl'>5</span>, <span class='fl'>10</span>, <span class='fl'>20</span>, <span class='fl'>30</span>, <span class='fl'>60</span>) * <span class='fl'>60</span> <span class='co'># times in seconds</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_isoverts</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='no'>tlim</span>)
 }</div></pre>

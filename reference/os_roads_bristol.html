@@ -135,16 +135,16 @@ Contains OS data © Crown copyright and database right (2017)</p>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>sf</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='no'>os_roads</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>read_sf</a></span>(<span class='st'>"~/data/ST_RoadLink.shp"</span>) <span class='co'># data must be unzipped here</span>
-<span class='no'>u</span> <span class='kw'>&lt;-</span> <span class='st'>"https://opendata.arcgis.com/datasets/686603e943f948acaa13fb5d2b0f1275_4.kml"</span>
-<span class='no'>lads</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_read.html'>read_sf</a></span>(<span class='no'>u</span>)
-<span class='kw pkg'>mapview</span><span class='kw ns'>::</span><span class='fu'>mapview</span>(<span class='no'>lads</span>)
-<span class='no'>bristol_pol</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>lads</span>, <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>grepl</a></span>(<span class='st'>"Bristol"</span>, <span class='no'>lad16nm</span>))
-<span class='no'>os_roads</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_transform.html'>st_transform</a></span>(<span class='no'>os_roads</span>, <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_crs.html'>st_crs</a></span>(<span class='no'>lads</span>))
-<span class='no'>os_roads_bristol</span> <span class='kw'>&lt;-</span> <span class='no'>os_roads</span>[<span class='no'>bristol_pol</span>, ] <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>class</span> <span class='kw'>==</span> <span class='st'>"Motorway"</span> <span class='kw'>&amp;</span> <span class='no'>roadNumber</span> <span class='kw'>!=</span> <span class='st'>"M32"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_zm.html'>st_zm</a></span>(<span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw pkg'>mapview</span><span class='kw ns'>::</span><span class='fu'>mapview</span>(<span class='no'>os_roads_bristol</span>)
+<span class='co'># os_roads &lt;- sf::read_sf("~/data/ST_RoadLink.shp") # data must be unzipped here</span>
+<span class='co'># u &lt;- "https://opendata.arcgis.com/datasets/686603e943f948acaa13fb5d2b0f1275_4.kml"</span>
+<span class='co'># lads &lt;- sf::read_sf(u)</span>
+<span class='co'># mapview::mapview(lads)</span>
+<span class='co'># bristol_pol &lt;- dplyr::filter(lads, grepl("Bristol", lad16nm))</span>
+<span class='co'># os_roads &lt;- st_transform(os_roads, st_crs(lads))</span>
+<span class='co'># os_roads_bristol &lt;- os_roads[bristol_pol, ] %&gt;% </span>
+<span class='co'>#   dplyr::filter(class == "Motorway" &amp; roadNumber != "M32") %&gt;% </span>
+<span class='co'>#   st_zm(drop = TRUE)</span>
+<span class='co'># mapview::mapview(os_roads_bristol)</span>
 }
 <span class='co'># Converting this 'sf data.frame' to a 'dodgr' network requires manual</span>
 <span class='co'># specification of weighting profile:</span>

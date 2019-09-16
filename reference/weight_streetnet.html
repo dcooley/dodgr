@@ -245,7 +245,7 @@ weighted streetnet.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>stplanr</span>)
 <span class='co'># merge all of the 'routes_fast' lines into a single network</span>
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>overline</span> (<span class='no'>routes_fast</span>, <span class='kw'>attrib</span> <span class='kw'>=</span> <span class='st'>"length"</span>, <span class='kw'>buff_dist</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_as_sf.html'>st_as_sf</a></span> (<span class='no'>r</span>)
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_as_sf.html'>st_as_sf</a></span> (<span class='no'>r</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fl'>4326</span>)
 <span class='co'># We need to specify both a `type` and `id` column for the</span>
 <span class='co'># \link{weight_streetnet} function.</span>
 <span class='no'>r</span>$<span class='no'>type</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
