@@ -221,6 +221,12 @@ functions nor forms of network analysis.</p>
 weighting profile specifies finite edge weights. Any edges of types not
 present in a given weighting profile are automatically removed from the
 weighted streetnet.</p>
+<p>If the resultant graph is to be contracted via
+<a href='dodgr_contract_graph.html'>dodgr_contract_graph</a>, <strong>and</strong> if the columns of the graph have been,
+or will be, modified, then automatic caching must be switched off with
+<a href='dodgr_cache_off.html'>dodgr_cache_off</a>. If not, the <a href='dodgr_contract_graph.html'>dodgr_contract_graph</a> function will
+return the automatically cached version, which is the contracted version of
+the full graph prior to any modification of columns.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='write_dodgr_wt_profile.html'>write_dodgr_wt_profile</a>, <a href='dodgr_times.html'>dodgr_times</a></p></div>
