@@ -338,17 +338,18 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 <a class="sourceLine" id="cb57-3" data-line-number="3">                   <span class="dt">value =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span> (<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.8</span>, <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb57-4" data-line-number="4">net &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (os_roads_bristol, <span class="dt">wt_profile =</span> wts,</a>
 <a class="sourceLine" id="cb57-5" data-line-number="5">                         <span class="dt">type_col =</span> colnm, <span class="dt">id_col =</span> <span class="st">"identifier"</span>)</a></code></pre></div>
+<pre><code>## Warning: Unknown or uninitialised column: 'oneway'.</code></pre>
 <p>The resultant <code>net</code> object contains the street network of <a href="https://atfutures.github.io/dodgr/reference/os_roads_bristol.html"><code>os_roads_bristol</code></a> weighted by the specified profile, and in a format suitable for submission to any <code>dodgr</code> routine.</p>
 </div>
 <div id="random-sub-graphs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#random-sub-graphs" class="anchor"></a>3.3 Random Sub-Graphs</h2>
 <p>The <code>dodgr</code> packages includes a function to select a random connected portion of graph including a specified number of vertices. This function is used in the <a href="https://atfutures.github.io/dodgr/reference/compare_heaps.html"><code><a href="../reference/compare_heaps.html">compare_heaps()</a></code></a> function described below, but is also useful for general statistical analyses of large graphs which may otherwise take too long to compute.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">graph_sub &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_sample.html">dodgr_sample</a></span> (graph, <span class="dt">nverts =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_sub)</a></code></pre></div>
-<pre><code>## [1] 215</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">graph_sub &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_sample.html">dodgr_sample</a></span> (graph, <span class="dt">nverts =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_sub)</a></code></pre></div>
+<pre><code>## [1] 209</code></pre>
 <p>The random sample has around twice as many edges as vertices, in accordance with the statistics calculated above.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph_sub))</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph_sub))</a></code></pre></div>
 <pre><code>## [1] 100</code></pre>
 </div>
 </div>
@@ -361,38 +362,38 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 <h2 class="hasAnchor">
 <a href="#aligning-routing-points-to-graphs" class="anchor"></a>4.1 Aligning Routing Points to Graphs</h2>
 <p>For spatial graphs—that is, those containing columns of latitudes and longitudes (or “x” and “y”)—routing points can be represented by a simple matrix of arbitrary latitudes and longitudes (or, again, “x” and “y”). <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a> will map these points to the closest network points, and return corresponding shortest-path distances. This may be illustrated by generating random points within the bounding box of the above map of Hampi. As demonstrated above, the coordinates of all vertices may be extracted with the <a href="https://atfutures.github.io/dodgr/reference/dodgr_vertices.html"><code><a href="../reference/dodgr_vertices.html">dodgr_vertices()</a></code></a> function, enabling random points to be generated with the following lines:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">vt &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
-<a class="sourceLine" id="cb62-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># number of points to generate</span></a>
-<a class="sourceLine" id="cb62-3" data-line-number="3">xy &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span> (<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> (vt<span class="op">$</span>x) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (n) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span> (vt<span class="op">$</span>x)),</a>
-<a class="sourceLine" id="cb62-4" data-line-number="4">                  <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> (vt<span class="op">$</span>y) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (n) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span> (vt<span class="op">$</span>y)))</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">vt &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># number of points to generate</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">xy &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span> (<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> (vt<span class="op">$</span>x) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (n) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span> (vt<span class="op">$</span>x)),</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">                  <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> (vt<span class="op">$</span>y) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (n) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span> (vt<span class="op">$</span>y)))</a></code></pre></div>
 <p>Submitting these to <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a> as points <strong>from</strong> which to route will generate a distance matrix from each of these 100 points to every other point in the graph:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> xy)</a>
-<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span> (d); <span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span> (d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> xy)</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span> (d); <span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span> (d, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1]  100 2926</code></pre>
 <pre><code>## [1]     0.00 28677.34</code></pre>
 <p>If the <code>to</code> argument is also specified, the matrix returned will have rows matching <code>from</code> and columns matching <code>to</code></p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> xy, <span class="dt">to =</span> xy [<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ])</a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span> (d)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> xy, <span class="dt">to =</span> xy [<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, ])</a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span> (d)</a></code></pre></div>
 <pre><code>## [1] 100  10</code></pre>
 <p>Some of the resultant distances in the above cases are <code>NA</code> because the points were sampled from the entire bounding box, and the street network near the boundaries may be cut off from the rest. As demonstrated above, the <a href="https://atfutures.github.io/dodgr/reference/weight_streetnet.html"><code><a href="../reference/weight_streetnet.html">weight_streetnet()</a></code></a> function returns a <code>component</code> vector, and such disconnected edges will have <code>graph$component &gt; 1</code>, because <code>graph$component == 1</code> always denotes the largest connected component. This means that the graph can always be reduced to the single largest component with the following single line:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">graph_connected &lt;-<span class="st"> </span>graph [graph<span class="op">$</span>component <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, ]</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">graph_connected &lt;-<span class="st"> </span>graph [graph<span class="op">$</span>component <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, ]</a></code></pre></div>
 <p>A distance matrix obtained from running <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code>dodgr_distances</code></a> on <code>graph_connected</code> should generally contain no <code>NA</code> values, although some points may still be effectively unreachable due to one-way connections (or streets). Thus, routing on the largest connected component of a directed graph ought to be expected to yield the <em>minimal</em> number of <code>NA</code> values, which may sometimes be more than zero. Note further that spatial routing points (expressed as <code>from</code> and/or <code>to</code> arguments) will in this case be mapped to the nearest vertices of <code>graph_connected</code>, rather than the potentially closer nearest points of the full <code>graph</code>. This may make the spatial mapping of routing points less accurate than results obtained by repeating extraction of the street network using an expanded bounding box. For automatic extraction of street networks with <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a>, the extent by which the bounding box exceeds the range of routing points (<code>from</code> and <code>to</code> arguments) is determined by an extra parameter <code>expand</code>, quantifying the relative extent to which the bounding box should exceed the spatial range of the routing points. This is illustrated in the following code which calculates distances between 100 random points:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">bb &lt;-<span class="st"> </span>osmdata<span class="op">::</span><span class="kw"><a href="https://docs.ropensci.org/osmdata/reference/getbb.html">getbb</a></span> (<span class="st">"york uk"</span>)</a>
-<a class="sourceLine" id="cb69-2" data-line-number="2">npts &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3">xy &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/apply.html">apply</a></span> (bb, <span class="dv">1</span>, <span class="cf">function</span> (i) <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> (i) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span> (i))</a>
-<a class="sourceLine" id="cb69-4" data-line-number="4">routed_points &lt;-<span class="st"> </span><span class="cf">function</span> (<span class="dt">expand =</span> <span class="dv">0</span>, pts)</a>
-<a class="sourceLine" id="cb69-5" data-line-number="5">{</a>
-<a class="sourceLine" id="cb69-6" data-line-number="6">    gr0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_streetnet.html">dodgr_streetnet</a></span> (<span class="dt">pts =</span> pts, <span class="dt">expand =</span> expand) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-7" data-line-number="7"><span class="st">        </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> ()</a>
-<a class="sourceLine" id="cb69-8" data-line-number="8">    d0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (gr0, <span class="dt">from =</span> pts)</a>
-<a class="sourceLine" id="cb69-9" data-line-number="9">    <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (d0))) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (d0)</a>
-<a class="sourceLine" id="cb69-10" data-line-number="10">}</a></code></pre></div>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span> (<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>), <span class="cf">function</span> (i) <span class="kw">routed_points</span> (i, <span class="dt">pts =</span> xy),</a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">        <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span> (<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">bb &lt;-<span class="st"> </span>osmdata<span class="op">::</span><span class="kw"><a href="https://docs.ropensci.org/osmdata/reference/getbb.html">getbb</a></span> (<span class="st">"york uk"</span>)</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">npts &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3">xy &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/apply.html">apply</a></span> (bb, <span class="dv">1</span>, <span class="cf">function</span> (i) <span class="kw"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span> (i) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (npts) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/diff.html">diff</a></span> (i))</a>
+<a class="sourceLine" id="cb70-4" data-line-number="4">routed_points &lt;-<span class="st"> </span><span class="cf">function</span> (<span class="dt">expand =</span> <span class="dv">0</span>, pts)</a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">{</a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">    gr0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_streetnet.html">dodgr_streetnet</a></span> (<span class="dt">pts =</span> pts, <span class="dt">expand =</span> expand) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-7" data-line-number="7"><span class="st">        </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> ()</a>
+<a class="sourceLine" id="cb70-8" data-line-number="8">    d0 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (gr0, <span class="dt">from =</span> pts)</a>
+<a class="sourceLine" id="cb70-9" data-line-number="9">    <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (d0))) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (d0)</a>
+<a class="sourceLine" id="cb70-10" data-line-number="10">}</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span> (<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>), <span class="cf">function</span> (i) <span class="kw">routed_points</span> (i, <span class="dt">pts =</span> xy),</a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">        <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span> (<span class="dv">1</span>))</a></code></pre></div>
 <pre><code>## [1] 0.04007477 0.02326452 0.02131992 0.00000000</code></pre>
 <p>With a street network that precisely encompasses the submitted routing points (<code>expand = 0</code>), 4% of pairwise distances are unable to be calculated; with a bounding box expanded to 5% larger than the submitted points, this is reduced to 2.3%, and with expansion to 20%, all points can be connected.</p>
 <p>For non-spatial graphs, <code>from</code> and <code>to</code> must match precisely on to vertices named in the graph itself. In the graph considered above, these vertex names were contained in the columns, <code>from_id</code> and <code>to_id</code>. The minimum that a <code>dodgr</code> graph requires is,</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (graph [, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span> (graph) <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span> (<span class="st">"from_id"</span>, <span class="st">"to_id"</span>, <span class="st">"d"</span>)])</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (graph [, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span> (graph) <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span> (<span class="st">"from_id"</span>, <span class="st">"to_id"</span>, <span class="st">"d"</span>)])</a></code></pre></div>
 <pre><code>##      from_id      to_id          d
 ## 1  339318500  339318502 132.442169
 ## 2  339318502  339318500 132.442169
@@ -401,11 +402,11 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 ## 5 2398958028 1427116077   9.326536
 ## 6 1427116077 2398958028   9.326536</code></pre>
 <p>in which case the <code>from</code> values submitted to <code><a href="../reference/dodgr_dists.html">dodgr_dists()</a></code> (and <code>to</code>, if given) must directly name the vertices in the <code>from_id</code> and <code>to_id</code> columns of the graph. This is illustrated in the following code:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">graph_min &lt;-<span class="st"> </span>graph [, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span> (graph) <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span> (<span class="st">"from_id"</span>, <span class="st">"to_id"</span>, <span class="st">"d"</span>)]</a>
-<a class="sourceLine" id="cb74-2" data-line-number="2">fr &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph_min<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">10</span>) <span class="co"># 10 random points</span></a>
-<a class="sourceLine" id="cb74-3" data-line-number="3">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph_min<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb74-4" data-line-number="4">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph_min, <span class="dt">from =</span> fr, <span class="dt">to =</span> to)</a>
-<a class="sourceLine" id="cb74-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span> (d)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">graph_min &lt;-<span class="st"> </span>graph [, <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span> (graph) <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span> (<span class="st">"from_id"</span>, <span class="st">"to_id"</span>, <span class="st">"d"</span>)]</a>
+<a class="sourceLine" id="cb75-2" data-line-number="2">fr &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph_min<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">10</span>) <span class="co"># 10 random points</span></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph_min<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb75-4" data-line-number="4">d &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph_min, <span class="dt">from =</span> fr, <span class="dt">to =</span> to)</a>
+<a class="sourceLine" id="cb75-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span> (d)</a></code></pre></div>
 <pre><code>## [1] 10 20</code></pre>
 <p>The result is a 10-by-20 matrix of distances between these named graph vertices.</p>
 </div>
@@ -421,7 +422,7 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 </ol>
 <p>Differences in how these heaps operate are often largely extraneous to direct application of routing algorithms, even though heap choice may strongly affect performance. To avoid users needing to know anything about algorithmic details, <code>dodgr</code> provides a function <a href="https://atfutures.github.io/dodgr/reference/compare_heaps.html"><code><a href="../reference/compare_heaps.html">compare_heaps()</a></code></a> to which a particular graph may be submitted in order to determine the optimal kind of heap.</p>
 <p>The comparisons are actually made on a randomly selected sub-component of the graph containing a defined number of vertices (with a default of 1,000, or the entire graph if it contains fewer than 1,000 vertices).</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw"><a href="../reference/compare_heaps.html">compare_heaps</a></span> (graph, <span class="dt">nverts =</span> <span class="dv">1000</span>, <span class="dt">replications =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw"><a href="../reference/compare_heaps.html">compare_heaps</a></span> (graph, <span class="dt">nverts =</span> <span class="dv">1000</span>, <span class="dt">replications =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## Loading required namespace: rbenchmark</code></pre>
 <pre><code>##                                                                                   test
 ## 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
@@ -434,28 +435,28 @@ Figure 2: A <strong>dual</strong>-weighted, directed graph in which the weights 
 ## 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
 ## 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
 ## 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
-## 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 ## 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
+## 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 ##    replications elapsed relative user.self sys.self user.child sys.child
-## 6             1   0.004     1.00     0.005    0.000          0         0
-## 11            1   0.004     1.00     0.005    0.000          0         0
-## 7             1   0.005     1.25     0.007    0.000          0         0
-## 8             1   0.006     1.50     0.007    0.000          0         0
-## 9             1   0.006     1.50     0.005    0.000          0         0
-## 10            1   0.006     1.50     0.007    0.000          0         0
-## 1             1   0.013     3.25     0.019    0.001          0         0
-## 12            1   0.016     4.00     0.016    0.000          0         0
-## 2             1   0.019     4.75     0.031    0.000          0         0
-## 3             1   0.021     5.25     0.036    0.000          0         0
-## 4             1   0.022     5.50     0.023    0.000          0         0
-## 5             1   0.023     5.75     0.039    0.000          0         0</code></pre>
+## 6             1   0.003    1.000     0.005        0          0         0
+## 11            1   0.003    1.000     0.005        0          0         0
+## 7             1   0.004    1.333     0.005        0          0         0
+## 8             1   0.004    1.333     0.006        0          0         0
+## 9             1   0.004    1.333     0.005        0          0         0
+## 10            1   0.005    1.667     0.006        0          0         0
+## 1             1   0.012    4.000     0.017        0          0         0
+## 12            1   0.015    5.000     0.015        0          0         0
+## 2             1   0.017    5.667     0.028        0          0         0
+## 3             1   0.019    6.333     0.032        0          0         0
+## 5             1   0.019    6.333     0.032        0          0         0
+## 4             1   0.022    7.333     0.021        0          0         0</code></pre>
 <p>The key column of that <code>data.frame</code> is <code>relative</code>, which quantifies the relative performance of each test in relation to the best which is given a score of 1. <code>dodgr</code> using the default <code>heap = "BHeap"</code>, which is a binary heap priority queue, performs faster than <a href="https://igraph.org"><code>igraph</code></a> <span class="citation">(Csardi and Nepusz 2006)</span> for these graphs. Different kind of graphs will perform differently with different priority queue structures, and this function enables users to empirically discern the optimal heap for their kind of graph.</p>
 <p>Note, however, that this is not an entirely fair comparison, because <code>dodgr</code> calculates dual-weighted distances, whereas <a href="https://igraph.org"><code>igraph</code></a>—and indeed all other <strong>R</strong> packages—only directly calculate distances based on a single set of weights. Implementing dual-weighted routing in these cases requires explicitly re-tracing all paths and summing the second set of weights along each path. A time comparison in that case would be very strongly in favour of <code>dodgr</code>. Moreover, <code>dodgr</code> can convert graphs to contracted form through removing redundant vertices, as detailed in the following section. Doing so greatly improves performance with respect to <a href="https://igraph.org"><code>igraph</code></a>.</p>
 <p>For those wishing to do explicit comparisons themselves, the following code generates the <a href="https://igraph.org"><code>igraph</code></a> equivalent of <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a>, although of course for single-weighted graphs only:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
-<a class="sourceLine" id="cb79-2" data-line-number="2">pts &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (v<span class="op">$</span>id, <span class="dv">1000</span>)</a>
-<a class="sourceLine" id="cb79-3" data-line-number="3">igr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_to_igraph.html">dodgr_to_igraph</a></span> (graph)</a>
-<a class="sourceLine" id="cb79-4" data-line-number="4">d &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/distances.html">distances</a></span> (igr, <span class="dt">v =</span> pts, <span class="dt">to =</span> pts, <span class="dt">mode =</span> <span class="st">"out"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
+<a class="sourceLine" id="cb80-2" data-line-number="2">pts &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (v<span class="op">$</span>id, <span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb80-3" data-line-number="3">igr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_to_igraph.html">dodgr_to_igraph</a></span> (graph)</a>
+<a class="sourceLine" id="cb80-4" data-line-number="4">d &lt;-<span class="st"> </span>igraph<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/igraph/man/distances.html">distances</a></span> (igr, <span class="dt">v =</span> pts, <span class="dt">to =</span> pts, <span class="dt">mode =</span> <span class="st">"out"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="graph-contraction" class="section level1">
@@ -469,40 +470,40 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 </div>
 <p>In Fig. 3(A), the only way to get from vertex 1 to 3, 4 or 5 is through C. The intermediate vertex B is redundant for routing purposes (and than to or from that precise point) and may simply be removed, with directional edges inserted directly between vertices 1 and 3. This yields the equivalent contracted graph of Fig. 3(B), in which, for example, the distance (or weight) between 1 and 3 is the sum of previous distances (or weights) between 1 <span class="math inline">\(\to\)</span> 2 and 2 <span class="math inline">\(\to\)</span> 3. Note that if one of the two edges between, say, 3 and 2 were removed, vertex 2 would no longer be redundant (Fig. 3(C)).</p>
 <p>Different kinds of graphs have different degrees of redundancy, and even street networks differ, through for example dense inner-urban networks generally being less redundant than less dense extra-urban or rural networks. The contracted version of a graph can be obtained with the function <a href="https://atfutures.github.io/dodgr/reference/dodgr_contract_graph.html"><code><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph()</a></code></a>, illustrated here with the York example from above.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph)</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph)</a></code></pre></div>
 <p>The function <a href="https://atfutures.github.io/dodgr/reference/dodgr_contract_graph.html"><code><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph()</a></code></a> returns the contracted version of the original graph, containing the same number of columns, but with each row representing an edge between two junction vertices (or between the submitted <code>verts</code>, which may or may not be junctions). Relative sizes are</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph)</a></code></pre></div>
 <pre><code>## [1] 5973</code></pre>
 <pre><code>## [1] 672</code></pre>
 <pre><code>## [1] 0.1125063</code></pre>
 <p>equivalent to the removal of around 90% of all edges. The difference in routing efficiency can then be seen with the following code</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (grc<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb85-2" data-line-number="2">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (grc<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb85-3" data-line-number="3">rbenchmark<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rbenchmark/man/benchmark.html">benchmark</a></span> (</a>
-<a class="sourceLine" id="cb85-4" data-line-number="4">                       d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (grc, <span class="dt">from =</span> from, <span class="dt">to =</span> to),</a>
-<a class="sourceLine" id="cb85-5" data-line-number="5">                       d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to),</a>
-<a class="sourceLine" id="cb85-6" data-line-number="6">                       <span class="dt">replications =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (grc<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (grc<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb86-3" data-line-number="3">rbenchmark<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/rbenchmark/man/benchmark.html">benchmark</a></span> (</a>
+<a class="sourceLine" id="cb86-4" data-line-number="4">                       d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (grc, <span class="dt">from =</span> from, <span class="dt">to =</span> to),</a>
+<a class="sourceLine" id="cb86-5" data-line-number="5">                       d2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to),</a>
+<a class="sourceLine" id="cb86-6" data-line-number="6">                       <span class="dt">replications =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##                                             test replications elapsed
-## 2 d2 &lt;- dodgr_dists(graph, from = from, to = to)            2   0.045
+## 2 d2 &lt;- dodgr_dists(graph, from = from, to = to)            2   0.046
 ## 1   d2 &lt;- dodgr_dists(grc, from = from, to = to)            2   0.009
 ##   relative user.self sys.self user.child sys.child
-## 2        5     0.064        0          0         0
-## 1        1     0.011        0          0         0</code></pre>
+## 2    5.111     0.065        0          0         0
+## 1    1.000     0.012        0          0         0</code></pre>
 <p>And contracting the graph has a similar effect of speeding up pairwise routing between these 100 points. All routing algorithms scale non-linearly with size, and relative improvements in efficiency will be even greater for larger graphs.</p>
 <div id="routing-on-contracted-graphs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#routing-on-contracted-graphs" class="anchor"></a>5.1 Routing on Contracted Graphs</h2>
 <p>Routing is often desired between defined points, and these points may inadvertently be removed in graph contraction. The <a href="https://atfutures.github.io/dodgr/reference/dodgr_contract_graph.html"><code><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph()</a></code></a> function accepts an additional argument specifying vertices to keep within the contracted graph. This list of vertices must directly match the vertex ID values in the graph.</p>
 <p>The following code illustrates how to retain specific vertices within contracted graphs:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph)</a>
-<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph)</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc)</a></code></pre></div>
 <pre><code>## [1] 672</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)<span class="op">$</span>id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (verts) <span class="co"># a character vector</span></a></code></pre></div>
-<pre><code>## [1] "1560930420" "4506481418" "4337842087" "1143452544" "2398957793"
-## [6] "5351820905"</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph, verts)</a>
-<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (<span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)<span class="op">$</span>id, <span class="dt">size =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (verts) <span class="co"># a character vector</span></a></code></pre></div>
+<pre><code>## [1] "5351564645" "5351820900" "1148815206" "1376768475" "339060014" 
+## [6] "1143452492"</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">grc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph, verts)</a>
+<a class="sourceLine" id="cb92-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (grc)</a></code></pre></div>
 <pre><code>## [1] 852</code></pre>
 <p>Retaining the nominated vertices yields a graph with considerably more edges than the fully contracted graph excluding these vertices. The <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a> function can be applied to the latter graph to obtain accurate distances precisely routed between these points, yet using the speed advantages of graph contraction.</p>
 </div>
@@ -511,10 +512,10 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <h1 class="hasAnchor">
 <a href="#shortest-paths" class="anchor"></a>6 Shortest Paths</h1>
 <p>Shortest paths can also be extracted with the <a href="https://atfutures.github.io/dodgr/reference/dodgr_paths.html"><code><a href="../reference/dodgr_paths.html">dodgr_paths()</a></code></a> function. For given vectors of <code>from</code> and <code>to</code> points, this returns a nested list so that if,</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">dp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_paths.html">dodgr_paths</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">dp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_paths.html">dodgr_paths</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to)</a></code></pre></div>
 <p>then <code>dp [[i]] [[j]]</code> will contain the path from <code>from [i]</code> to <code>to [j]</code>. The paths are represented as sequences of vertex names. Consider the following example,</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">graph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (hampi)</a>
-<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (graph)</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">graph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (hampi)</a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (graph)</a></code></pre></div>
 <pre><code>##   geom_num edge_id    from_id from_lon from_lat      to_id   to_lon
 ## 1        1       1  339318500 76.47489 15.34169  339318502 76.47612
 ## 2        1       2  339318502 76.47612 15.34173  339318500 76.47489
@@ -537,50 +538,78 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 ## 5      2.487076
 ## 6      2.487076</code></pre>
 <p>The columns of <code>from_id</code> and <code>to_id</code> contain the names of the vertices. To extract shortest paths between some of these, first take some small samples of <code>from</code> and <code>to</code> points, and submit them to <a href="https://atfutures.github.io/dodgr/reference/dodgr_paths.html"><code><a href="../reference/dodgr_paths.html">dodgr_paths()</a></code></a>:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb96-2" data-line-number="2">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb96-3" data-line-number="3">dp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_paths.html">dodgr_paths</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to)</a>
-<a class="sourceLine" id="cb96-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (dp)</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb97-2" data-line-number="2">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb97-3" data-line-number="3">dp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_paths.html">dodgr_paths</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to)</a>
+<a class="sourceLine" id="cb97-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (dp)</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>The result (<code>dp</code>) is a list of 10 items, each of which contains 5 vectors. An example is,</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]]</a></code></pre></div>
-<pre><code>##   [1] "571423745"  "571423743"  "339318485"  "339318484"  "1148814991"
-##   [6] "339318483"  "676875314"  "1148814860" "339318482"  "1148815206"
-##  [11] "1148815066" "339318481"  "339318480"  "1148814933" "339318479" 
-##  [16] "339318478"  "339318477"  "339318476"  "339318473"  "339318471" 
-##  [21] "339318470"  "2636414337" "339318467"  "2636414331" "2636414338"
-##  [26] "339059754"  "977478675"  "1676740773" "4474520824" "245631133" 
-##  [31] "339059758"  "977478643"  "4474520825" "2627477681" "2627477680"
-##  [36] "2627477677" "2627477679" "3456932070" "2627477678" "2627477682"
-##  [41] "339574320"  "2398957885" "2398957883" "286632901"  "1148815150"
-##  [46] "676875132"  "2398957865" "286632900"  "1148814896" "338908589" 
-##  [51] "2398957843" "338904455"  "3697938024" "3697938023" "3697938021"
-##  [56] "3697938022" "3697938335" "3697938334" "3697938333" "3697938338"
-##  [61] "3697938337" "3697938336" "3697938331" "3697938330" "3697938329"
-##  [66] "3697938332" "3697938328" "3697938327" "3697938326" "3697938325"
-##  [71] "3697937571" "3697937610" "3697937615" "3697937614" "3697937613"
-##  [76] "3697937611" "3697937612" "3697937616" "3697937609" "3697937608"
-##  [81] "3697937607" "1376769110" "1376768828" "1376768464" "1376768862"
-##  [86] "1376768398" "1376768975" "1376768614" "1376769209" "1376768918"
-##  [91] "1376768559" "6410121124" "2717241302" "2717241300" "2717241331"
-##  [96] "2717241317" "2717241339" "2717241332" "2717241309" "2717241321"
-## [101] "2717241306" "2717241323" "2717241312" "1376768738" "1376768369"
-## [106] "1376768946" "1376768586" "1560930407" "1376768478" "1376769039"
-## [111] "1376768690" "1376768324" "1376768985" "1376768626" "339574829" 
-## [116] "339577274"  "1148815093" "339577272"  "339574837"  "1668645436"
-## [121] "339574836"  "3158960798" "339574835"  "3158960778" "339574834" 
-## [126] "3158960659" "339574833"  "339574832"  "3158960639" "3818714156"</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]]</a></code></pre></div>
+<pre><code>##   [1] "4474520510" "4474520511" "4474520512" "4474520513" "4474520514"
+##   [6] "4474520515" "4474520516" "4474520517" "4474520518" "4474520519"
+##  [11] "1376768912" "1376768553" "1376769147" "1376768856" "1376768494"
+##  [16] "1376769055" "1376768706" "1376769204" "1376768826" "1376768461"
+##  [21] "1376769025" "1376768762" "1376768392" "1376768968" "1376768608"
+##  [26] "1376769106" "1376768734" "1376768365" "1376768941" "1376768674"
+##  [31] "1376768306" "1376768881" "1376768519" "1376768995" "1376768635"
+##  [36] "1376769229" "1376768851" "1376768581" "1376769175" "1376768789"
+##  [41] "1376768419" "1376768908" "1376768547" "1376769141" "1376768758"
+##  [46] "1376768489" "1376769050" "1376768701" "1376768335" "1376768956"
+##  [51] "1376768596" "1376769189" "1376768804" "1376768536" "1376769131"
+##  [56] "1376768748" "1376768379" "1376768866" "1376768503" "1376769071"
+##  [61] "1376768716" "1376768433" "1376769009" "1376768649" "1376769241"
+##  [66] "1376768772" "1376768402" "1376768979" "1376768618" "1376768347"
+##  [71] "1376768922" "1376768563" "1376769157" "1376768683" "1376768317"
+##  [76] "1376768891" "1376768528" "1376769213" "1376768835" "1376768471"
+##  [81] "1376769033" "1376768589" "1376769182" "1376768796" "1376768426"
+##  [86] "1376769127" "1376768741" "1376768372" "1376768949" "1376768498"
+##  [91] "1376769061" "1376768709" "1376768341" "1376769001" "1376768641"
+##  [96] "1376769235" "1376768859" "1376768395" "1376768971" "1376768611"
+## [101] "1376769206" "1376768915" "1376768556" "1376769150" "1376768766"
+## [106] "1376768309" "1376768883" "1376768521" "1376769110" "1376768828"
+## [111] "1376768464" "1376768862" "1376768398" "1376768975" "1376768614"
+## [116] "1376769209" "1376768918" "1376768559" "6410121124" "2717241302"
+## [121] "2717241300" "2717241331" "2717241317" "2717241339" "2717241332"
+## [126] "2717241309" "2717241321" "2717241306" "2717241323" "2717241312"
+## [131] "1376768738" "1376768369" "1376768946" "1376768586" "1560930407"
+## [136] "1376768478" "1376769039" "1376768690" "1376768324" "1376768985"
+## [141] "1376768626" "339574829"  "339574828"  "6228103649" "6228103648"
+## [146] "6228103647" "6228103646" "6228103645" "3818714154" "339574820" 
+## [151] "339574819"  "3818714155" "2398957686" "339574631"  "2717241324"
+## [156] "1148814809" "2398957654" "2398957639" "339574630"  "339574629" 
+## [161] "2398957619" "339574628"  "1427115955" "338905128"  "1376769164"
+## [166] "1376768779" "338905219"  "2398957589" "2398957588" "1376768510"
+## [171] "1376769086" "2398957584" "338905220"  "2398957576" "1427594104"
+## [176] "2398957571" "2398957570" "2398957568" "338905221"  "2398957564"
+## [181] "338905227"  "2398957561" "2398957557" "2398957549" "338905245" 
+## [186] "2398957546" "2398957544" "2398957543" "2398957542" "676635860" 
+## [191] "2398957537" "2398957532" "2398957526" "2398957521" "676875267" 
+## [196] "2398957539" "2419196948" "313796433"  "1376768773" "2398957554"
+## [201] "2398957555" "313796432"  "3338186986" "2398957563" "2398957567"
+## [206] "313796431"  "313796430"  "1376769158" "1427594112" "313796429" 
+## [211] "2398957603" "313796428"  "313796427"  "1128374399" "313796426" 
+## [216] "1128374495" "2398957696" "2398957701" "1376768565" "2398957713"
+## [221] "1376769010" "2398957720" "313796425"  "2398957722" "1376768805"
+## [226] "245631169"  "676875269"  "1128374442" "1376769190" "1128374412"
+## [231] "6161027522" "1128374373" "1128374467" "1376768504" "1161117304"
+## [236] "1376768867" "676875274"  "1376768293" "1376768650" "1128374447"
+## [241] "1376769132" "676875308"  "1376768537" "1161117735" "1376768899"
+## [246] "1161117723" "1376768325" "1376768597" "1357430113" "1376768957"
+## [251] "676875276"  "1376768380" "1357430014" "1376768749" "1376769220"
+## [256] "1128374360" "1161117548" "1357430213" "676875279"  "1128374362"
+## [261] "1376768627" "245631194"  "1376768986" "1376768409" "1128374418"
+## [266] "977461235"  "1376768691" "2398957816" "1128374394"</code></pre>
 <p>For spatial graphs, the coordinates of these paths can be obtained by extracting the vertices with <code><a href="../reference/dodgr_vertices.html">dodgr_vertices()</a></code> and matching the vertex IDs:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
-<a class="sourceLine" id="cb100-2" data-line-number="2">path1 &lt;-<span class="st"> </span>verts [<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span> (dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]], verts<span class="op">$</span>id), ]</a>
-<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (path1)</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">verts &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graph)</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2">path1 &lt;-<span class="st"> </span>verts [<span class="kw"><a href="https://rdrr.io/r/base/match.html">match</a></span> (dp [[<span class="dv">1</span>]] [[<span class="dv">1</span>]], verts<span class="op">$</span>id), ]</a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (path1)</a></code></pre></div>
 <pre><code>##              id        x        y component    n
-## 628   571423745 76.47036 15.33962         1  322
-## 630   571423743 76.47044 15.33944         1  323
-## 632   339318485 76.47045 15.33924         1  324
-## 4326  339318484 76.47027 15.33914         1 2159
-## 4324 1148814991 76.47015 15.33902         1 2158
-## 4322  339318483 76.47010 15.33887         1 2157</code></pre>
+## 2842 4474520510 76.48876 15.33054         1 1430
+## 2840 4474520511 76.48882 15.33072         1 1429
+## 2838 4474520512 76.48882 15.33084         1 1428
+## 2836 4474520513 76.48880 15.33100         1 1427
+## 2834 4474520514 76.48876 15.33113         1 1426
+## 2832 4474520515 76.48868 15.33127         1 1425</code></pre>
 <p>Paths calculated on contracted graphs will of course have fewer vertices than those calculated on full graphs.</p>
 </div>
 <div id="aggregated-flows" class="section level1">
@@ -592,14 +621,14 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 <a href="#direct-aggregation" class="anchor"></a>7.1 Direct Aggregation</h2>
 <p>The former of the above functions aggregates ‘’flows’’ throughout a network from a set of origin (<code>from</code>) and destination (<code>to</code>) points. Flows commonly arise in origin-destination matrices used in transport studies, but may be any kind of generic flows on graphs. A flow matrix specifies the flow between each pair of origin and destination points, and the <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code></a> function aggregates all of these flows throughout a network and assigns a resultant aggregate flow to each edge.</p>
 <p>For a set of <code>nf</code> points of origin and <code>nt</code> points of destination, flows are defined by a simple <code>nf</code>-by-<code>nt</code> matrix of values, as in the following code:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">graph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (hampi)</a>
-<a class="sourceLine" id="cb102-2" data-line-number="2">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb102-3" data-line-number="3">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb102-4" data-line-number="4">flows &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span> (<span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (from) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (to)),</a>
-<a class="sourceLine" id="cb102-5" data-line-number="5">                 <span class="dt">nrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (from))</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">graph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (hampi)</a>
+<a class="sourceLine" id="cb103-2" data-line-number="2">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>from_id, <span class="dt">size =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>to_id, <span class="dt">size =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">flows &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span> (<span class="dv">10</span> <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (from) <span class="op">*</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (to)),</a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">                 <span class="dt">nrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (from))</a></code></pre></div>
 <p>This <code>flows</code> matrix is then submitted to <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code></a>, which simply appends an additional column of <code>flows</code> to the submitted <code>graph</code>:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">flows =</span> flows)</a>
-<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (graph_f)</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">flows =</span> flows)</a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (graph_f)</a></code></pre></div>
 <pre><code>##   geom_num edge_id    from_id from_lon from_lat      to_id   to_lon
 ## 1        1       1  339318500 76.47489 15.34169  339318502 76.47612
 ## 2        1       2  339318502 76.47612 15.34173  339318500 76.47489
@@ -614,43 +643,43 @@ Figure 3: <strong>(A)</strong> Vertex#2 is redundant for routing calculations fr
 ## 4 15.34173   8.888670    9.87630 unclassified 28565950         1  2.133281
 ## 5 15.34179   9.326536   10.36282 unclassified 28565950         1  2.238369
 ## 6 15.34174   9.326536   10.36282 unclassified 28565950         1  2.238369
-##   time_weighted flow
-## 1     35.317912    0
-## 2     35.317912    0
-## 3      2.370312    0
-## 4      2.370312    0
-## 5      2.487076    0
-## 6      2.487076    0</code></pre>
+##   time_weighted     flow
+## 1     35.317912 19.84342
+## 2     35.317912  0.00000
+## 3      2.370312 19.84342
+## 4      2.370312  0.00000
+## 5      2.487076 19.84342
+## 6      2.487076  0.00000</code></pre>
 <p>Most flows are zero because they have only been calculated between very few points in the graph.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   0.000   0.000   3.751   0.000  93.497</code></pre>
+##   0.000   0.000   0.000   4.613   0.000  65.751</code></pre>
 </div>
 <div id="flow-dispersal" class="section level2">
 <h2 class="hasAnchor">
 <a href="#flow-dispersal" class="anchor"></a>7.2 Flow Dispersal</h2>
 <p>The second function, <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_disperse.html"><code><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse()</a></code></a>, uses only a vector a origin (<code>from</code>) points, and aggregates flows as they disperse throughout the network according to a simple exponential model. In place of the matrix of flows required by <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code></a>, dispersal requires an equivalent vector of densities dispersing from all origin (<code>from</code>) points. This is illustrated in the following code, using the same graph as the previous example.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">dens &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span> (<span class="dv">1</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (from)) <span class="co"># uniform densities</span></a>
-<a class="sourceLine" id="cb107-2" data-line-number="2">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">dens =</span> dens)</a>
-<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.02043 0.17134 0.25159 1.73792</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">dens &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span> (<span class="dv">1</span>, <span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (from)) <span class="co"># uniform densities</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">dens =</span> dens)</a>
+<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.000000 0.000000 0.002086 0.110361 0.124491 1.149773</code></pre>
 </div>
 <div id="merging-directed-flows" class="section level2">
 <h2 class="hasAnchor">
 <a href="#merging-directed-flows" class="anchor"></a>7.3 Merging directed flows</h2>
 <p>Note that flows from both <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code></a> and <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse()</a></code></a> are <em>directed</em>, so the flow from ‘A’ to ‘B’ will not necessarily equal the flow from ‘B’ to ‘A’. It is often desirable to aggregate flows in an undirected manner, for example for visualisations where plotting pairs of directed flows between each edge if often not feasible for large graphs. Directed flows can be aggregated to equivalent undirected flows with the <code><a href="../reference/merge_directed_flows.html">merge_directed_flows()</a></code> function:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">graph_undir &lt;-<span class="st"> </span><span class="kw"><a href="../reference/merge_directed_flows.html">merge_directed_flows</a></span> (graph_f)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">graph_undir &lt;-<span class="st"> </span><span class="kw"><a href="../reference/merge_directed_flows.html">merge_directed_flows</a></span> (graph_f)</a></code></pre></div>
 <p>Resultant graphs produced by <a href="https://atfutures.github.io/dodgr/reference/merge_directed_flows.html"><code><a href="../reference/merge_directed_flows.html">merge_directed_flows()</a></code></a> only include those edges having non-zero flows, and so:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_f); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_undir) <span class="co"># the latter is much smaller</span></a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_f); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_undir) <span class="co"># the latter is much smaller</span></a></code></pre></div>
 <pre><code>## [1] 5973</code></pre>
-<pre><code>## [1] 2765</code></pre>
+<pre><code>## [1] 2734</code></pre>
 <p>The resultant graph can readily be merged with the original graph to regain the original data on vertex coordinates through</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">graph &lt;-<span class="st"> </span>graph [graph_undir<span class="op">$</span>edge_id, ]</a>
-<a class="sourceLine" id="cb113-2" data-line-number="2">graph<span class="op">$</span>flow &lt;-<span class="st"> </span>graph_undir<span class="op">$</span>flow</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">graph &lt;-<span class="st"> </span>graph [graph_undir<span class="op">$</span>edge_id, ]</a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">graph<span class="op">$</span>flow &lt;-<span class="st"> </span>graph_undir<span class="op">$</span>flow</a></code></pre></div>
 <p>This graph may then be used to visualise flows with the <a href="https://atfutures.github.io/dodgr/reference/dodgr_flowmap.html"><code><a href="../reference/dodgr_flowmap.html">dodgr_flowmap()</a></code></a> function:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">graph_f &lt;-<span class="st"> </span>graph_f [graph_f<span class="op">$</span>flow <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, ]</a>
-<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="kw"><a href="../reference/dodgr_flowmap.html">dodgr_flowmap</a></span> (graph_f, <span class="dt">linescale =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">graph_f &lt;-<span class="st"> </span>graph_f [graph_f<span class="op">$</span>flow <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, ]</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="kw"><a href="../reference/dodgr_flowmap.html">dodgr_flowmap</a></span> (graph_f, <span class="dt">linescale =</span> <span class="dv">5</span>)</a></code></pre></div>
 <p><img src="hampi-flowmap.png"></p>
 </div>
 </div>
