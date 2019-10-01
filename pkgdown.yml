@@ -2,7 +2,6 @@ pandoc: '2.2'
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
-  benchmark: benchmark.html
   dodgr: dodgr.html
   times: times.html
 
