@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.5</span>
       </span>
     </div>
 
@@ -226,11 +226,11 @@
 <p><img src="times_files/figure-html/shortest-vs-fastest-1.png" width="700"></p>
 <p>The average distance between the two (in metres) is:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span> (d_time <span class="op">-</span><span class="st"> </span>d_dist), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 51.78312</code></pre>
+<pre><code>## [1] 50.9319</code></pre>
 <p>The plot reveals that shortest distances are indeed somewhat shorter than distances along fastest paths, but also that some fastest paths are actually shorter than shortest paths:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">index &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (d_time) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (d_dist))</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (d_time [index] <span class="op">&lt;</span><span class="st"> </span>d_dist [index])) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (index)</a></code></pre></div>
-<pre><code>## [1] 0.01604668</code></pre>
+<pre><code>## [1] 0.01572787</code></pre>
 <p>While <code>dodgr</code> and indeed all routing engines attempt to maximally reconcile differences between fastest and shortest routes, there nevertheless remain important discrepancies. Foremost among these, and the primary reason why some fastest routes may in fact be shorter than shortest routes, is that fastest routes allocate preferences for different kinds of way based both on the <code>value</code> column in the <code>weighting_profiles$weighting_profiles</code> table illustrated above, and on the actual maximum speed of a given edge, which itself may be a combination of maximum speeds as specified in OSM itself, maximum speeds from the <code>weighting_profiles$weighting_profiles</code> table, or values specific to a given surface. The result is that some unique combination of maximum speeds along a network may lead to <em>fastest</em> routes being preferentially directed along a path that is actually shorter than the direct shortest path which is calculated independent of maximum speed values.</p>
 <p>Such discrepancies are important in understanding differences in routes <em>times</em> calculated along shortest versus fastest paths. These times can be calculated (in seconds) with the <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="../reference/dodgr_times.html">dodgr_times()</a></code></a> function:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">t_dist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_times.html">dodgr_times</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">shortest =</span> <span class="ot">TRUE</span>) <span class="co"># default</span></a>
@@ -241,11 +241,11 @@
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span> (<span class="dv">0</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">0</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">col =</span> <span class="st">"red"</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="times_files/figure-html/shortest-vs-fastest-times-1.png" width="700"></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span> (t_time <span class="op">-</span><span class="st"> </span>t_dist), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 51.55531</code></pre>
+<pre><code>## [1] 47.66323</code></pre>
 <p>As above, times along fastest paths are generally less than times along shortest paths, although there are again a few exceptions:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">index &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (t_time) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (t_dist))</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (t_dist [index] <span class="op">&lt;</span><span class="st"> </span>t_time [index])) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (index)</a></code></pre></div>
-<pre><code>## [1] 0.01549964</code></pre>
+<pre><code>## [1] 0.01719093</code></pre>
 <p>These results demonstrate how the combination of the <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a> and <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="../reference/dodgr_times.html">dodgr_times()</a></code></a> functions enable calculation of both distances and times along both shortest and fastest paths.</p>
 <div id="time-based-paths-and-flow-aggregation" class="section level2">
 <h2 class="hasAnchor">

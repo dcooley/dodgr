@@ -72,7 +72,7 @@ on to the original graph, as demonstrated in the example." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.5</span>
       </span>
     </div>
 
@@ -127,16 +127,14 @@ on to the original graph, as demonstrated in the example.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>A list of two items returned from <a href='dodgr_contract_graph.html'>dodgr_contract_graph</a>,
-the first ("graph") containing the contracted graph, and the second
-("edge_map") mapping edges in the contracted graph back to those in the
-original graph.</p></td>
+      <td><p>A contracted graph created from <a href='dodgr_contract_graph.html'>dodgr_contract_graph</a>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A single <code>data.frame</code> representing the original, uncontracted graph.</p>
+    <p>A single <code>data.frame</code> representing the equivalent original,
+uncontracted graph.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)

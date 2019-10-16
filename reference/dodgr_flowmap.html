@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.5</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ of <code>net</code></p></td>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><code>net</code> should be first passed through <code>merge_directed_flows</code>
+    <p><code>net</code> should be first passed through <code>merge_directed_graph</code>
 prior to plotting, otherwise lines for different directions will be overlaid.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -151,7 +151,7 @@ prior to plotting, otherwise lines for different directions will be overlaid.</p
 <span class='co'># graph then has an additonal 'flows` column of aggregate flows along all</span>
 <span class='co'># edges. These flows are directed, and can be aggregated to equivalent</span>
 <span class='co'># undirected flows on an equivalent undirected graph with:</span>
-<span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_flows.html'>merge_directed_flows</a></span> (<span class='no'>graph</span>)
+<span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> (<span class='no'>graph</span>)
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'>dodgr_flowmap</span> (<span class='no'>graph_undir</span>)
 }</div></pre>
