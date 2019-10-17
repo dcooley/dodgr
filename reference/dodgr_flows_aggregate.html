@@ -70,7 +70,7 @@ between all pairs of from and to points." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.7</span>
       </span>
     </div>
 
@@ -181,19 +181,16 @@ flows are aggregated. To remove any such effect, set <code>tol = 0</code>.</p></
 <span class='no'>flows</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>10</span> * <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>from</span>) * <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>to</span>)),
                  <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>from</span>))
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_flows_aggregate</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>to</span>, <span class='kw'>flows</span> <span class='kw'>=</span> <span class='no'>flows</span>)
-<span class='co'># graph then has an additonal 'flows` column of aggregate flows along all</span>
+<span class='co'># graph then has an additonal 'flows' column of aggregate flows along all</span>
 <span class='co'># edges. These flows are directed, and can be aggregated to equivalent</span>
 <span class='co'># undirected flows on an equivalent undirected graph with:</span>
 <span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> (<span class='no'>graph</span>)
 <span class='co'># This graph will only include those edges having non-zero flows, and so:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 669</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 851</div><div class='input'>
 <span class='co'># The following code can be used to convert the resultant graph to an `sf`</span>
 <span class='co'># object suitable for plotting</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>geoms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_sfc.html'>dodgr_to_sfc</a></span> (<span class='no'>graph_undir</span>)
-<span class='no'>gc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>graph_undir</span>)
-<span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/sf.html'>st_sf</a></span> (<span class='no'>geoms</span>)
-<span class='no'>gsf</span>$<span class='no'>flow</span> <span class='kw'>&lt;-</span> <span class='no'>gc</span>$<span class='no'>flow</span>
+<span class='no'>gsf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_sf.html'>dodgr_to_sf</a></span> (<span class='no'>graph_undir</span>)
 
 <span class='co'># example of plotting with the 'mapview' package</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>mapview</span>)
