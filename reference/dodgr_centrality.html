@@ -70,7 +70,7 @@ edge-based form." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.10</span>
       </span>
     </div>
 
@@ -161,7 +161,15 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>graph_full</span>)
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_centrality</span> (<span class='no'>graph</span>)
 <span class='co'># 'graph' is then the contracted graph with an additional 'centrality' column</span>
-<span class='co'># Values of centrality between all junctions in the contracted graph can then</span>
+<span class='co'># Same calculation via 'igraph':</span>
+<span class='no'>igr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_igraph.html'>dodgr_to_igraph</a></span> (<span class='no'>graph</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>igraph</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘igraph’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    decompose, spectrum</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    union</span></div><div class='input'><span class='no'>cent</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/betweenness.html'>edge_betweenness</a></span> (<span class='no'>igr</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span> (<span class='no'>cent</span>, <span class='no'>graph</span>$<span class='no'>centrality</span>) <span class='co'># TRUE</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># Values of centrality between all junctions in the contracted graph can then</span>
 <span class='co'># be mapped back onto the original full network by "uncontracting":</span>
 <span class='no'>graph_full</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_uncontract_graph.html'>dodgr_uncontract_graph</a></span> (<span class='no'>graph</span>)
 <span class='co'># For visualisation, it is generally necessary to merge the directed edges to</span>
