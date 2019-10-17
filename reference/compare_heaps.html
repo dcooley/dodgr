@@ -73,7 +73,7 @@ dodgr_sample function and passed directly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.11</span>
       </span>
     </div>
 
@@ -163,24 +163,24 @@ fair comparisons, run only once or re-start the current R session.</p>
 #&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
-#&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
+#&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
 #&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
 #&gt; 6             1   0.003    1.000     0.005        0          0         0
-#&gt; 11            1   0.004    1.333     0.005        0          0         0
-#&gt; 7             1   0.005    1.667     0.007        0          0         0
-#&gt; 8             1   0.005    1.667     0.008        0          0         0
-#&gt; 10            1   0.005    1.667     0.008        0          0         0
-#&gt; 9             1   0.006    2.000     0.006        0          0         0
-#&gt; 1             1   0.013    4.333     0.021        0          0         0
-#&gt; 2             1   0.019    6.333     0.034        0          0         0
-#&gt; 12            1   0.019    6.333     0.019        0          0         0
-#&gt; 5             1   0.023    7.667     0.040        0          0         0
-#&gt; 3             1   0.024    8.000     0.040        0          0         0
-#&gt; 4             1   0.026    8.667     0.025        0          0         0</div></pre>
+#&gt; 11            1   0.004    1.333     0.006        0          0         0
+#&gt; 7             1   0.006    2.000     0.008        0          0         0
+#&gt; 8             1   0.006    2.000     0.009        0          0         0
+#&gt; 10            1   0.006    2.000     0.010        0          0         0
+#&gt; 9             1   0.007    2.333     0.007        0          0         0
+#&gt; 1             1   0.015    5.000     0.020        0          0         0
+#&gt; 12            1   0.018    6.000     0.019        0          0         0
+#&gt; 2             1   0.022    7.333     0.036        0          0         0
+#&gt; 5             1   0.024    8.000     0.042        0          0         0
+#&gt; 3             1   0.025    8.333     0.044        0          0         0
+#&gt; 4             1   0.028    9.333     0.028        0          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

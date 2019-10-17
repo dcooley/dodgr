@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="dodgr_centrality — dodgr_centrality" />
-<meta property="og:description" content="Calculate betweenness centrality for a dodgr network, in either vertex- or
+<meta property="og:description" content="Calculate betweenness centrality for a 'dodgr' network, in either vertex- or
 edge-based form." />
 <meta name="twitter:card" content="summary" />
 
@@ -70,7 +70,7 @@ edge-based form." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.11</span>
       </span>
     </div>
 
@@ -112,49 +112,58 @@ edge-based form." />
     </div>
 
     <div class="ref-description">
-    <p>Calculate betweenness centrality for a <code>dodgr</code> network, in either vertex- or
+    <p>Calculate betweenness centrality for a 'dodgr' network, in either vertex- or
 edge-based form.</p>
     </div>
 
     <pre class="usage"><span class='fu'>dodgr_centrality</span>(<span class='no'>graph</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>)</pre>
+  <span class='kw'>dist_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p><code>data.frame</code> or equivalent object representing the network
+      <td><p>'data.frame' or equivalent object representing the network
 graph (see Details)</p></td>
     </tr>
     <tr>
       <th>contract</th>
-      <td><p>If <code>TRUE</code>, centrality is calculated on contracted graph
+      <td><p>If 'TRUE', centrality is calculated on contracted graph
 before mapping back on to the original full graph. Note that for street
 networks, in particular those obtained from the <span class="pkg">osmdata</span> package, vertex
 placement is effectively arbitrary except at junctions; centrality for such
 graphs should only be calculated between the latter points, and thus
-<code>contract</code> should always be <code>TRUE</code>.</p></td>
+'contract' should always be 'TRUE'.</p></td>
     </tr>
     <tr>
       <th>edges</th>
-      <td><p>If <code>TRUE</code>, centrality is calculated for graph edges, returning
-the input <code>graph</code> with an additional <code>centrality</code> column; otherwise
+      <td><p>If 'TRUE', centrality is calculated for graph edges, returning
+the input 'graph' with an additional 'centrality' column; otherwise
 centrality is calculated for vertices, returning the equivalent of
-<code><a href='dodgr_vertices.html'>dodgr_vertices(graph)</a></code>, with an additional vertex-based <code>centrality</code> column.</p></td>
+'dodgr_vertices(graph)', with an additional vertex-based 'centrality' column.</p></td>
+    </tr>
+    <tr>
+      <th>dist_threshold</th>
+      <td><p>If not 'NULL', only calculate centrality for each point
+out to specified threshold. Setting values for this will result in
+approximate estimates for centrality, yet with considerable gains in
+computational efficiency. For sufficiently large values, approximations will
+be accurate to within some constant multiplier. Appropriate values can be
+established via the <a href='estimate_centrality_threshold.html'>estimate_centrality_threshold</a> function.</p></td>
     </tr>
     <tr>
       <th>heap</th>
       <td><p>Type of heap to use in priority queue. Options include
-Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
-<code>Radix</code>, Trinomial Heap (<code>TriHeap</code>), Extended Trinomial Heap
-(<code>TriHeapExt</code>, and 2-3 Heap (<code>Heap23</code>).</p></td>
+Fibonacci Heap (default; 'FHeap'), Binary Heap ('BHeap'),
+'Radix', Trinomial Heap ('TriHeap'), Extended Trinomial Heap
+('TriHeapExt', and 2-3 Heap ('Heap23').</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Modified version of graph with additonal <code>centrality</code> column added.</p>
+    <p>Modified version of graph with additonal 'centrality' column added.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph_full</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
@@ -186,7 +195,7 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 }
 
 <span class='co'># An example of flow aggregation across a generic (non-OSM) highway,</span>
-<span class='co'># represented as the `routes_fast` object of the \pkg{stplanr} package,</span>
+<span class='co'># represented as the 'routes_fast' object of the \pkg{stplanr} package,</span>
 <span class='co'># which is a SpatialLinesDataFrame containing commuter densities along</span>
 <span class='co'># components of a street network.</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -194,8 +203,8 @@ Fibonacci Heap (default; <code>FHeap</code>), Binary Heap (<code>BHeap</code>),
 <span class='co'># merge all of the 'routes_fast' lines into a single network</span>
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>overline</span> (<span class='no'>routes_fast</span>, <span class='kw'>attrib</span> <span class='kw'>=</span> <span class='st'>"length"</span>, <span class='kw'>buff_dist</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_as_sf.html'>st_as_sf</a></span> (<span class='no'>r</span>)
-<span class='co'># Convert to a 'dodgr' network, for which we need to specify both a `type` and</span>
-<span class='co'># `id` column.</span>
+<span class='co'># Convert to a 'dodgr' network, for which we need to specify both a 'type' and</span>
+<span class='co'># 'id' column.</span>
 <span class='no'>r</span>$<span class='no'>type</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
 <span class='no'>r</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>r</span>))
 <span class='no'>graph_full</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>r</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"type"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
