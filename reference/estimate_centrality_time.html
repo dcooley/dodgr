@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>weighting_profiles — weighting_profiles • dodgr</title>
+<title>estimate_centrality_time — estimate_centrality_time • dodgr</title>
 
 
 <!-- jquery -->
@@ -35,11 +35,12 @@
 
 
 
-<meta property="og:title" content="weighting_profiles — weighting_profiles" />
-<meta property="og:description" content="Collection of weighting profiles used to adjust the routing process to
-different means of transport. Modified from data taken from the Routino
-project, with additional tables for average speeds, dependence of speed on
-type of surface, and waiting times in seconds at traffic lights." />
+<meta property="og:title" content="estimate_centrality_time — estimate_centrality_time" />
+<meta property="og:description" content="The 'dodgr' centrality functions are designed to be applied to potentially
+very large graphs, and may take considerable time to execute. This helper
+function estimates how long a centrality function may take for a given graph
+and given value of 'dist_threshold' estimated via the
+estimate_centrality_threshold function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,34 +109,82 @@ type of surface, and waiting times in seconds at traffic lights." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>weighting_profiles</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/dodgr-package.r'><code>R/dodgr-package.r</code></a></small>
-    <div class="hidden name"><code>weighting_profiles.Rd</code></div>
+    <h1>estimate_centrality_time</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/centrality.R'><code>R/centrality.R</code></a></small>
+    <div class="hidden name"><code>estimate_centrality_time.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Collection of weighting profiles used to adjust the routing process to
-different means of transport. Modified from data taken from the Routino
-project, with additional tables for average speeds, dependence of speed on
-type of surface, and waiting times in seconds at traffic lights.</p>
+    <p>The 'dodgr' centrality functions are designed to be applied to potentially
+very large graphs, and may take considerable time to execute. This helper
+function estimates how long a centrality function may take for a given graph
+and given value of 'dist_threshold' estimated via the
+<a href='estimate_centrality_threshold.html'>estimate_centrality_threshold</a> function.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>estimate_centrality_time</span>(<span class='no'>graph</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>dist_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>graph</th>
+      <td><p>'data.frame' or equivalent object representing the network
+graph (see Details)</p></td>
+    </tr>
+    <tr>
+      <th>contract</th>
+      <td><p>If 'TRUE', centrality is calculated on contracted graph
+before mapping back on to the original full graph. Note that for street
+networks, in particular those obtained from the <span class="pkg">osmdata</span> package, vertex
+placement is effectively arbitrary except at junctions; centrality for such
+graphs should only be calculated between the latter points, and thus
+'contract' should always be 'TRUE'.</p></td>
+    </tr>
+    <tr>
+      <th>edges</th>
+      <td><p>If 'TRUE', centrality is calculated for graph edges, returning
+the input 'graph' with an additional 'centrality' column; otherwise
+centrality is calculated for vertices, returning the equivalent of
+'dodgr_vertices(graph)', with an additional vertex-based 'centrality' column.</p></td>
+    </tr>
+    <tr>
+      <th>dist_threshold</th>
+      <td><p>If not 'NULL', only calculate centrality for each point
+out to specified threshold. Setting values for this will result in
+approximate estimates for centrality, yet with considerable gains in
+computational efficiency. For sufficiently large values, approximations will
+be accurate to within some constant multiplier. Appropriate values can be
+established via the <a href='estimate_centrality_threshold.html'>estimate_centrality_threshold</a> function.</p></td>
+    </tr>
+    <tr>
+      <th>heap</th>
+      <td><p>Type of heap to use in priority queue. Options include
+Fibonacci Heap (default; 'FHeap'), Binary Heap ('BHeap'),
+'Radix', Trinomial Heap ('TriHeap'), Extended Trinomial Heap
+('TriHeapExt', and 2-3 Heap ('Heap23').</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List of <code>data.frame</code> objects with profile names, means of transport
-and weights.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <p>An estimated calculation time for calculating centrality for the
+given value of 'dist_threshold'</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><a href='https://www.routino.org/xml/routino-profiles.xml'>https://www.routino.org/xml/routino-profiles.xml</a></p>
+    <p>This function may take some time to execute. While running, it displays
+ongoing information on screen of estimated values of 'dist_threshold' and
+associated errors. Thresholds are progressively increased until the error is
+reduced below the specified tolerance.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#references">References</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
     </ul>
 
   </div>
