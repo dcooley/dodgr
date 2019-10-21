@@ -186,7 +186,7 @@ flows are aggregated. To remove any such effect, set <code>tol = 0</code>.</p></
 <span class='co'># undirected flows on an equivalent undirected graph with:</span>
 <span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> (<span class='no'>graph</span>)
 <span class='co'># This graph will only include those edges having non-zero flows, and so:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 1179</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 835</div><div class='input'>
 <span class='co'># The following code can be used to convert the resultant graph to an `sf`</span>
 <span class='co'># object suitable for plotting</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
@@ -225,7 +225,8 @@ flows are aggregated. To remove any such effect, set <code>tol = 0</code>.</p></
 <span class='no'>r</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>r</span>))
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>r</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"type"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"id"</span>,
                            <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_flows_aggregate</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>xy_start</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>xy_end</span>, <span class='kw'>flows</span> <span class='kw'>=</span> <span class='no'>flows</span>)
+<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_flows_aggregate</span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>xy_start</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>xy_end</span>,
+                            <span class='kw'>flows</span> <span class='kw'>=</span> <span class='no'>flows</span>)
 <span class='co'># Then merge directed flows and convert to \pkg{sf} for plotting as before:</span>
 <span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> (<span class='no'>f</span>)
 <span class='no'>geoms</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_to_sfc.html'>dodgr_to_sfc</a></span> (<span class='no'>f</span>)

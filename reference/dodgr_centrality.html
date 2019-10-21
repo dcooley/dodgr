@@ -203,8 +203,8 @@ Fibonacci Heap (default; 'FHeap'), Binary Heap ('BHeap'),
 <span class='co'># merge all of the 'routes_fast' lines into a single network</span>
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>overline</span> (<span class='no'>routes_fast</span>, <span class='kw'>attrib</span> <span class='kw'>=</span> <span class='st'>"length"</span>, <span class='kw'>buff_dist</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>sf</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/sf/man/st_as_sf.html'>st_as_sf</a></span> (<span class='no'>r</span>)
-<span class='co'># Convert to a 'dodgr' network, for which we need to specify both a 'type' and</span>
-<span class='co'># 'id' column.</span>
+<span class='co'># Convert to a 'dodgr' network, for which we need to specify both a 'type'</span>
+<span class='co'># and 'id' column.</span>
 <span class='no'>r</span>$<span class='no'>type</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>
 <span class='no'>r</span>$<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>r</span>))
 <span class='no'>graph_full</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>r</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"type"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"id"</span>,

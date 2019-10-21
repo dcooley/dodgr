@@ -158,15 +158,15 @@ the street network.</p>
 <span class='co'># convert to form needed for `dodgr` functions:</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>streetnet</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># around 5,900 edges</span>
-<span class='co'># Alternative ways of extracting street networks by using a small selection of</span>
-<span class='co'># graph vertices to define bounding box:</span>
+<span class='co'># Alternative ways of extracting street networks by using a small selection</span>
+<span class='co'># of graph vertices to define bounding box:</span>
 <span class='no'>verts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>graph</span>)
 <span class='no'>verts</span> <span class='kw'>&lt;-</span> <span class='no'>verts</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>verts</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>200</span>), ]
 <span class='no'>streetnet</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_streetnet</span> (<span class='kw'>pts</span> <span class='kw'>=</span> <span class='no'>verts</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0</span>)
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>streetnet</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>)
-<span class='co'># This will generally have many more rows because most street networks include</span>
-<span class='co'># streets that extend considerably beyond the specified bounding box.</span>
+<span class='co'># This will generally have many more rows because most street networks</span>
+<span class='co'># include streets that extend considerably beyond the specified bounding box.</span>
 
 <span class='co'># bbox can also be a polygon:</span>
 <span class='no'>bb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>osmdata</span><span class='kw ns'>::</span><span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/getbb.html'>getbb</a></span> (<span class='st'>"gent belgium"</span>) <span class='co'># rectangular bbox</span>
