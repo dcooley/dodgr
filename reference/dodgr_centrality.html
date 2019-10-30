@@ -178,7 +178,7 @@ Fibonacci Heap (default; 'FHeap'), Binary Heap ('BHeap'),
 #&gt; <span class='message'>    decompose, spectrum</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    union</span></div><div class='input'><span class='no'>cent</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/igraph/man/betweenness.html'>edge_betweenness</a></span> (<span class='no'>igr</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span> (<span class='no'>cent</span>, <span class='no'>graph</span>$<span class='no'>centrality</span>) <span class='co'># TRUE</span></div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='co'># Values of centrality between all junctions in the contracted graph can then</span>
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span> (<span class='no'>cent</span>, <span class='no'>graph</span>$<span class='no'>centrality</span>) <span class='co'># TRUE</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'># Values of centrality between all junctions in the contracted graph can then</span>
 <span class='co'># be mapped back onto the original full network by "uncontracting":</span>
 <span class='no'>graph_full</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_uncontract_graph.html'>dodgr_uncontract_graph</a></span> (<span class='no'>graph</span>)
 <span class='co'># For visualisation, it is generally necessary to merge the directed edges to</span>
