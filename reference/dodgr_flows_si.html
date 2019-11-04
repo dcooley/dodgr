@@ -142,9 +142,11 @@ calculated (see Details)</p></td>
     </tr>
     <tr>
       <th>k</th>
-      <td><p>Either single value specifying width of exponential spatial
-interaction function (exp (-d / k)), or vector of independent values for each
-origin point (with same length as 'from' points).</p></td>
+      <td><p>Width of exponential spatial interaction function (exp (-d / k)),
+in units of 'd', specified in one of 3 forms: (i) a single vlaue; (ii) a
+vector of independent values for each origin point (with same length as
+'from' points); or (iii) an equivalent matrix with each column holding values
+for each 'from' point, so 'nrow(k)==length(from)'. See Note.</p></td>
     </tr>
     <tr>
       <th>dens_from</th>
@@ -184,6 +186,17 @@ flows are aggregated. To remove any such effect, set <code>tol = 0</code>.</p></
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Modified version of graph with additonal <code>flow</code> column added.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Spatial Interaction models are often fitted through trialling a range
+of values of 'k'. The specification above allows fitting multiple values of
+'k' to be done with a single call, in a way that is far more efficient than
+making multiple calls. A matrix of 'k' values may be entered, with each
+column holding a different vector of values, one for each 'from' point. For a
+matrix of 'k' values having 'n' columns, the return object will be a modified
+version in the input 'graph', with an additional 'n' columns, named 'flow1',
+'flow2', ... up to 'n'. These columns must be subsequently matched by the
+user back on to the corresponding columns of the matrix of 'k' values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
@@ -198,13 +211,14 @@ flows are aggregated. To remove any such effect, set <code>tol = 0</code>.</p></
 <span class='co'># undirected flows on an equivalent undirected graph with:</span>
 <span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> (<span class='no'>graph</span>)
 <span class='co'># This graph will only include those edges having non-zero flows, and so:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 651</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph_undir</span>) <span class='co'># the latter is much smaller</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 768</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
