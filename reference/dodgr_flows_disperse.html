@@ -70,7 +70,7 @@ and associated densities" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.19</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.20</span>
       </span>
     </div>
 
@@ -172,6 +172,17 @@ can be removed by setting <code>tol = 0</code>.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Modified version of graph with additonal <code>flow</code> column added.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Spatial Interaction models are often fitted through trialling a range
+of values of 'k'. The specification above allows fitting multiple values of
+'k' to be done with a single call, in a way that is far more efficient than
+making multiple calls. A matrix of 'k' values may be entered, with each
+column holding a different vector of values, one for each 'from' point. For a
+matrix of 'k' values having 'n' columns, the return object will be a modified
+version in the input 'graph', with an additional 'n' columns, named 'flow1',
+'flow2', ... up to 'n'. These columns must be subsequently matched by the
+user back on to the corresponding columns of the matrix of 'k' values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
@@ -188,6 +199,7 @@ can be removed by setting <code>tol = 0</code>.</p></td>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#note">Note</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
