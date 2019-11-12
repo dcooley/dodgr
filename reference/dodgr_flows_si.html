@@ -71,7 +71,7 @@ points, and associated vectors of densities." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.25</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.26</span>
       </span>
     </div>
 
@@ -206,12 +206,14 @@ user back on to the corresponding columns of the matrix of 'k' values.</p>
 <p>The <code>norm_sums</code> parameter should be used whenever densities at origins
 and destinations are absolute values, and ensures that the sum of resultant
 flow values throughout the entire network equals the sum of densities at all
-origins. If <code>norm_sums = FALSE</code>, then, for example, a flow from a single
-origin with density one to a single destination along two edges will
-allocate flows of one to each of those edges, such that the sum of flows
-across the network will equal two, or greater than the sum of densities. This
-option is appropriate where densities are relative values, and ensures that
-each edge maintains relative proportions.</p>
+origins. For example, with <code>norm_sums = TRUE</code> (the default), a flow from a
+single origin with density one to a single destination along two edges will
+allocate flows of one half to each of those edges, such that the sum of flows
+across the network will equal one, or the sum of densities from all origins.
+The <code>norm_sums = TRUE</code> option is appropriate where densities are relative
+values, and ensures that each edge maintains relative proportions. In the
+above example, flows along each of two edges would equal one, for a network
+sum of two, or greater than the sum of densities.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
