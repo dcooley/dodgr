@@ -3,5 +3,6 @@ pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   dodgr: dodgr.html
+  flows: flows.html
   times: times.html
 
