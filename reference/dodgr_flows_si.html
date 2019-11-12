@@ -214,6 +214,12 @@ The <code>norm_sums = TRUE</code> option is appropriate where densities are rela
 values, and ensures that each edge maintains relative proportions. In the
 above example, flows along each of two edges would equal one, for a network
 sum of two, or greater than the sum of densities.</p>
+<p>With <code>norm_sums = TRUE</code>, the sum of network flows (<code><a href='https://rdrr.io/r/base/sum.html'>sum(output$flow)</a></code>) should
+equal the sum of origin densities (<code><a href='https://rdrr.io/r/base/sum.html'>sum(dens_from)</a></code>). This may nevertheless
+not always be the case, because origin points may simply be too far from any
+denstination (<code>to</code>) points for an exponential model to yield non-zero values
+anywhere in a network within machine tolerance. Such cases may result in sums
+of output flows being less than sums of input densities.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
