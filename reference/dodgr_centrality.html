@@ -70,7 +70,7 @@ edge-based form." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.28</span>
       </span>
     </div>
 
@@ -116,8 +116,13 @@ edge-based form." />
 edge-based form.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_centrality</span>(<span class='no'>graph</span>, <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>dist_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_centrality</span>(
+  <span class='no'>graph</span>,
+  <span class='kw'>contract</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>edges</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>dist_threshold</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -211,12 +216,12 @@ Fibonacci Heap (default; 'FHeap'), Binary Heap ('BHeap'),
                                 <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 <span class='co'># convert to contracted form, retaining junction vertices only, and append</span>
 <span class='co'># 'centrality' column</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>graph_full</span>) <span class='kw'>%&gt;%</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>graph_full</span>)
     <span class='fu'>dodgr_centrality</span> ()
 <span class='co'>#' expand back to full graph; merge directed flows; and convert result to</span>
 <span class='co'># 'sf'-format for plotting</span>
-<span class='no'>graph_sf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_uncontract_graph.html'>dodgr_uncontract_graph</a></span> (<span class='no'>graph</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> () <span class='kw'>%&gt;%</span>
+<span class='no'>graph_sf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_uncontract_graph.html'>dodgr_uncontract_graph</a></span> (<span class='no'>graph</span>)
+    <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> ()
     <span class='fu'><a href='dodgr_to_sf.html'>dodgr_to_sf</a></span> ()
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span> (<span class='no'>graph_sf</span> [<span class='st'>"centrality"</span>])
 }</div></pre>

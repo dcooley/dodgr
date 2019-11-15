@@ -70,7 +70,7 @@ along railways." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.28</span>
       </span>
     </div>
 
@@ -116,9 +116,13 @@ along railways." />
 along railways.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>weight_railway</span>(<span class='no'>sf_lines</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"railway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
-  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"maxspeed"</span>), <span class='kw'>excluded</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"abandoned"</span>, <span class='st'>"disused"</span>,
-  <span class='st'>"proposed"</span>, <span class='st'>"razed"</span>))</pre>
+    <pre class="usage"><span class='fu'>weight_railway</span>(
+  <span class='no'>sf_lines</span>,
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"railway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"maxspeed"</span>),
+  <span class='kw'>excluded</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"abandoned"</span>, <span class='st'>"disused"</span>, <span class='st'>"proposed"</span>, <span class='st'>"razed"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -166,8 +170,8 @@ as by maximum speed, can be implemented simply by modifying the
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># sample railway extraction with the 'osmdata' package</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>osmdata</span>)
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/opq.html'>opq</a></span> (<span class='st'>"shinjuku"</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span> (<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"railway"</span>) <span class='kw'>%&gt;%</span>
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/opq.html'>opq</a></span> (<span class='st'>"shinjuku"</span>)
+    <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span> (<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"railway"</span>)
     <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/osmdata_sf.html'>osmdata_sf</a></span> (<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>weight_railway</span> (<span class='no'>dat</span>$<span class='no'>osm_lines</span>)
 }</div></pre>

@@ -71,7 +71,7 @@ bicycle, moped, motorcycle, motorcar, goods, hgv, psv)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.28</span>
       </span>
     </div>
 
@@ -118,24 +118,52 @@ network according to a named profile, selected from (foot, horse, wheelchair,
 bicycle, moped, motorcycle, motorcar, goods, hgv, psv).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>, <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>, <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
-  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>weight_streetnet</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for default</span>
-<span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
-  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>weight_streetnet</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for sf</span>
-<span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
-  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'>weight_streetnet</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='co'># S3 method for sc</span>
-<span class='fu'>weight_streetnet</span>(<span class='no'>x</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
-  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
-  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>, <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>weight_streetnet</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>"bicycle"</span>,
+  <span class='kw'>wt_profile_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>turn_penalty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>type_col</span> <span class='kw'>=</span> <span class='st'>"highway"</span>,
+  <span class='kw'>id_col</span> <span class='kw'>=</span> <span class='st'>"osm_id"</span>,
+  <span class='kw'>keep_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>left_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
