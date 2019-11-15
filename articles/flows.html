@@ -70,7 +70,7 @@
       <h1>dodgr flows</h1>
                         <h4 class="author">Mark Padgham</h4>
             
-            <h4 class="date">2019-11-12</h4>
+            <h4 class="date">2019-11-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ATFutures/dodgr/blob/master/vignettes/flows.Rmd"><code>vignettes/flows.Rmd</code></a></small>
       <div class="hidden name"><code>flows.Rmd</code></div>
@@ -93,31 +93,31 @@
 <p>This <code>flows</code> matrix is then submitted to <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code></a>, which simply appends an additional column of <code>flows</code> to the submitted <code>graph</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">flows =</span> flows)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span> (graph_f)</a></code></pre></div>
-<pre><code>##   geom_num edge_id    from_id from_lon from_lat      to_id   to_lon
-## 1        1       1  339318500 76.47489 15.34169  339318502 76.47612
-## 2        1       2  339318502 76.47612 15.34173  339318500 76.47489
-## 3        1       3  339318502 76.47612 15.34173 2398958028 76.47621
-## 4        1       4 2398958028 76.47621 15.34174  339318502 76.47612
-## 5        1       5 2398958028 76.47621 15.34174 1427116077 76.47628
-## 6        1       6 1427116077 76.47628 15.34179 2398958028 76.47621
-##     to_lat          d d_weighted      highway   way_id component      time
-## 1 15.34173 132.442169  165.55271 unclassified 28565950         1 95.358362
-## 2 15.34169 132.442169  165.55271 unclassified 28565950         1 95.358362
-## 3 15.34174   8.888670   11.11084 unclassified 28565950         1  6.399842
-## 4 15.34173   8.888670   11.11084 unclassified 28565950         1  6.399842
-## 5 15.34179   9.326536   11.65817 unclassified 28565950         1  6.715106
-## 6 15.34174   9.326536   11.65817 unclassified 28565950         1  6.715106
-##   time_weighted flow
-## 1    119.197952    0
-## 2    119.197952    0
-## 3      7.999803    0
-## 4      7.999803    0
-## 5      8.393882    0
-## 6      8.393882    0</code></pre>
+<pre><code>##   geom_num edge_id    from_id from_lon from_lat      to_id   to_lon   to_lat
+## 1        1       1  339318500 76.47489 15.34169  339318502 76.47612 15.34173
+## 2        1       2  339318502 76.47612 15.34173  339318500 76.47489 15.34169
+## 3        1       3  339318502 76.47612 15.34173 2398958028 76.47621 15.34174
+## 4        1       4 2398958028 76.47621 15.34174  339318502 76.47612 15.34173
+## 5        1       5 2398958028 76.47621 15.34174 1427116077 76.47628 15.34179
+## 6        1       6 1427116077 76.47628 15.34179 2398958028 76.47621 15.34174
+##            d d_weighted      highway   way_id component      time time_weighted
+## 1 132.442169  165.55271 unclassified 28565950         1 95.358362    119.197952
+## 2 132.442169  165.55271 unclassified 28565950         1 95.358362    119.197952
+## 3   8.888670   11.11084 unclassified 28565950         1  6.399842      7.999803
+## 4   8.888670   11.11084 unclassified 28565950         1  6.399842      7.999803
+## 5   9.326536   11.65817 unclassified 28565950         1  6.715106      8.393882
+## 6   9.326536   11.65817 unclassified 28565950         1  6.715106      8.393882
+##   flow
+## 1    0
+## 2    0
+## 3    0
+## 4    0
+## 5    0
+## 6    0</code></pre>
 <p>Most flows are zero because they have only been calculated between very few points in the graph.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.05048 0.01261 1.06538</code></pre>
+## 0.00000 0.00000 0.00000 0.04051 0.00000 0.72255</code></pre>
 </div>
 <div id="flow-dispersal" class="section level2">
 <h2 class="hasAnchor">
@@ -127,7 +127,7 @@
 <a class="sourceLine" id="cb6-2" data-line-number="2">graph_f &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">dens =</span> dens)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (graph_f<span class="op">$</span>flow)</a></code></pre></div>
 <pre><code>##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## 0.0000000 0.0000000 0.0000798 0.0016742 0.0010886 0.0664087</code></pre>
+## 0.000e+00 0.000e+00 8.208e-05 1.674e-03 1.229e-03 8.542e-02</code></pre>
 </div>
 <div id="merging-directed-flows" class="section level2">
 <h2 class="hasAnchor">
@@ -137,7 +137,7 @@
 <p>Resultant graphs produced by <a href="https://atfutures.github.io/dodgr/reference/merge_directed_graph.html"><code><a href="../reference/merge_directed_graph.html">merge_directed_graph()</a></code></a> only include those edges having non-zero flows, and so:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_f); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_undir) <span class="co"># the latter is much smaller</span></a></code></pre></div>
 <pre><code>## [1] 5973</code></pre>
-<pre><code>## [1] 2878</code></pre>
+<pre><code>## [1] 2956</code></pre>
 <p>The resultant graph can readily be merged with the original graph to regain the original data on vertex coordinates through</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">graph &lt;-<span class="st"> </span>graph [graph_undir<span class="op">$</span>edge_id, ]</a>
 <a class="sourceLine" id="cb12-2" data-line-number="2">graph<span class="op">$</span>flow &lt;-<span class="st"> </span>graph_undir<span class="op">$</span>flow</a></code></pre></div>
