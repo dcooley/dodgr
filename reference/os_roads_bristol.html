@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.36</span>
       </span>
     </div>
 
@@ -141,8 +141,8 @@ Contains OS data © Crown copyright and database right (2017)</p>
 <span class='co'># mapview::mapview(lads)</span>
 <span class='co'># bristol_pol &lt;- dplyr::filter(lads, grepl("Bristol", lad16nm))</span>
 <span class='co'># os_roads &lt;- st_transform(os_roads, st_crs(lads))</span>
-<span class='co'># os_roads_bristol &lt;- os_roads[bristol_pol, ] </span>
-<span class='co'>#   dplyr::filter(class == "Motorway" &amp; roadNumber != "M32") </span>
+<span class='co'># os_roads_bristol &lt;- os_roads[bristol_pol, ] %&gt;% </span>
+<span class='co'>#   dplyr::filter(class == "Motorway" &amp; roadNumber != "M32") %&gt;% </span>
 <span class='co'>#   st_zm(drop = TRUE)</span>
 <span class='co'># mapview::mapview(os_roads_bristol)</span>
 }

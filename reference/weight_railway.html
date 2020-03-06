@@ -70,7 +70,7 @@ along railways." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.36</span>
       </span>
     </div>
 
@@ -170,8 +170,8 @@ as by maximum speed, can be implemented simply by modifying the
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># sample railway extraction with the 'osmdata' package</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span> (<span class='no'>osmdata</span>)
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/opq.html'>opq</a></span> (<span class='st'>"shinjuku"</span>)
-    <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span> (<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"railway"</span>)
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/opq.html'>opq</a></span> (<span class='st'>"shinjuku"</span>) <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/add_osm_feature.html'>add_osm_feature</a></span> (<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"railway"</span>) <span class='kw'>%&gt;%</span>
     <span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/osmdata_sf.html'>osmdata_sf</a></span> (<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>weight_railway</span> (<span class='no'>dat</span>$<span class='no'>osm_lines</span>)
 }</div></pre>

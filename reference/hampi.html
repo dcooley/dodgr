@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.36</span>
       </span>
     </div>
 
@@ -126,7 +126,13 @@ network of Hampi.</p>
 extraneous columns to reduce size:</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>hampi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_streetnet.html'>dodgr_streetnet</a></span>(<span class='st'>"hampi india"</span>)
+<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"osm_id"</span>, <span class='st'>"highway"</span>, <span class='st'>"oneway"</span>, <span class='st'>"geometry"</span>)
+<span class='no'>hampi</span> <span class='kw'>&lt;-</span> <span class='no'>hampi</span> [, <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span> (<span class='no'>hampi</span>) <span class='kw'>%in%</span> <span class='no'>cols</span>)]
+}
+<span class='co'># this 'sf data.frame' can be converted to a 'dodgr' network with</span>
+<span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>'foot'</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

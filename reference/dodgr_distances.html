@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.29</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.36</span>
       </span>
     </div>
 
@@ -119,6 +119,7 @@
   <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>shortest</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>pairwise</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>heap</span> <span class='kw'>=</span> <span class='st'>"BHeap"</span>,
   <span class='kw'>parallel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
@@ -146,6 +147,11 @@ calculated (see Notes)</p></td>
       <th>shortest</th>
       <td><p>If <code>FALSE</code>, calculate distances along the <em>fastest</em>
 rather than shortest routes (see Notes).</p></td>
+    </tr>
+    <tr>
+      <th>pairwise</th>
+      <td><p>If <code>TRUE</code>, calculate distances only between the ordered
+pairs of <code>from</code> and <code>to</code>.</p></td>
     </tr>
     <tr>
       <th>heap</th>
