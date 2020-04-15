@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>hampi — hampi • dodgr</title>
+<title>dodgr_insert_vertex — dodgr_insert_vertex • dodgr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="hampi — hampi" />
-<meta property="og:description" content="A sample street network from the township of Hampi, Karnataka, India." />
+<meta property="og:title" content="dodgr_insert_vertex — dodgr_insert_vertex" />
+<meta property="og:description" content="Insert a new node or vertex into a network" />
 
 
 
@@ -108,34 +108,62 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>hampi</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/dodgr-package.r'><code>R/dodgr-package.r</code></a></small>
-    <div class="hidden name"><code>hampi.Rd</code></div>
+    <h1>dodgr_insert_vertex</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ATFutures/dodgr/blob/master/R/graph-functions.R'><code>R/graph-functions.R</code></a></small>
+    <div class="hidden name"><code>dodgr_insert_vertex.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A sample street network from the township of Hampi, Karnataka, India.</p>
+    <p>Insert a new node or vertex into a network</p>
     </div>
 
+    <pre class="usage"><span class='fu'>dodgr_insert_vertex</span>(<span class='no'>graph</span>, <span class='no'>v1</span>, <span class='no'>v2</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>graph</th>
+      <td><p>A flat table of graph edges. Must contain columns labelled
+<code>from</code> and <code>to</code>, or <code>start</code> and <code>stop</code>. May also contain
+similarly labelled columns of spatial coordinates (for example
+<code>from_x</code>) or <code>stop_lon</code>).</p></td>
+    </tr>
+    <tr>
+      <th>v1</th>
+      <td><p>Vertex defining start of graph edge along which new vertex is to be
+inserted</p></td>
+    </tr>
+    <tr>
+      <th>v2</th>
+      <td><p>Vertex defining end of graph edge along which new vertex is to be
+inserted (order of <code>v1</code> and <code>v2</code> is not important).</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>The <code>x</code>-coordinate of new vertex. If not specified, vertex is
+created half-way between <code>v1</code> and <code>v2</code>.</p></td>
+    </tr>
+    <tr>
+      <th>y</th>
+      <td><p>The <code>y</code>-coordinate of new vertex. If not specified, vertex is
+created half-way between <code>v1</code> and <code>v2</code>.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A Simple Features <code>sf</code> <code>data.frame</code> containing the street
-network of Hampi.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
-    <p>Can be re-created with the following command, which also removes
-extraneous columns to reduce size:</p>
+    <p>A modifed graph with specified edge between defined start and end
+vertices split into two edges either side of new vertex.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>hampi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_streetnet.html'>dodgr_streetnet</a></span>(<span class='st'>"hampi india"</span>)
-<span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span> (<span class='st'>"osm_id"</span>, <span class='st'>"highway"</span>, <span class='st'>"oneway"</span>, <span class='st'>"geometry"</span>)
-<span class='no'>hampi</span> <span class='kw'>&lt;-</span> <span class='no'>hampi</span> [, <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span> (<span class='no'>hampi</span>) <span class='kw'>%in%</span> <span class='no'>cols</span>)]
-}
-<span class='co'># this 'sf data.frame' can be converted to a 'dodgr' network with</span>
-<span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>, <span class='kw'>wt_profile</span> <span class='kw'>=</span> <span class='st'>'foot'</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
+<span class='no'>e1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>), <span class='fl'>1</span>)
+<span class='no'>v1</span> <span class='kw'>&lt;-</span> <span class='no'>graph</span>$<span class='no'>from_id</span> [<span class='no'>e1</span>]
+<span class='no'>v2</span> <span class='kw'>&lt;-</span> <span class='no'>graph</span>$<span class='no'>to_id</span> [<span class='no'>e1</span>]
+<span class='co'># insert new vertex in the middle of that randomly-selected edge:</span>
+<span class='no'>graph2</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_insert_vertex</span> (<span class='no'>graph</span>, <span class='no'>v1</span>, <span class='no'>v2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph2</span>) <span class='co'># new edges added to graph2</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 5975</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
