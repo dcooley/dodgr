@@ -160,30 +160,30 @@ fair comparisons, run only once or re-start the current R session.</p>
     <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
 <span class='fu'>compare_heaps</span> (<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>replications</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: rbenchmark</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: igraph</span></div><div class='output co'>#&gt;                                                                                   test
 #&gt; 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
+#&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
+#&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
 #&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
 #&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
-#&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
-#&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
 #&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
+#&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
 #&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
-#&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
-#&gt; 6             1   0.002      1.0     0.003        0          0         0
-#&gt; 7             1   0.003      1.5     0.003        0          0         0
-#&gt; 8             1   0.003      1.5     0.004        0          0         0
-#&gt; 9             1   0.003      1.5     0.003        0          0         0
-#&gt; 11            1   0.003      1.5     0.003        0          0         0
-#&gt; 10            1   0.004      2.0     0.003        0          0         0
-#&gt; 1             1   0.010      5.0     0.010        0          0         0
-#&gt; 12            1   0.011      5.5     0.012        0          0         0
-#&gt; 2             1   0.015      7.5     0.015        0          0         0
-#&gt; 5             1   0.016      8.0     0.016        0          0         0
-#&gt; 3             1   0.017      8.5     0.017        0          0         0
-#&gt; 4             1   0.017      8.5     0.017        0          0         0</div></pre>
+#&gt; 6             1   0.003    1.000     0.003        0          0         0
+#&gt; 10            1   0.003    1.000     0.003        0          0         0
+#&gt; 11            1   0.003    1.000     0.003        0          0         0
+#&gt; 7             1   0.004    1.333     0.004        0          0         0
+#&gt; 8             1   0.004    1.333     0.004        0          0         0
+#&gt; 9             1   0.004    1.333     0.004        0          0         0
+#&gt; 1             1   0.012    4.000     0.012        0          0         0
+#&gt; 12            1   0.012    4.000     0.013        0          0         0
+#&gt; 2             1   0.016    5.333     0.016        0          0         0
+#&gt; 4             1   0.017    5.667     0.017        0          0         0
+#&gt; 5             1   0.017    5.667     0.017        0          0         0
+#&gt; 3             1   0.018    6.000     0.018        0          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

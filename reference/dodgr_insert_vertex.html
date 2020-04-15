@@ -162,8 +162,7 @@ vertices split into two edges either side of new vertex.</p>
 <span class='no'>v1</span> <span class='kw'>&lt;-</span> <span class='no'>graph</span>$<span class='no'>from_id</span> [<span class='no'>e1</span>]
 <span class='no'>v2</span> <span class='kw'>&lt;-</span> <span class='no'>graph</span>$<span class='no'>to_id</span> [<span class='no'>e1</span>]
 <span class='co'># insert new vertex in the middle of that randomly-selected edge:</span>
-<span class='no'>graph2</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_insert_vertex</span> (<span class='no'>graph</span>, <span class='no'>v1</span>, <span class='no'>v2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph2</span>) <span class='co'># new edges added to graph2</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 5975</div></pre>
+<span class='no'>graph2</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_insert_vertex</span> (<span class='no'>graph</span>, <span class='no'>v1</span>, <span class='no'>v2</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: geodist</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>); <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph2</span>) <span class='co'># new edges added to graph2</span></div><div class='output co'>#&gt; [1] 5973</div><div class='output co'>#&gt; [1] 5975</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
