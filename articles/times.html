@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Street networks and time-based routing • dodgr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Street networks and time-based routing">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="dodgr">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.36</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.5.041</span>
       </span>
     </div>
 
@@ -67,10 +67,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Street networks and time-based routing</h1>
+      <h1 data-toc-skip>Street networks and time-based routing</h1>
                         <h4 class="author">Mark Padgham</h4>
             
-            <h4 class="date">2020-03-06</h4>
+            <h4 class="date">2020-04-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ATFutures/dodgr/blob/master/vignettes/times.Rmd"><code>vignettes/times.Rmd</code></a></small>
       <div class="hidden name"><code>times.Rmd</code></div>
@@ -138,27 +138,27 @@
 <span class="math inline">\(A\rightarrow D\)</span> (…);</li>
 </ol>
 <p>Weighting for time-based routing thus not only introduces new “compound” edges, but also requires re-labelling junction vertices, through appending either “_start” or “_end”. Recommended practice for routing in such cases is to select routing vertices (origins and destinations) from a standard weighted graph (that is, one generated with <code>turn_penalty = FALSE</code>), and then to modify these routing vertices as illustrated in the following example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">dat_sc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_streetnet_sc.html">dodgr_streetnet_sc</a></span> (<span class="st">"ogbomosho nigeria"</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">graph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (dat_sc, <span class="dt">wt_profile =</span> <span class="st">"bicycle"</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">graph_t &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (dat_sc, <span class="dt">wt_profile =</span> <span class="st">"bicycle"</span>, <span class="dt">turn_penalty =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_t)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">dat_sc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_streetnet_sc.html">dodgr_streetnet_sc</a></span> (<span class="st">"ogbomosho nigeria"</span>)
+<span class="no">graph</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (<span class="no">dat_sc</span>, <span class="kw">wt_profile</span> <span class="kw">=</span> <span class="st">"bicycle"</span>)
+<span class="no">graph_t</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (<span class="no">dat_sc</span>, <span class="kw">wt_profile</span> <span class="kw">=</span> <span class="st">"bicycle"</span>, <span class="kw">turn_penalty</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="no">graph</span>); <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="no">graph_t</span>)</pre></body></html></div>
 <pre><code>## [1] 164168 173160</code></pre>
 <p>The time-weighted graph has additional compound edges used to reflect the penalty for turning across traffic. Let’s now presume we want to calculate distances between some number of randomly-selected street junctions. The junctions may readily be extracted through the <a href="https://atfutures.github.io/dodgr/reference/dodgr_contract_graph.html"><code><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph()</a></code> function</a>, which reduces the graph to junction vertices only. The junction vertices of <code>graph_t</code> are re-labelled as described above to separate incoming from outgoing edges (through appending <code>_start</code> and <code>_end</code> to vertex names), and so may not be used for routing. Instead, routing points should be taken from the contracted version of the original graph.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">graphc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph) <span class="co"># not graph_t!</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (graphc)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">n &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># number of desired vertices</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (v<span class="op">$</span>id, <span class="dt">size =</span> n)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (v<span class="op">$</span>id, <span class="dt">size =</span> n)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">graphc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (<span class="no">graph</span>) <span class="co"># not graph_t!</span>
+<span class="no">v</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_vertices.html">dodgr_vertices</a></span> (<span class="no">graphc</span>)
+<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fl">100</span> <span class="co"># number of desired vertices</span>
+<span class="no">from</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (<span class="no">v</span>$<span class="no">id</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="no">n</span>)
+<span class="no">to</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (<span class="no">v</span>$<span class="no">id</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="no">n</span>)</pre></body></html></div>
 <p>These can then be submitted to any <code>dodgr</code> functions along with the graph with turn penalties, and will be matched on to the corresponding nodes appended with <code>_start</code> for the <code>from</code>vertices and <code>_end</code> for the <code>to</code> vertices. As usual, it will generally be quicker to first contract the graph prior to routing.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">graph_tc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (graph_t)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_tc); <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (graph_t)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">graph_tc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_contract_graph.html">dodgr_contract_graph</a></span> (<span class="no">graph_t</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="no">graph_tc</span>); <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="no">graph_t</span>)</pre></body></html></div>
 <pre><code>## [1]  35808 176160</code></pre>
 <p>Contracting this graph has reduced its size by almost 80%, translating to considerably faster routing queries. The resultant graph, along with the <code>from</code> and <code>to</code> routing points, may be passed to any of the <code>dodgr</code> routing functions, such as <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a>, <a href="https://atfutures.github.io/dodgr/reference/dodgr_paths.html"><code><a href="../reference/dodgr_paths.html">dodgr_paths()</a></code></a>, or even <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code></a>, as well as the all-new function detailed in the following section, <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="../reference/dodgr_times.html">dodgr_times()</a></code></a>.</p>
 <div id="weighting-profiles-and-the-write_dodgr_wt_profile-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#weighting-profiles-and-the-write_dodgr_wt_profile-function" class="anchor"></a>3.1 Weighting profiles and the <code>write_dodgr_wt_profile</code> function</h2>
 <p>As demonstrated above, usage of the <a href="https://atfutures.github.io/dodgr/reference/weight_streetnet.html"><code><a href="../reference/weight_streetnet.html">weight_streetnet()</a></code></a> function will generally be as simple as specifying the mode of transport for which the network is to be weighted. It may nevertheless be desirable to explicitly determine individual aspects of a weighting profile (such as the time penalties for turning angles explored above). All weighting profiles are contained in the internal data, <code><a href="../reference/weighting_profiles.html">dodgr::weighting_profiles</a></code>, which contain the following data, for brevity showing only the “bicycle” mode:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span> (dodgr<span class="op">::</span>weighting_profiles, <span class="cf">function</span> (i) i [i<span class="op">$</span>name <span class="op">==</span><span class="st"> "bicycle"</span>, ])</a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span> (<span class="kw pkg">dodgr</span><span class="kw ns">::</span><span class="no"><a href="../reference/weighting_profiles.html">weighting_profiles</a></span>, <span class="kw">function</span> (<span class="no">i</span>) <span class="no">i</span> [<span class="no">i</span>$<span class="no">name</span> <span class="kw">==</span> <span class="st">"bicycle"</span>, ])</pre></body></html></div>
 <pre><code>## $weighting_profiles
 ##       name            way value max_speed
 ## 67 bicycle       motorway  0.00        NA
@@ -213,71 +213,55 @@
 <h1 class="hasAnchor">
 <a href="#time-based-routing-and-the-dodgr_times-function" class="anchor"></a>4. Time-based routing and the <code>dodgr_times()</code> function</h1>
 <p>By default, <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a> and all other standard routing functions (<code>paths</code>, <code>flows_</code>) are <em>distance-based</em>, meaning routing is along paths with the shortest <em>distances</em>. In contrast, time-based routing calculates paths with the shortest <em>times</em>; in other words, the <em>fastest</em> rather than <em>shortest</em> paths. Distances may nevertheless be calculated along fastest paths, through the <code>shortest = FALSE</code> parameter. The function still returns distances (in metres), but as calculated along fastest paths. An example:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">graph &lt;-<span class="st"> </span><span class="kw"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (hampi, <span class="dt">wt_profile =</span> <span class="st">"foot"</span>)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="dv">100</span> <span class="co"># number of sample routing vertices</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">from &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>from_id, <span class="dt">size =</span> n)</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">to &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (graph<span class="op">$</span>from_id, <span class="dt">size =</span> n)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">d_dist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">shortest =</span> <span class="ot">TRUE</span>) <span class="co"># default</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">d_time &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">shortest =</span> <span class="ot">FALSE</span>) <span class="co"># fastest paths</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span> (d_dist <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>, d_time <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>, <span class="dt">col =</span> <span class="st">"orange"</span>,</a>
-<a class="sourceLine" id="cb8-8" data-line-number="8">      <span class="dt">xlab =</span> <span class="st">"distances along shortest paths (km)"</span>,</a>
-<a class="sourceLine" id="cb8-9" data-line-number="9">      <span class="dt">ylab =</span> <span class="st">"distances along fastest paths (km)"</span>)</a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span> (<span class="dv">0</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">0</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">col =</span> <span class="st">"red"</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">graph</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/weight_streetnet.html">weight_streetnet</a></span> (<span class="no">hampi</span>, <span class="kw">wt_profile</span> <span class="kw">=</span> <span class="st">"foot"</span>)
+<span class="no">n</span> <span class="kw">&lt;-</span> <span class="fl">100</span> <span class="co"># number of sample routing vertices</span>
+<span class="no">from</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (<span class="no">graph</span>$<span class="no">from_id</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="no">n</span>)
+<span class="no">to</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span> (<span class="no">graph</span>$<span class="no">from_id</span>, <span class="kw">size</span> <span class="kw">=</span> <span class="no">n</span>)
+<span class="no">d_dist</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="no">graph</span>, <span class="kw">from</span> <span class="kw">=</span> <span class="no">from</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="no">to</span>, <span class="kw">shortest</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="co"># default</span>
+<span class="no">d_time</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_dists.html">dodgr_dists</a></span> (<span class="no">graph</span>, <span class="kw">from</span> <span class="kw">=</span> <span class="no">from</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="no">to</span>, <span class="kw">shortest</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="co"># fastest paths</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span> (<span class="no">d_dist</span> / <span class="fl">1000</span>, <span class="no">d_time</span> / <span class="fl">1000</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"orange"</span>,
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"distances along shortest paths (km)"</span>,
+      <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"distances along fastest paths (km)"</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span> (<span class="fl">0</span>:<span class="fl">100</span>, <span class="fl">0</span>:<span class="fl">100</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">lty</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
 <p><img src="times_files/figure-html/shortest-vs-fastest-1.png" width="700"></p>
 <p>The average distance between the two (in metres) is:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span> (d_time <span class="op">-</span><span class="st"> </span>d_dist), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 45.7051</code></pre>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> (<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span> (<span class="no">d_time</span> - <span class="no">d_dist</span>), <span class="kw">na.rm</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<pre><code>## [1] 42.53874</code></pre>
 <p>The plot reveals that shortest distances are indeed somewhat shorter than distances along fastest paths, but also that some fastest paths are actually shorter than shortest paths:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">index &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (d_time) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (d_dist))</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (d_time [index] <span class="op">&lt;</span><span class="st"> </span>d_dist [index])) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (index)</a></code></pre></div>
-<pre><code>## [1] 0.01792757</code></pre>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">index</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span> (!<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (<span class="no">d_time</span>) <span class="kw">&amp;</span> !<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (<span class="no">d_dist</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="no">d_time</span> [<span class="no">index</span>] <span class="kw">&lt;</span> <span class="no">d_dist</span> [<span class="no">index</span>])) / <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="no">index</span>)</pre></body></html></div>
+<pre><code>## [1] 0.02148438</code></pre>
 <p>While <code>dodgr</code> and indeed all routing engines attempt to maximally reconcile differences between fastest and shortest routes, there nevertheless remain important discrepancies. Foremost among these, and the primary reason why some fastest routes may in fact be shorter than shortest routes, is that fastest routes allocate preferences for different kinds of way based both on the <code>value</code> column in the <code>weighting_profiles$weighting_profiles</code> table illustrated above, and on the actual maximum speed of a given edge, which itself may be a combination of maximum speeds as specified in OSM itself, maximum speeds from the <code>weighting_profiles$weighting_profiles</code> table, or values specific to a given surface. The result is that some unique combination of maximum speeds along a network may lead to <em>fastest</em> routes being preferentially directed along a path that is actually shorter than the direct shortest path which is calculated independent of maximum speed values.</p>
 <p>Such discrepancies are important in understanding differences in routes <em>times</em> calculated along shortest versus fastest paths. These times can be calculated (in seconds) with the <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="../reference/dodgr_times.html">dodgr_times()</a></code></a> function:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">t_dist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_times.html">dodgr_times</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">shortest =</span> <span class="ot">TRUE</span>) <span class="co"># default</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">t_time &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dodgr_times.html">dodgr_times</a></span> (graph, <span class="dt">from =</span> from, <span class="dt">to =</span> to, <span class="dt">shortest =</span> <span class="ot">FALSE</span>) <span class="co"># fastest paths</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span> (t_dist <span class="op">/</span><span class="st"> </span><span class="dv">3600</span>, t_time <span class="op">/</span><span class="st"> </span><span class="dv">3600</span>, <span class="dt">col =</span> <span class="st">"orange"</span>,</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">      <span class="dt">xlab =</span> <span class="st">"times along shortest paths (hours)"</span>,</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">      <span class="dt">ylab =</span> <span class="st">"times along fastest paths (hours)"</span>)</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span> (<span class="dv">0</span><span class="op">:</span><span class="dv">100</span>, <span class="dv">0</span><span class="op">:</span><span class="dv">100</span>, <span class="dt">col =</span> <span class="st">"red"</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">t_dist</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_times.html">dodgr_times</a></span> (<span class="no">graph</span>, <span class="kw">from</span> <span class="kw">=</span> <span class="no">from</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="no">to</span>, <span class="kw">shortest</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="co"># default</span>
+<span class="no">t_time</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_times.html">dodgr_times</a></span> (<span class="no">graph</span>, <span class="kw">from</span> <span class="kw">=</span> <span class="no">from</span>, <span class="kw">to</span> <span class="kw">=</span> <span class="no">to</span>, <span class="kw">shortest</span> <span class="kw">=</span> <span class="fl">FALSE</span>) <span class="co"># fastest paths</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span> (<span class="no">t_dist</span> / <span class="fl">3600</span>, <span class="no">t_time</span> / <span class="fl">3600</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"orange"</span>,
+      <span class="kw">xlab</span> <span class="kw">=</span> <span class="st">"times along shortest paths (hours)"</span>,
+      <span class="kw">ylab</span> <span class="kw">=</span> <span class="st">"times along fastest paths (hours)"</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span> (<span class="fl">0</span>:<span class="fl">100</span>, <span class="fl">0</span>:<span class="fl">100</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>, <span class="kw">lty</span> <span class="kw">=</span> <span class="fl">2</span>)</pre></body></html></div>
 <p><img src="times_files/figure-html/shortest-vs-fastest-times-1.png" width="700"></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span> (t_time <span class="op">-</span><span class="st"> </span>t_dist), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## [1] 42.82412</code></pre>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span> (<span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span> (<span class="no">t_time</span> - <span class="no">t_dist</span>), <span class="kw">na.rm</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<pre><code>## [1] 48.66149</code></pre>
 <p>As above, times along fastest paths are generally less than times along shortest paths, although there are again a few exceptions:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">index &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (t_time) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (t_dist))</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span> (t_dist [index] <span class="op">&lt;</span><span class="st"> </span>t_time [index])) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span> (index)</a></code></pre></div>
-<pre><code>## [1] 0.03065615</code></pre>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">index</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span> (!<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (<span class="no">t_time</span>) <span class="kw">&amp;</span> !<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span> (<span class="no">t_dist</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span> (<span class="no">t_dist</span> [<span class="no">index</span>] <span class="kw">&lt;</span> <span class="no">t_time</span> [<span class="no">index</span>])) / <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span> (<span class="no">index</span>)</pre></body></html></div>
+<pre><code>## [1] 0.009960937</code></pre>
 <p>These results demonstrate how the combination of the <a href="https://atfutures.github.io/dodgr/reference/dodgr_distances.html"><code><a href="../reference/dodgr_distances.html">dodgr_distances()</a></code></a> and <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="../reference/dodgr_times.html">dodgr_times()</a></code></a> functions enable calculation of both distances and times along both shortest and fastest paths.</p>
 <div id="time-based-paths-and-flow-aggregation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#time-based-paths-and-flow-aggregation" class="anchor"></a>4.1 Time-based paths and flow aggregation</h2>
 <p>The <a href="https://atfutures.github.io/dodgr/reference/dodgr_times.html"><code><a href="../reference/dodgr_times.html">dodgr_times()</a></code></a> works by simply swapping the columns of a graph, so that distance becomes time, and weighted distance becomes weighted time. The other <code>dodgr</code> routing functions (<a href="https://atfutures.github.io/dodgr/reference/dodgr_paths.html"><code><a href="../reference/dodgr_paths.html">dodgr_paths()</a></code></a>, <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_aggregate.html"><code><a href="../reference/dodgr_flows_aggregate.html">dodgr_flows_aggregate()</a></code></a>, <a href="https://atfutures.github.io/dodgr/reference/dodgr_flows_disperse.html"><code><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse()</a></code></a>) do not have explicit time-based equivalents. Instead, time-based routing can be implemented simply through replacing the weighted distance column (<code>d_weighted</code>) with the weighted time column (<code>time_weighted</code>):</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">graph<span class="op">$</span>d_weighted &lt;-<span class="st"> </span>graph<span class="op">$</span>time_weighted</a></code></pre></div>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">graph</span>$<span class="no">d_weighted</span> <span class="kw">&lt;-</span> <span class="no">graph</span>$<span class="no">time_weighted</span></pre></body></html></div>
 <p>All routes will then be automatically calculated along fastest rather than shortest routes.</p>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#street-networks-and-time-based-routing">1 Street Networks and Time-Based Routing</a></li>
-      <li><a href="#silicate-data-and-the-dodgr_streetnet_sc-function">2. Silicate data and the <code>dodgr_streetnet_sc()</code> function</a></li>
-      <li>
-<a href="#the-weight_streetnet-function">3. The <code>weight_streetnet()</code> function</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#weighting-profiles-and-the-write_dodgr_wt_profile-function">3.1 Weighting profiles and the <code>write_dodgr_wt_profile</code> function</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#time-based-routing-and-the-dodgr_times-function">4. Time-based routing and the <code>dodgr_times()</code> function</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#time-based-paths-and-flow-aggregation">4.1 Time-based paths and flow aggregation</a></li>
-      </ul>
-</li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -288,7 +272,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
