@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6.002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@
       <h1 data-toc-skip>dodgr flows</h1>
                         <h4 class="author">Mark Padgham</h4>
             
-            <h4 class="date">2020-05-04</h4>
+            <h4 class="date">2020-05-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ATFutures/dodgr/blob/master/vignettes/flows.Rmd"><code>vignettes/flows.Rmd</code></a></small>
       <div class="hidden name"><code>flows.Rmd</code></div>
@@ -107,17 +107,17 @@
 ## 4   8.888670   11.11084 unclassified 28565950         1  6.399842      7.999803
 ## 5   9.326536   11.65817 unclassified 28565950         1  6.715106      8.393882
 ## 6   9.326536   11.65817 unclassified 28565950         1  6.715106      8.393882
-##   flow
-## 1    0
-## 2    0
-## 3    0
-## 4    0
-## 5    0
-## 6    0</code></pre>
+##        flow
+## 1 0.1128284
+## 2 0.0000000
+## 3 0.1128284
+## 4 0.0000000
+## 5 0.1128284
+## 6 0.0000000</code></pre>
 <p>Most flows are zero because they have only been calculated between very few points in the graph.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (<span class="no">graph_f</span>$<span class="no">flow</span>)</pre></body></html></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.03914 0.00000 0.58865</code></pre>
+## 0.00000 0.00000 0.00000 0.04867 0.00000 1.23787</code></pre>
 </div>
 <div id="flow-dispersal" class="section level2">
 <h2 class="hasAnchor">
@@ -127,7 +127,7 @@
 <span class="no">graph_f</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/dodgr_flows_disperse.html">dodgr_flows_disperse</a></span> (<span class="no">graph</span>, <span class="kw">from</span> <span class="kw">=</span> <span class="no">from</span>, <span class="kw">dens</span> <span class="kw">=</span> <span class="no">dens</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span> (<span class="no">graph_f</span>$<span class="no">flow</span>)</pre></body></html></div>
 <pre><code>##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## 0.000e+00 0.000e+00 8.959e-05 1.674e-03 1.424e-03 4.058e-02</code></pre>
+## 0.0000000 0.0000000 0.0002705 0.0016742 0.0020651 0.0792682</code></pre>
 </div>
 <div id="merging-directed-flows" class="section level2">
 <h2 class="hasAnchor">
@@ -137,7 +137,7 @@
 <p>Resultant graphs produced by <a href="https://atfutures.github.io/dodgr/reference/merge_directed_graph.html"><code><a href="../reference/merge_directed_graph.html">merge_directed_graph()</a></code></a> only include those edges having non-zero flows, and so:</p>
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="no">graph_f</span>); <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span> (<span class="no">graph_undir</span>) <span class="co"># the latter is much smaller</span></pre></body></html></div>
 <pre><code>## [1] 5973</code></pre>
-<pre><code>## [1] 2903</code></pre>
+<pre><code>## [1] 2964</code></pre>
 <p>The resultant graph can readily be merged with the original graph to regain the original data on vertex coordinates through</p>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">graph</span> <span class="kw">&lt;-</span> <span class="no">graph</span> [<span class="no">graph_undir</span>$<span class="no">edge_id</span>, ]
 <span class="no">graph</span>$<span class="no">flow</span> <span class="kw">&lt;-</span> <span class="no">graph_undir</span>$<span class="no">flow</span></pre></body></html></div>
