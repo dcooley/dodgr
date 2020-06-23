@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.004</span>
       </span>
     </div>
 
@@ -74,6 +74,7 @@
   <div class="contents col-md-9">
 
 
+<p><a href="https://cran.r-project.org/package=dodgr"><img src="http://www.r-pkg.org/badges/version/dodgr" alt="CRAN_Status_Badge"></a> <a href="https://cran.r-project.org/package=dodgr"><img src="http://cranlogs.r-pkg.org/badges/grand-total/dodgr?color=orange" alt="CRAN Downloads"></a> <a href="https://bestpractices.coreinfrastructure.org/projects/1396"><img src="https://bestpractices.coreinfrastructure.org/projects/1396/badge" alt="CII Best Practices"></a></p>
 <div id="dodgr-distances-on-directed-graphs-in-r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#dodgr-distances-on-directed-graphs-in-r" class="anchor"></a>dodgr: Distances on Directed Graphs in R</h1></div>
@@ -102,7 +103,7 @@
 <p>Then load with</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span> (<span class="no">dodgr</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/packageDescription.html">packageVersion</a></span> (<span class="st">"dodgr"</span>)
-<span class="co">#&gt; [1] '0.2.6'</span></pre></div>
+<span class="co">#&gt; [1] '0.2.7'</span></pre></div>
 </div>
 <div id="usage-sample-data-and-dodgr-networks" class="section level2">
 <h2 class="hasAnchor">
@@ -143,7 +144,7 @@
 <th align="left">from_id</th>
 <th align="right">from_lon</th>
 <th align="right">from_lat</th>
-<th align="center">to_id</th>
+<th align="left">to_id</th>
 <th align="right">to_lon</th>
 <th align="right">to_lat</th>
 <th align="right">d</th>
@@ -161,7 +162,7 @@
 <td align="left">339318500</td>
 <td align="right">76.47489</td>
 <td align="right">15.34169</td>
-<td align="center">339318502</td>
+<td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">132.442169</td>
@@ -178,7 +179,7 @@
 <td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
-<td align="center">339318500</td>
+<td align="left">339318500</td>
 <td align="right">76.47489</td>
 <td align="right">15.34169</td>
 <td align="right">132.442169</td>
@@ -195,7 +196,7 @@
 <td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
-<td align="center">2398958028</td>
+<td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">8.888670</td>
@@ -212,7 +213,7 @@
 <td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
-<td align="center">339318502</td>
+<td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">8.888670</td>
@@ -229,7 +230,7 @@
 <td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
-<td align="center">1427116077</td>
+<td align="left">1427116077</td>
 <td align="right">76.47628</td>
 <td align="right">15.34179</td>
 <td align="right">9.326536</td>
@@ -246,7 +247,7 @@
 <td align="left">1427116077</td>
 <td align="right">76.47628</td>
 <td align="right">15.34179</td>
-<td align="center">2398958028</td>
+<td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">9.326536</td>
@@ -288,7 +289,7 @@
 <th align="left">from_id</th>
 <th align="right">from_lon</th>
 <th align="right">from_lat</th>
-<th align="center">to_id</th>
+<th align="left">to_id</th>
 <th align="right">to_lon</th>
 <th align="right">to_lat</th>
 <th align="right">d</th>
@@ -307,7 +308,7 @@
 <td align="left">338905220</td>
 <td align="right">76.47398</td>
 <td align="right">15.31224</td>
-<td align="center">338907543</td>
+<td align="left">338907543</td>
 <td align="right">76.47405</td>
 <td align="right">15.31241</td>
 <td align="right">19.70399</td>
@@ -325,7 +326,7 @@
 <td align="left">338907543</td>
 <td align="right">76.47405</td>
 <td align="right">15.31241</td>
-<td align="center">338905220</td>
+<td align="left">338905220</td>
 <td align="right">76.47398</td>
 <td align="right">15.31224</td>
 <td align="right">19.70399</td>
@@ -343,7 +344,7 @@
 <td align="left">338907543</td>
 <td align="right">76.47405</td>
 <td align="right">15.31241</td>
-<td align="center">2398957585</td>
+<td align="left">2398957585</td>
 <td align="right">76.47410</td>
 <td align="right">15.31259</td>
 <td align="right">21.39172</td>
@@ -361,7 +362,7 @@
 <td align="left">2398957585</td>
 <td align="right">76.47410</td>
 <td align="right">15.31259</td>
-<td align="center">338907543</td>
+<td align="left">338907543</td>
 <td align="right">76.47405</td>
 <td align="right">15.31241</td>
 <td align="right">21.39172</td>
@@ -379,7 +380,7 @@
 <td align="left">2398957585</td>
 <td align="right">76.47410</td>
 <td align="right">15.31259</td>
-<td align="center">338907597</td>
+<td align="left">338907597</td>
 <td align="right">76.47413</td>
 <td align="right">15.31279</td>
 <td align="right">22.15205</td>
@@ -397,7 +398,7 @@
 <td align="left">338907597</td>
 <td align="right">76.47413</td>
 <td align="right">15.31279</td>
-<td align="center">2398957585</td>
+<td align="left">2398957585</td>
 <td align="right">76.47410</td>
 <td align="right">15.31259</td>
 <td align="right">22.15205</td>
@@ -539,7 +540,7 @@
 <th align="left">from_id</th>
 <th align="right">from_lon</th>
 <th align="right">from_lat</th>
-<th align="center">to_id</th>
+<th align="left">to_id</th>
 <th align="right">to_lon</th>
 <th align="right">to_lat</th>
 <th align="right">d</th>
@@ -558,7 +559,7 @@
 <td align="left">339318500</td>
 <td align="right">76.47489</td>
 <td align="right">15.34169</td>
-<td align="center">339318502</td>
+<td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">132.442169</td>
@@ -568,7 +569,7 @@
 <td align="right">1</td>
 <td align="right">95.358362</td>
 <td align="right">119.197952</td>
-<td align="right">0.0822301</td>
+<td align="right">0.077674</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -576,7 +577,7 @@
 <td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
-<td align="center">339318500</td>
+<td align="left">339318500</td>
 <td align="right">76.47489</td>
 <td align="right">15.34169</td>
 <td align="right">132.442169</td>
@@ -586,7 +587,7 @@
 <td align="right">1</td>
 <td align="right">95.358362</td>
 <td align="right">119.197952</td>
-<td align="right">0.0000000</td>
+<td align="right">0.000000</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -594,7 +595,7 @@
 <td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
-<td align="center">2398958028</td>
+<td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">8.888670</td>
@@ -604,7 +605,7 @@
 <td align="right">1</td>
 <td align="right">6.399843</td>
 <td align="right">7.999803</td>
-<td align="right">0.0822301</td>
+<td align="right">0.077674</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -612,7 +613,7 @@
 <td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
-<td align="center">339318502</td>
+<td align="left">339318502</td>
 <td align="right">76.47612</td>
 <td align="right">15.34173</td>
 <td align="right">8.888670</td>
@@ -622,7 +623,7 @@
 <td align="right">1</td>
 <td align="right">6.399843</td>
 <td align="right">7.999803</td>
-<td align="right">0.0000000</td>
+<td align="right">0.000000</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
@@ -630,7 +631,7 @@
 <td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
-<td align="center">1427116077</td>
+<td align="left">1427116077</td>
 <td align="right">76.47628</td>
 <td align="right">15.34179</td>
 <td align="right">9.326536</td>
@@ -640,7 +641,7 @@
 <td align="right">1</td>
 <td align="right">6.715106</td>
 <td align="right">8.393882</td>
-<td align="right">0.0822301</td>
+<td align="right">0.077674</td>
 </tr>
 <tr class="even">
 <td align="right">1</td>
@@ -648,7 +649,7 @@
 <td align="left">1427116077</td>
 <td align="right">76.47628</td>
 <td align="right">15.34179</td>
-<td align="center">2398958028</td>
+<td align="left">2398958028</td>
 <td align="right">76.47621</td>
 <td align="right">15.34174</td>
 <td align="right">9.326536</td>
@@ -658,7 +659,7 @@
 <td align="right">1</td>
 <td align="right">6.715106</td>
 <td align="right">8.393882</td>
-<td align="right">0.0000000</td>
+<td align="right">0.000000</td>
 </tr>
 </tbody>
 </table>
@@ -668,36 +669,32 @@
 <div id="further-detail" class="section level2">
 <h2 class="hasAnchor">
 <a href="#further-detail" class="anchor"></a>Further detail</h2>
-<p>For more detail, see the <a href="https://atfutures.github.io/dodgr/articles/dodgr.html">main package vignette</a>, and the second vignette on <a href="https://atfutures.github.io/dodgr/articles/times.html">street networks and time-based routing</a></p>
-</div>
-<div id="contributors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contributors" class="anchor"></a>Contributors</h2>
+<p>For more detail, see the <a href="https://atfutures.github.io/dodgr/articles/dodgr.html">main package vignette</a>, and the second vignette on <a href="https://atfutures.github.io/dodgr/articles/times.html">street networks and time-based routing</a> ## Contributors</p>
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <p>This project follows the <a href="https://allcontributors.org">all-contributors</a> specification. Contributions of any kind are welcome!</p>
 <table class="table"><tr>
 <td align="center">
-<a href="https://github.com/mpadge"> <img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=mpadge">mpadge</a>
+<p><a href="https://github.com/mpadge"> <img src="https://avatars1.githubusercontent.com/u/6697851?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=mpadge">mpadge</a></p>
 </td>
 <td align="center">
-<a href="https://github.com/karpfen"> <img src="https://avatars3.githubusercontent.com/u/11758039?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=karpfen">karpfen</a>
+<p><a href="https://github.com/karpfen"> <img src="https://avatars3.githubusercontent.com/u/11758039?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=karpfen">karpfen</a></p>
 </td>
 <td align="center">
-<a href="https://github.com/Robinlovelace"> <img src="https://avatars2.githubusercontent.com/u/1825120?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=Robinlovelace">Robinlovelace</a>
+<p><a href="https://github.com/Robinlovelace"> <img src="https://avatars2.githubusercontent.com/u/1825120?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=Robinlovelace">Robinlovelace</a></p>
 </td>
 <td align="center">
-<a href="https://github.com/agila5"> <img src="https://avatars1.githubusercontent.com/u/22221146?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=agila5">agila5</a>
+<p><a href="https://github.com/agila5"> <img src="https://avatars1.githubusercontent.com/u/22221146?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=agila5">agila5</a></p>
 </td>
 <td align="center">
-<a href="https://github.com/JimShady"> <img src="https://avatars1.githubusercontent.com/u/2901470?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=JimShady">JimShady</a>
+<p><a href="https://github.com/JimShady"> <img src="https://avatars1.githubusercontent.com/u/2901470?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=JimShady">JimShady</a></p>
 </td>
 <td align="center">
-<a href="https://github.com/layik"> <img src="https://avatars3.githubusercontent.com/u/408568?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=layik">layik</a>
+<p><a href="https://github.com/layik"> <img src="https://avatars3.githubusercontent.com/u/408568?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=layik">layik</a></p>
 </td>
 <td align="center">
-<a href="https://github.com/virgesmith"> <img src="https://avatars3.githubusercontent.com/u/19323577?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=virgesmith">virgesmith</a>
+<p><a href="https://github.com/virgesmith"> <img src="https://avatars3.githubusercontent.com/u/19323577?v=4" width="100px;" alt=""></a><br><a href="https://github.com/ATFutures/dodgr/commits?author=virgesmith">virgesmith</a></p>
 </td>
 </tr></table>
 <!-- markdownlint-enable --><!-- prettier-ignore-end --><!-- ALL-CONTRIBUTORS-LIST:END -->
@@ -748,13 +745,11 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://github.com/atfutures/dodgr/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/atfutures/dodgr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://travis-ci.org/ATFutures/dodgr"><img src="https://travis-ci.org/ATFutures/dodgr.svg" alt="Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/ATFutures/dodgr"><img src="https://ci.appveyor.com/api/projects/status/github/ATFutures/dodgr?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/gh/ATFutures/dodgr"><img src="https://codecov.io/gh/ATFutures/dodgr/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="http://www.repostatus.org/#active"><img src="http://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active"></a></li>
-<li><a href="https://cran.r-project.org/package=dodgr"><img src="http://www.r-pkg.org/badges/version/dodgr" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://cran.r-project.org/package=dodgr"><img src="http://cranlogs.r-pkg.org/badges/grand-total/dodgr?color=orange" alt="CRAN Downloads"></a></li>
-<li><a href="https://bestpractices.coreinfrastructure.org/projects/1396"><img src="https://bestpractices.coreinfrastructure.org/projects/1396/badge" alt="CII Best Practices"></a></li>
 </ul>
 </div>
 </div>
