@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.020</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Calculate fundamental cycles on a FULL (that is, non-contracted) graph.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_full_cycles</span>(<span class='no'>graph</span>, <span class='kw'>graph_max_size</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_full_cycles</span><span class='op'>(</span><span class='va'>graph</span>, graph_max_size <span class='op'>=</span> <span class='fl'>10000</span>, expand <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,15 +148,16 @@ onto the original graph. This is far more computationally efficient than
 calculating fundamental cycles on a full (non-contracted) graph.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>net</span>)
-<span class='no'>cyc1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_fundamental_cycles.html'>dodgr_fundamental_cycles</a></span> (<span class='no'>graph</span>)
-<span class='no'>cyc2</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_full_cycles</span> (<span class='no'>net</span>)
-}
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>net</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> <span class='op'>(</span><span class='va'>hampi</span><span class='op'>)</span>
+<span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> <span class='op'>(</span><span class='va'>net</span><span class='op'>)</span>
+<span class='va'>cyc1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dodgr_fundamental_cycles.html'>dodgr_fundamental_cycles</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>)</span>
+<span class='va'>cyc2</span> <span class='op'>&lt;-</span> <span class='fu'>dodgr_full_cycles</span> <span class='op'>(</span><span class='va'>net</span><span class='op'>)</span>
+<span class='op'>}</span>
 <span class='co'># cyc2 has same number of cycles, but each one is generally longer, through</span>
 <span class='co'># including all points intermediate to junctions; cyc1 has cycles composed of</span>
-<span class='co'># junction points only.</span></div></pre>
+<span class='co'># junction points only.</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -172,7 +173,7 @@ calculating fundamental cycles on a full (non-contracted) graph.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

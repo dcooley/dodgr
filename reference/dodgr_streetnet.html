@@ -76,7 +76,7 @@ expand." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.020</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ be constructed by expanding the range of <code>pts</code> by the relative amount
 <code>expand</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_streetnet</span>(<span class='no'>bbox</span>, <span class='kw'>pts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_streetnet</span><span class='op'>(</span><span class='va'>bbox</span>, pts <span class='op'>=</span> <span class='cn'>NULL</span>, expand <span class='op'>=</span> <span class='fl'>0.05</span>, quiet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,28 +156,29 @@ limits defined by pts (only if <code>bbox</code> not given).</p></td>
 the street network.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>streetnet</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_streetnet</span> (<span class='st'>"hampi india"</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>streetnet</span> <span class='op'>&lt;-</span> <span class='fu'>dodgr_streetnet</span> <span class='op'>(</span><span class='st'>"hampi india"</span>, expand <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
 <span class='co'># convert to form needed for `dodgr` functions:</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>streetnet</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>) <span class='co'># around 5,900 edges</span>
+<span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> <span class='op'>(</span><span class='va'>streetnet</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>)</span> <span class='co'># around 5,900 edges</span>
 <span class='co'># Alternative ways of extracting street networks by using a small selection</span>
 <span class='co'># of graph vertices to define bounding box:</span>
-<span class='no'>verts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>graph</span>)
-<span class='no'>verts</span> <span class='kw'>&lt;-</span> <span class='no'>verts</span> [<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>verts</span>), <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>200</span>), ]
-<span class='no'>streetnet</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_streetnet</span> (<span class='kw'>pts</span> <span class='kw'>=</span> <span class='no'>verts</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>streetnet</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='no'>graph</span>)
+<span class='va'>verts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>)</span>
+<span class='va'>verts</span> <span class='op'>&lt;-</span> <span class='va'>verts</span> <span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> <span class='op'>(</span><span class='va'>verts</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span>, <span class='op'>]</span>
+<span class='va'>streetnet</span> <span class='op'>&lt;-</span> <span class='fu'>dodgr_streetnet</span> <span class='op'>(</span>pts <span class='op'>=</span> <span class='va'>verts</span>, expand <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+<span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> <span class='op'>(</span><span class='va'>streetnet</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>)</span>
 <span class='co'># This will generally have many more rows because most street networks</span>
 <span class='co'># include streets that extend considerably beyond the specified bounding box.</span>
 
 <span class='co'># bbox can also be a polygon:</span>
-<span class='no'>bb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>osmdata</span><span class='kw ns'>::</span><span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/getbb.html'>getbb</a></span> (<span class='st'>"gent belgium"</span>) <span class='co'># rectangular bbox</span>
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='fu'>dodgr_streetnet</span> (<span class='kw'>bbox</span> <span class='kw'>=</span> <span class='no'>bb</span>)) <span class='co'># around 30,000</span>
-<span class='no'>bb</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>osmdata</span><span class='kw ns'>::</span><span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/getbb.html'>getbb</a></span> (<span class='st'>"gent belgium"</span>, <span class='kw'>format_out</span> <span class='kw'>=</span> <span class='st'>"polygon"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> (<span class='fu'>dodgr_streetnet</span> (<span class='kw'>bbox</span> <span class='kw'>=</span> <span class='no'>bb</span>)) <span class='co'># around 17,000</span>
+<span class='va'>bb</span> <span class='op'>&lt;-</span> <span class='fu'>osmdata</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/getbb.html'>getbb</a></span> <span class='op'>(</span><span class='st'>"gent belgium"</span><span class='op'>)</span> <span class='co'># rectangular bbox</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> <span class='op'>(</span><span class='fu'>dodgr_streetnet</span> <span class='op'>(</span>bbox <span class='op'>=</span> <span class='va'>bb</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># around 30,000</span>
+<span class='va'>bb</span> <span class='op'>&lt;-</span> <span class='fu'>osmdata</span><span class='fu'>::</span><span class='fu'><a href='https://docs.ropensci.org/osmdata/reference/getbb.html'>getbb</a></span> <span class='op'>(</span><span class='st'>"gent belgium"</span>, format_out <span class='op'>=</span> <span class='st'>"polygon"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span> <span class='op'>(</span><span class='fu'>dodgr_streetnet</span> <span class='op'>(</span>bbox <span class='op'>=</span> <span class='va'>bb</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># around 17,000</span>
 <span class='co'># The latter has fewer rows because only edges within polygon are returned</span>
-}</div></pre>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -193,7 +194,7 @@ the street network.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

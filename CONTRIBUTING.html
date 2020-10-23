@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.020</span>
       </span>
     </div>
 
@@ -122,20 +122,24 @@
 <a href="#development-guidelines" class="anchor"></a>Development guidelines</h2>
 <p>If you’d like to contribute changes to <code>dodgr</code>, we use <a href="https://guides.github.com/introduction/flow/index.html">the GitHub flow</a> for proposing, submitting, reviewing, and accepting changes. If you haven’t done this before, there’s a nice overview of git <a href="http://r-pkgs.had.co.nz/git.html">here</a>, as well as best practices for submitting pull requests <a href="http://r-pkgs.had.co.nz/git.html#pr-make">here</a>.</p>
 <p>The <code>dodgr</code> coding style diverges somewhat from <a href="http://adv-r.had.co.nz/Style.html">this commonly used R style guide</a>, primarily in the following two ways, both of which improve code readability: (1) All curly braces are vertically aligned:</p>
-<div class="sourceCode" id="cb1"><html><pre class="r"><span class="no">this</span> <span class="kw">&lt;-</span> <span class="kw">function</span> ()
-{
-    <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fl">1</span>
-}</pre></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="va">this</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="op">)</span>
+<span class="op">{</span>
+    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="op">}</span></pre></div>
 <p>and <strong>not</strong></p>
-<div class="sourceCode" id="cb2"><html><pre class="r"><span class="no">this</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(){
-    <span class="no">x</span> <span class="kw">&lt;-</span> <span class="fl">1</span>
-}</pre></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="va">this</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span><span class="op">{</span>
+    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="op">}</span></pre></div>
 <p>and (2) Also highlighted in that code is the additional whitespace which permeates <code>dodgr</code> code. Words of text are separated by whitespace, and so code words should be too:</p>
-<div class="sourceCode" id="cb3"><html><pre class="r"><span class="no">this</span> <span class="kw">&lt;-</span> <span class="fu">function1</span> (<span class="fu">function2</span> (<span class="no">x</span>))</pre></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="va">this</span> <span class="op">&lt;-</span> <span class="fu">function1</span> <span class="op">(</span><span class="fu">function2</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p>and <strong>not</strong></p>
-<div class="sourceCode" id="cb4"><html><pre class="r"><span class="no">this</span> <span class="kw">&lt;-</span> <span class="fu">function1</span>(<span class="fu">function2</span>(<span class="no">x</span>))</pre></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="va">this</span> <span class="op">&lt;-</span> <span class="fu">function1</span><span class="op">(</span><span class="fu">function2</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p>with the natural result that one ends up writing</p>
-<div class="sourceCode" id="cb5"><html><pre class="r">this &lt;- function ()</pre></html></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>this &lt;-<span class="st"> </span><span class="cf">function</span> ()</span></code></pre></div>
 <p>with a space between <code>function</code> and <code>()</code>. That’s it.</p>
 </div>
 <div id="code-of-conduct" class="section level2">
@@ -163,7 +167,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -76,7 +76,7 @@ will be bisected at every junction point." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.020</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ between all junction nodes. The resultant objects will generally contain more
 will be bisected at every junction point.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_to_sf</span>(<span class='no'>graph</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_to_sf</span><span class='op'>(</span><span class='va'>graph</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,9 +144,11 @@ will be bisected at every junction point.</p>
     <p>Requires the <span class="pkg">sf</span> package to be installed.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>hw</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>hw</span>) <span class='co'># 5,729 edges</span></div><div class='output co'>#&gt; [1] 5973</div><div class='input'><span class='no'>xy</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_to_sf</span> (<span class='no'>hw</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span> (<span class='no'>xy</span>) <span class='co'># 764 edges; 14 attributes</span></div><div class='output co'>#&gt; [1] 662  16</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>hw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> <span class='op'>(</span><span class='va'>hampi</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>hw</span><span class='op'>)</span> <span class='co'># 5,729 edges</span>
+</div><div class='output co'>#&gt; [1] 5973</div><div class='input'><span class='va'>xy</span> <span class='op'>&lt;-</span> <span class='fu'>dodgr_to_sf</span> <span class='op'>(</span><span class='va'>hw</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span> <span class='op'>(</span><span class='va'>xy</span><span class='op'>)</span> <span class='co'># 764 edges; 14 attributes</span>
+</div><div class='output co'>#&gt; [1] 664  16</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -162,7 +164,7 @@ will be bisected at every junction point.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

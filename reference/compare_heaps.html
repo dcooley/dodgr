@@ -76,7 +76,7 @@ dodgr_sample function and passed directly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.020</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@ Alternatively, this random sub-graph can be pre-generated with the
 <code>dodgr_sample</code> function and passed directly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compare_heaps</span>(<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>replications</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
+    <pre class="usage"><span class='fu'>compare_heaps</span><span class='op'>(</span><span class='va'>graph</span>, nverts <span class='op'>=</span> <span class='fl'>100</span>, replications <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,33 +157,34 @@ the <span class="pkg">igraph</span> comparisons will be faster on subsequent run
 fair comparisons, run only once or re-start the current R session.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='fu'>compare_heaps</span> (<span class='no'>graph</span>, <span class='kw'>nverts</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>replications</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: rbenchmark</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: igraph</span></div><div class='output co'>#&gt;                                                                                   test
+    <pre class="examples"><div class='input'><span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> <span class='op'>(</span><span class='va'>hampi</span><span class='op'>)</span>
+<span class='fu'>compare_heaps</span> <span class='op'>(</span><span class='va'>graph</span>, nverts <span class='op'>=</span> <span class='fl'>1000</span>, replications <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: rbenchmark</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: igraph</span></div><div class='output co'>#&gt;                                                                                   test
 #&gt; 6       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "BHeap")
-#&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
-#&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
 #&gt; 7       d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "FHeap")
-#&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 10     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "Heap23")
+#&gt; 11        d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "set")
+#&gt; 8     d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeap")
+#&gt; 9  d &lt;- dodgr_dists(graph_contracted, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt; 1                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "BHeap")
 #&gt; 12                  d &lt;- igraph::distances(igr, v = from_id, to = to_id, mode = "out")
 #&gt; 2                  d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "FHeap")
-#&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 5                 d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "Heap23")
+#&gt; 3                d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeap")
 #&gt; 4             d &lt;- dodgr_dists(graph, from = from_id, to = to_id, heap = "TriHeapExt")
 #&gt;    replications elapsed relative user.self sys.self user.child sys.child
-#&gt; 6             1   0.003    1.000     0.003        0          0         0
-#&gt; 9             1   0.003    1.000     0.004        0          0         0
-#&gt; 11            1   0.003    1.000     0.003        0          0         0
-#&gt; 7             1   0.004    1.333     0.004        0          0         0
-#&gt; 8             1   0.004    1.333     0.003        0          0         0
-#&gt; 10            1   0.004    1.333     0.004        0          0         0
-#&gt; 1             1   0.011    3.667     0.011        0          0         0
-#&gt; 12            1   0.013    4.333     0.013        0          0         0
-#&gt; 2             1   0.016    5.333     0.016        0          0         0
-#&gt; 3             1   0.017    5.667     0.017        0          0         0
-#&gt; 5             1   0.017    5.667     0.018        0          0         0
-#&gt; 4             1   0.018    6.000     0.018        0          0         0</div></pre>
+#&gt; 6             1   0.002      1.0     0.003    0.000          0         0
+#&gt; 7             1   0.003      1.5     0.005    0.000          0         0
+#&gt; 10            1   0.003      1.5     0.004    0.001          0         0
+#&gt; 11            1   0.003      1.5     0.004    0.000          0         0
+#&gt; 8             1   0.004      2.0     0.004    0.000          0         0
+#&gt; 9             1   0.004      2.0     0.004    0.000          0         0
+#&gt; 1             1   0.007      3.5     0.011    0.000          0         0
+#&gt; 12            1   0.009      4.5     0.010    0.000          0         0
+#&gt; 2             1   0.010      5.0     0.019    0.000          0         0
+#&gt; 5             1   0.010      5.0     0.019    0.001          0         0
+#&gt; 3             1   0.011      5.5     0.019    0.001          0         0
+#&gt; 4             1   0.021     10.5     0.020    0.000          0         0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -199,7 +200,7 @@ fair comparisons, run only once or re-start the current R session.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

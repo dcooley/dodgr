@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.020</span>
       </span>
     </div>
 
@@ -117,7 +117,7 @@
     <p>Map the output of <a href='dodgr_flows_aggregate.html'>dodgr_flows_aggregate</a> or <a href='dodgr_flows_disperse.html'>dodgr_flows_disperse</a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_flowmap</span>(<span class='no'>net</span>, <span class='kw'>bbox</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>linescale</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>dodgr_flowmap</span><span class='op'>(</span><span class='va'>net</span>, bbox <span class='op'>=</span> <span class='cn'>NULL</span>, linescale <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,20 +144,21 @@ of <code>net</code></p></td>
 prior to plotting, otherwise lines for different directions will be overlaid.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>from_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> (<span class='no'>graph</span>$<span class='no'>to_id</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>5</span>)
-<span class='no'>to</span> <span class='kw'>&lt;-</span> <span class='no'>to</span> [!<span class='no'>to</span> <span class='kw'>%in%</span> <span class='no'>from</span>]
-<span class='no'>flows</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> (<span class='fl'>10</span> * <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>from</span>) * <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>to</span>)),
-                 <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> (<span class='no'>from</span>))
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_flows_aggregate.html'>dodgr_flows_aggregate</a></span> (<span class='no'>graph</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='no'>from</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='no'>to</span>, <span class='kw'>flows</span> <span class='kw'>=</span> <span class='no'>flows</span>)
+    <pre class="examples"><div class='input'><span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> <span class='op'>(</span><span class='va'>hampi</span><span class='op'>)</span>
+<span class='va'>from</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>$</span><span class='va'>from_id</span>, size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>to</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>$</span><span class='va'>to_id</span>, size <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>to</span> <span class='op'>&lt;-</span> <span class='va'>to</span> <span class='op'>[</span><span class='op'>!</span><span class='va'>to</span> <span class='op'>%in%</span> <span class='va'>from</span><span class='op'>]</span>
+<span class='va'>flows</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span> <span class='op'>(</span><span class='fl'>10</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> <span class='op'>(</span><span class='va'>from</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> <span class='op'>(</span><span class='va'>to</span><span class='op'>)</span><span class='op'>)</span>,
+                 nrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span> <span class='op'>(</span><span class='va'>from</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dodgr_flows_aggregate.html'>dodgr_flows_aggregate</a></span> <span class='op'>(</span><span class='va'>graph</span>, from <span class='op'>=</span> <span class='va'>from</span>, to <span class='op'>=</span> <span class='va'>to</span>, flows <span class='op'>=</span> <span class='va'>flows</span><span class='op'>)</span>
 <span class='co'># graph then has an additonal 'flows` column of aggregate flows along all</span>
 <span class='co'># edges. These flows are directed, and can be aggregated to equivalent</span>
 <span class='co'># undirected flows on an equivalent undirected graph with:</span>
-<span class='no'>graph_undir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> (<span class='no'>graph</span>)
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>dodgr_flowmap</span> (<span class='no'>graph_undir</span>)
-}</div></pre>
+<span class='va'>graph_undir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='merge_directed_graph.html'>merge_directed_graph</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>dodgr_flowmap</span> <span class='op'>(</span><span class='va'>graph_undir</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -173,7 +174,7 @@ prior to plotting, otherwise lines for different directions will be overlaid.</p
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

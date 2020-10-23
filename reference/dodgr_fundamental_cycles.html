@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dodgr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.017</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7.020</span>
       </span>
     </div>
 
@@ -117,12 +117,12 @@
     <p>Calculate fundamental cycles in a graph.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dodgr_fundamental_cycles</span>(
-  <span class='no'>graph</span>,
-  <span class='kw'>vertices</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>graph_max_size</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
-  <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>0.05</span>
-)</pre>
+    <pre class="usage"><span class='fu'>dodgr_fundamental_cycles</span><span class='op'>(</span>
+  <span class='va'>graph</span>,
+  vertices <span class='op'>=</span> <span class='cn'>NULL</span>,
+  graph_max_size <span class='op'>=</span> <span class='fl'>10000</span>,
+  expand <span class='op'>=</span> <span class='fl'>0.05</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,10 +174,11 @@ cutting graphs into smaller, computationally manageable sub-graphs provides
 only an approximation and may not yield all fundamental cycles.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>net</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> (<span class='no'>hampi</span>)
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> (<span class='no'>net</span>)
-<span class='no'>verts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> (<span class='no'>graph</span>)
-<span class='no'>cyc</span> <span class='kw'>&lt;-</span> <span class='fu'>dodgr_fundamental_cycles</span> (<span class='no'>graph</span>, <span class='no'>verts</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>net</span> <span class='op'>&lt;-</span> <span class='fu'><a href='weight_streetnet.html'>weight_streetnet</a></span> <span class='op'>(</span><span class='va'>hampi</span><span class='op'>)</span>
+<span class='va'>graph</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dodgr_contract_graph.html'>dodgr_contract_graph</a></span> <span class='op'>(</span><span class='va'>net</span><span class='op'>)</span>
+<span class='va'>verts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='dodgr_vertices.html'>dodgr_vertices</a></span> <span class='op'>(</span><span class='va'>graph</span><span class='op'>)</span>
+<span class='va'>cyc</span> <span class='op'>&lt;-</span> <span class='fu'>dodgr_fundamental_cycles</span> <span class='op'>(</span><span class='va'>graph</span>, <span class='va'>verts</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -193,7 +194,7 @@ only an approximation and may not yield all fundamental cycles.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
