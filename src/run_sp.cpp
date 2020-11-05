@@ -631,7 +631,7 @@ Rcpp::List rcpp_get_paths (const Rcpp::DataFrame graph,
         std::shared_ptr<PF::PathFinder> pathfinder =
             std::make_shared <PF::PathFinder> (nverts,
                 *run_sp::getHeapImpl(heap_type), g);
-        
+
         pathfinder->init (g); // specify the graph
 
         Rcpp::checkUserInterrupt ();
@@ -670,4 +670,87 @@ Rcpp::List rcpp_get_paths (const Rcpp::DataFrame graph,
         res [i] = res1;
     }
     return (res);
+}
+
+
+// [[Rcpp::export]]
+Rcpp::List rcpp_get_paths_pairwise (const Rcpp::DataFrame graph,
+                           const Rcpp::DataFrame vert_map_in,
+                           Rcpp::IntegerVector fromi,
+                           Rcpp::IntegerVector toi_in,
+                           const std::string& heap_type)
+{
+  std::vector <unsigned int> toi =
+    Rcpp::as <std::vector <unsigned int> > ( toi_in);
+  size_t nfrom = static_cast <size_t> (fromi.size ());
+  size_t nto = static_cast <size_t> (toi.size ());
+  
+  std::vector <std::string> from = graph ["from"];
+  std::vector <std::string> to = graph ["to"];
+  std::vector <double> dist = graph ["d"];
+  std::vector <double> wt = graph ["d_weighted"];
+  
+  unsigned int nedges = static_cast <unsigned int> (graph.nrow ());
+  std::map <std::string, unsigned int> vert_map;
+  std::vector <std::string> vert_map_id = vert_map_in ["vert"];
+  std::vector <unsigned int> vert_map_n = vert_map_in ["id"];
+  size_t nverts = run_sp::make_vert_map (vert_map_in, vert_map_id,
+                                         vert_map_n, vert_map);
+  
+  std::shared_ptr<DGraph> g = std::make_shared<DGraph>(nverts);
+  inst_graph (g, nedges, vert_map, from, to, dist, wt);
+  
+  Rcpp::List res (nfrom);
+  std::vector<double> w (nverts);
+  std::vector<double> d (nverts);
+  std::vector<int> prev (nverts);
+  
+  for (unsigned int i = 0; i < nfrom; i++)
+  {
+    // These lines (re-)initialise the heap, so have to be called for each i
+    std::shared_ptr<PF::PathFinder> pathfinder =
+      std::make_shared <PF::PathFinder> (nverts,
+                                         *run_sp::getHeapImpl(heap_type), g);
+    
+    pathfinder->init (g); // specify the graph
+    
+    Rcpp::checkUserInterrupt ();
+    std::fill (w.begin(), w.end(), INFINITE_DOUBLE);
+    std::fill (d.begin(), d.end(), INFINITE_DOUBLE);
+    std::fill (prev.begin(), prev.end(), INFINITE_INT);
+    d [fromi [i]] = w [fromi [i]] = 0.0;
+    
+    pathfinder->Dijkstra (d, w, prev,
+                          static_cast <unsigned int> (fromi [i]), toi);
+    
+    //Rcpp::List res1 (nto);
+    Rcpp::List res1( 1 );
+    // for (unsigned int j = 0; j < nto; j++)
+    // {
+      std::vector <int> onePath;
+      //if (w [toi [j]] < INFINITE_DOUBLE)
+      if (w [toi [i]] < INFINITE_DOUBLE)
+      {
+        int target = toi_in [i]; // target can be -1!
+        while (target < INFINITE_INT)
+        {
+          // Note that targets are all C++ 0-indexed and are converted
+          // directly here to R-style 1-indexes.
+          onePath.push_back (target + 1);
+          target = static_cast <int> (prev [static_cast <unsigned int> (target)]);
+          if (target < 0 || target == fromi [i])
+            break;
+        }
+      }
+      if (onePath.size () >= 1)
+      {
+        onePath.push_back (fromi [i] + 1);
+        std::reverse (onePath.begin (), onePath.end ());
+        //res1 [j] = onePath;
+        res1[0] = onePath;
+      }
+    // }
+    res [i] = res1;
+  }
+  return (res);
 }

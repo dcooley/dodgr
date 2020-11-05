@@ -98,7 +98,7 @@ dodgr_paths <- function (graph, from, to, vertices = TRUE, pairwise = FALSE,
         if (length (from_index) != length (to_index))
             stop ("pairwise paths require from and to to have same length")
         paths <- list ()
-        for (i in seq (from_index))
+        for (i in seq_along (from_index))
         {
             paths [[i]] <- rcpp_get_paths (graph, vert_map,
                                            from_index [i], to_index [i],
@@ -190,7 +190,7 @@ dodgr_paths_pairwise <- function (graph, from, to, vertices = TRUE, pairwise = F
     {
         if (length (from_index) != length (to_index))
             stop ("pairwise paths require from and to to have same length")
-        paths <- rcpp_get_paths_pairwise( graph, vert_map, from_index, to_index, heap) [[1]]
+        paths <- rcpp_get_paths_pairwise( graph, vert_map, from_index, to_index, heap)
         # paths <- list ()
         # for (i in seq (from_index))
         # {
@@ -208,44 +208,44 @@ dodgr_paths_pairwise <- function (graph, from, to, vertices = TRUE, pairwise = F
     # be traced and single-step paths are returned from the above as NULL. The
     # former are retained as NULL, while the following converts the latter to
     # appropriate start-end vertices.
-    # paths <- lapply (paths, function (i)
-    #     lapply (i, function (j)
-    #     {
-    #         if (is.null (j))
-    #             return (j)     # nocov
-    #         vert_map$vert [j]
-    #     }  )   )
+    paths <- lapply (paths, function (i)
+        lapply (i, function (j)
+        {
+            if (is.null (j))
+                return (j)     # nocov
+            vert_map$vert [j]
+        }  )   )
     
     
     # name path lists
-    # if (!is.null (from_id) & !is.null (to_id))
-    # {
-    #     if (!pairwise)
-    #     {
-    #         for (i in seq (from_id))
-    #             names (paths [[i]]) <- paste0 (from_id [i], "-", to_id)
-    #     }
-    #     names (paths) <- from_id
-    # }
+    if (!is.null (from_id) & !is.null (to_id))
+    {
+        if (!pairwise)
+        {
+            for (i in seq (from_id))
+                names (paths [[i]]) <- paste0 (from_id [i], "-", to_id)
+        }
+        names (paths) <- from_id
+    }
     
-    # if (!vertices)
-    # {
-    #     graph_verts <- paste0 ("f", graph$from, "t", graph$to)
-    #     
-    #     # convert vertex IDs to corresponding sequences of edge numbers
-    #     paths <- lapply (paths, function (i)
-    #         lapply (i, function (j)
-    #             if (length (j) > 1)
-    #             {
-    #                 indx <- 2:length (j)
-    #                 pij <- paste0 ("f", j [indx - 1],
-    #                                "t", j [indx])
-    #                 res <- match (pij, graph_verts)
-    #                 res <- res [which (!is.na (res))]
-    #                 return (if (length (res) == 0) NULL
-    #                         else res)
-    #             } ))
-    # }
+    if (!vertices)
+    {
+        graph_verts <- paste0 ("f", graph$from, "t", graph$to)
+
+        # convert vertex IDs to corresponding sequences of edge numbers
+        paths <- lapply (paths, function (i)
+            lapply (i, function (j)
+                if (length (j) > 1)
+                {
+                    indx <- 2:length (j)
+                    pij <- paste0 ("f", j [indx - 1],
+                                   "t", j [indx])
+                    res <- match (pij, graph_verts)
+                    res <- res [which (!is.na (res))]
+                    return (if (length (res) == 0) NULL
+                            else res)
+                } ))
+    }
     
     return (paths)
 }
